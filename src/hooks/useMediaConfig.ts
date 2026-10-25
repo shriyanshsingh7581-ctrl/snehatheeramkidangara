@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { DEFAULT_IMAGES, SiteImagesConfig } from '../config/siteConfig';
 
-const STORAGE_KEY = 'snehatheeram_media_config_v1';
+const STORAGE_KEY = 'snehatheeram_media_config_v3';
 
 export function useMediaConfig() {
   const [images, setImages] = useState<SiteImagesConfig>(() => {
@@ -16,6 +16,10 @@ export function useMediaConfig() {
           everyMotherLove: { ...DEFAULT_IMAGES.everyMotherLove, ...(parsed.everyMotherLove || {}) },
           kuttanadCampus: { ...DEFAULT_IMAGES.kuttanadCampus, ...(parsed.kuttanadCampus || {}) },
           nutritiousMeals: { ...DEFAULT_IMAGES.nutritiousMeals, ...(parsed.nutritiousMeals || {}) },
+          elderlyCare: { ...DEFAULT_IMAGES.elderlyCare, ...(parsed.elderlyCare || {}) },
+          digitalLearning: { ...DEFAULT_IMAGES.digitalLearning, ...(parsed.digitalLearning || {}) },
+          medicalNursing: { ...DEFAULT_IMAGES.medicalNursing, ...(parsed.medicalNursing || {}) },
+          spiritualSupport: { ...DEFAULT_IMAGES.spiritualSupport, ...(parsed.spiritualSupport || {}) },
         };
       }
     } catch {

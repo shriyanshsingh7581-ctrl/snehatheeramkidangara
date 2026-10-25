@@ -17,7 +17,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ activeSectio
   return (
     <nav
       aria-label="Mobile Bottom Navigation"
-      className="fixed bottom-0 left-0 right-0 z-30 border-t border-[#E7ECEB] bg-white/95 backdrop-blur-md md:hidden"
+      className="fixed bottom-0 left-0 right-0 z-30 border-t border-[#2E7D32]/20 bg-white/95 backdrop-blur-md md:hidden"
     >
       <div className="mx-auto grid h-14 max-w-md grid-cols-5 items-center px-1">
         {NAV_ITEMS.map(({ id, label, href, Icon }) => {
@@ -29,13 +29,13 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ activeSectio
               aria-current={isActive ? 'page' : undefined}
               className={`flex min-h-[44px] min-w-[44px] flex-col items-center justify-center rounded-xl transition-colors whitespace-nowrap shrink-0 ${
                 isActive
-                  ? 'text-[#159A91] font-semibold'
-                  : 'text-[#687780] hover:text-[#183153] font-medium'
+                  ? 'bg-[#E8F5E9] text-[#1B5E20] font-semibold'
+                  : 'text-[#2E7D32] hover:text-[#1B5E20] font-medium'
               }`}
             >
               <Icon
                 className={`h-5 w-5 transition-transform duration-150 ${
-                  isActive ? 'scale-105 text-[#159A91]' : 'text-[#687780]'
+                  isActive ? 'scale-105 text-[#1B5E20]' : 'text-[#2E7D32]'
                 }`}
                 aria-hidden="true"
               />

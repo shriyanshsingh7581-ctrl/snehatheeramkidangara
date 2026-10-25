@@ -71,7 +71,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F2] text-[#263238]">
+    <div className="min-h-screen flex flex-col bg-[#E8F5E9] text-[#1B5E20]">
       {/* SECTION A — HEADER */}
       <Header onDonateClick={() => scrollToElement('support')} />
 
@@ -108,7 +108,7 @@ export default function App() {
         />
 
         {/* SECTION I — SPECIAL PRAYER OFFERING */}
-        <PrayerOffering onPrayerInquiryClick={handlePrayerOfferingNavigate} />
+        <PrayerOffering images={images} onPrayerInquiryClick={handlePrayerOfferingNavigate} />
 
         {/* SECTION J — CONTACT & LOCATION */}
         <ContactSection />

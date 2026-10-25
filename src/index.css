@@ -2,21 +2,21 @@
 
 @layer base {
   :root {
-    --color-primary: #183153;
-    --color-secondary: #159A91;
-    --color-accent: #D8AD62;
-    --color-bg: #FAF8F2;
+    --color-primary: #2E7D32;
+    --color-secondary: #1B5E20;
+    --color-accent: #E8F5E9;
+    --color-bg: #E8F5E9;
     --color-surface: #FFFFFF;
-    --color-text-main: #263238;
-    --color-text-muted: #687780;
-    --color-border: #E7ECEB;
-    --color-whatsapp: #25D366;
+    --color-text-main: #1B5E20;
+    --color-text-muted: #2E7D32;
+    --color-border: #C8E6C9;
+    --color-whatsapp: #2E7D32;
   }
 
   html {
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #263238;
-    background-color: #FAF8F2;
+    color: #1B5E20;
+    background-color: #E8F5E9;
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
   }

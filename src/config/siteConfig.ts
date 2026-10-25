@@ -1,3 +1,9 @@
+export interface PhotoAsset {
+  url: string;
+  alt: string;
+  caption?: string;
+}
+
 export interface ServiceItem {
   id: string;
   number: string;
@@ -8,26 +14,14 @@ export interface ServiceItem {
 
 export interface SiteImagesConfig {
   logoUrl: string;
-  heroSanctuary: {
-    url: string;
-    alt: string;
-    caption: string;
-  };
-  everyMotherLove: {
-    url: string;
-    alt: string;
-    caption: string;
-  };
-  kuttanadCampus: {
-    url: string;
-    alt: string;
-    caption: string;
-  };
-  nutritiousMeals: {
-    url: string;
-    alt: string;
-    caption: string;
-  };
+  heroSanctuary: PhotoAsset;
+  everyMotherLove: PhotoAsset;
+  kuttanadCampus: PhotoAsset;
+  nutritiousMeals: PhotoAsset;
+  elderlyCare: PhotoAsset;
+  digitalLearning: PhotoAsset;
+  medicalNursing: PhotoAsset;
+  spiritualSupport: PhotoAsset;
 }
 
 export interface VerifiedBankDetails {
@@ -48,24 +42,44 @@ export interface VerifiedBankDetails {
 export const DEFAULT_IMAGES: SiteImagesConfig = {
   logoUrl: '/favicon.svg',
   heroSanctuary: {
-    url: '/images/hero-sanctuary.svg',
-    alt: 'Illustration of Snehatheeram Kidangara sanctuary courtyard in Kuttanad, Alappuzha where Sisters care for elderly mothers in a peaceful environment',
-    caption: 'Illustrative representation · Peaceful sanctuary environment in Kidangara, Kuttanad',
+    url: '/assets/aistudio/file_00000000cae08211bd5827b5c5a6ec00_d61da64e.png',
+    alt: 'Sister walking arm-in-arm with smiling elderly mothers in front of Snehatheeram Kidangara Care Center',
+    caption: 'Compassionate care & family warmth at Snehatheeram Kidangara',
   },
   everyMotherLove: {
-    url: '/images/every-mother-love.svg',
-    alt: 'Illustration representing compassionate care and family belonging provided by the Sisters of St. Charles Borromeo',
-    caption: 'Illustrative representation · Dedicated service by St. Joseph Province, Changanassery',
+    url: '/assets/aistudio/photo_about_us.png',
+    alt: 'Sister walking with elderly mothers along the sunlit garden pathway at Snehatheeram',
+    caption: 'Dedicated service by St. Joseph Province, Changanassery',
   },
   kuttanadCampus: {
-    url: '/images/kuttanad-campus.svg',
-    alt: 'Illustration of the serene Kuttanad campus of Pope John XXIII Rehabilitation & Old Age Women Care Center',
-    caption: 'Illustrative representation · Near Kidangara Bridge, Changanassery-Alappuzha Road',
+    url: '/assets/aistudio/photo_care_home.png',
+    alt: 'Snehatheeram Care Home building surrounded by lush coconut palms and flowering gardens in Kidangara, Kuttanad',
+    caption: 'Care Home Sanctuary · Near Kidangara Bridge, Changanassery-Alappuzha Road',
+  },
+  elderlyCare: {
+    url: '/assets/aistudio/photo_elderly_care.png',
+    alt: 'Sister holding hands and comforting an elderly mother in the clean, bright care home dormitory',
+    caption: 'Elderly Care · 24/7 Attentive Support',
+  },
+  medicalNursing: {
+    url: '/assets/aistudio/photo_medical_nursing.png',
+    alt: 'Nurse conducting a medical check-up with a stethoscope while a Sister comforts an elderly resident mother',
+    caption: 'Medical & Nursing Care · 24-Hour Supervision',
+  },
+  digitalLearning: {
+    url: '/assets/aistudio/photo_digital_learning.png',
+    alt: 'Elderly mothers joyfully participating in Digital Learning and computer sessions',
+    caption: 'Digital Learning & Holistic Rehabilitation',
   },
   nutritiousMeals: {
-    url: '/images/nutritious-meals.svg',
-    alt: 'Illustration of warm, freshly prepared Annadanam meals served with love and hygiene',
-    caption: 'Illustrative representation · Freshly prepared daily meals for resident mothers',
+    url: '/assets/aistudio/file_00000000640c8211ab96447b2ff4d793_3c5490d2.png',
+    alt: 'Sister serving freshly prepared, nutritious Annadanam meals to smiling resident mothers',
+    caption: 'Annadanam · Freshly prepared daily meals',
+  },
+  spiritualSupport: {
+    url: '/assets/aistudio/photo_spiritual_support.png',
+    alt: 'Sister and elderly mothers praying together peacefully in the Snehatheeram chapel',
+    caption: 'Spiritual Support · Daily Prayer Service',
   },
 };
 
