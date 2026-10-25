@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #183153;
+    --color-secondary: #159A91;
+    --color-accent: #D8AD62;
+    --color-bg: #FAF8F2;
+    --color-surface: #FFFFFF;
+    --color-text-main: #263238;
+    --color-text-muted: #687780;
+    --color-border: #E7ECEB;
+    --color-whatsapp: #25D366;
+  }
+
+  html {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #263238;
+    background-color: #FAF8F2;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

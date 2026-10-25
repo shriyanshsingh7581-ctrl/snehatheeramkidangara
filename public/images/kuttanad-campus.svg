@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" fill="none">
+  <defs>
+    <linearGradient id="kuttanadSky" x1="0" y1="0" x2="0" y2="460" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#EBF3F2"/>
+      <stop offset="100%" stop-color="#FAF8F2"/>
+    </linearGradient>
+    <linearGradient id="riverWater" x1="0" y1="480" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#159A91" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#183153" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#kuttanadSky)"/>
+
+  <!-- Soft Morning Sun Over Kuttanad -->
+  <circle cx="240" cy="160" r="85" fill="#D8AD62" fill-opacity="0.28"/>
+
+  <!-- Serene Green Kuttanad Landscape -->
+  <path d="M0 430C250 385 490 410 760 430C940 442 1090 400 1200 415V520H0V430Z" fill="#159A91" fill-opacity="0.22"/>
+  <path d="M0 475C310 445 640 485 950 460C1060 450 1140 458 1200 468V675H0V475Z" fill="url(#riverWater)"/>
+
+  <!-- Sanctuary Campus Building in Center -->
+  <g transform="translate(310, 210)">
+    <path d="M30 110L290 20L550 110H30Z" fill="#183153"/>
+    <path d="M55 110L290 32L525 110H55Z" fill="#D8AD62"/>
+    <rect x="65" y="110" width="450" height="165" rx="8" fill="#FFFFFF" stroke="#E7ECEB" stroke-width="3"/>
+    <!-- Verandah Arches -->
+    <rect x="105" y="140" width="70" height="105" rx="35" fill="#159A91" fill-opacity="0.14"/>
+    <rect x="205" y="140" width="70" height="105" rx="35" fill="#159A91" fill-opacity="0.14"/>
+    <rect x="305" y="140" width="70" height="105" rx="35" fill="#159A91" fill-opacity="0.14"/>
+    <rect x="405" y="140" width="70" height="105" rx="35" fill="#159A91" fill-opacity="0.14"/>
+    <!-- Garden Pathway -->
+    <path d="M250 275L210 380H370L330 275H250Z" fill="#D8AD62" fill-opacity="0.45"/>
+  </g>
+</svg>

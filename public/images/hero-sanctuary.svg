@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#183153"/>
+      <stop offset="55%" stop-color="#1D436B"/>
+      <stop offset="100%" stop-color="#159A91"/>
+    </linearGradient>
+    <linearGradient id="sunGlow" x1="880" y1="110" x2="880" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D8AD62" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#D8AD62" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="courtyard" x1="0" y1="450" x2="0" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#204A5E"/>
+      <stop offset="100%" stop-color="#122742"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Warm Twilight & Morning Sky -->
+  <rect width="1200" height="675" fill="url(#sky)"/>
+  <circle cx="890" cy="210" r="190" fill="url(#sunGlow)"/>
+  <circle cx="890" cy="210" r="78" fill="#D8AD62" fill-opacity="0.28"/>
+
+  <!-- Distant Kuttanad Backwater Hills & Foliage -->
+  <path d="M0 440C190 400 350 420 540 445C740 470 970 405 1200 435V675H0V440Z" fill="#163B56"/>
+  <path d="M0 490C280 465 560 510 860 480C1020 465 1120 475 1200 490V675H0V490Z" fill="url(#courtyard)"/>
+
+  <!-- Traditional Kerala Sanctuary Roof & Verandah Columns -->
+  <g transform="translate(120, 175)">
+    <!-- Main Sloped Terracotta/Gold Roof -->
+    <path d="M60 140L320 40L580 140H60Z" fill="#D8AD62" fill-opacity="0.9"/>
+    <path d="M90 140L320 56L550 140H90Z" fill="#183153"/>
+    <!-- Sanctuary Cross / Emblem at Gable -->
+    <circle cx="320" cy="98" r="18" fill="#D8AD62" fill-opacity="0.25" stroke="#D8AD62" stroke-width="2"/>
+    <path d="M320 87V109M311 96H329" stroke="#FAF8F2" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Verandah Structure -->
+    <rect x="95" y="140" width="450" height="190" rx="8" fill="#FAF8F2" fill-opacity="0.96"/>
+    <!-- Warm Arched Windows & Doorway -->
+    <rect x="135" y="175" width="75" height="110" rx="37.5" fill="#183153" fill-opacity="0.12" stroke="#159A91" stroke-width="2"/>
+    <rect x="272" y="168" width="96" height="162" rx="48" fill="#D8AD62" fill-opacity="0.25" stroke="#D8AD62" stroke-width="2.5"/>
+    <rect x="430" y="175" width="75" height="110" rx="37.5" fill="#183153" fill-opacity="0.12" stroke="#159A91" stroke-width="2"/>
+
+    <!-- Pillars -->
+    <rect x="105" y="140" width="14" height="190" fill="#E7ECEB"/>
+    <rect x="235" y="140" width="14" height="190" fill="#E7ECEB"/>
+    <rect x="391" y="140" width="14" height="190" fill="#E7ECEB"/>
+    <rect x="521" y="140" width="14" height="190" fill="#E7ECEB"/>
+
+    <!-- Steps -->
+    <rect x="245" y="330" width="150" height="12" rx="4" fill="#D8AD62"/>
+    <rect x="225" y="342" width="190" height="12" rx="4" fill="#FAF8F2" fill-opacity="0.7"/>
+  </g>
+
+  <!-- Stylized Caring Silhouettes (Sister & Resident Mothers in Peaceful Conversation) -->
+  <g transform="translate(730, 275)">
+    <!-- Soft Protective Halo Circle -->
+    <circle cx="155" cy="120" r="125" fill="#FAF8F2" fill-opacity="0.08" stroke="#D8AD62" stroke-opacity="0.35" stroke-width="1.5"/>
+
+    <!-- Caregiving Sister Figure (Left) -->
+    <circle cx="105" cy="82" r="24" fill="#FAF8F2"/>
+    <path d="M77 78C77 60 90 48 105 48C120 48 133 60 133 78" stroke="#159A91" stroke-width="6" stroke-linecap="round"/>
+    <path d="M68 195C68 142 84 115 105 115C126 115 142 142 142 195H68Z" fill="#FAF8F2"/>
+
+    <!-- Elderly Mother Figure (Right, Seated/Supported) -->
+    <circle cx="195" cy="96" r="23" fill="#D8AD62"/>
+    <circle cx="212" cy="98" r="9" fill="#D8AD62"/>
+    <path d="M158 195C158 148 174 126 195 126C216 126 232 148 232 195H158Z" fill="#159A91"/>
+    <path d="M164 134C178 146 198 152 222 142" stroke="#D8AD62" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Joined Hands / Heart Symbol Between Them -->
+    <path d="M150 118C150 118 136 108 136 98C136 93 140 89 145 89C147.8 89 150 90.5 150 92.5C150 90.5 152.2 89 155 89C160 89 164 93 164 98C164 108 150 118 150 118Z" fill="#D8AD62"/>
+  </g>
+
+  <!-- Kuttanad Coconut Palms Framing Scene -->
+  <g stroke="#D8AD62" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round">
+    <path d="M90 520Q115 340 155 210"/>
+    <path d="M155 210Q105 195 65 225"/>
+    <path d="M155 210Q125 170 85 175"/>
+    <path d="M155 210Q195 175 230 200"/>
+    <path d="M155 210Q205 210 235 245"/>
+  </g>
+</svg>

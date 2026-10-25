@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="warmBg" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FAF8F2"/>
+      <stop offset="100%" stop-color="#EFE9DA"/>
+    </linearGradient>
+    <linearGradient id="tealCard" x1="120" y1="90" x2="680" y2="510" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#183153"/>
+      <stop offset="100%" stop-color="#159A91"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#warmBg)"/>
+
+  <!-- Decorative Arch Frame -->
+  <rect x="90" y="60" width="620" height="480" rx="32" fill="url(#tealCard)"/>
+  <circle cx="400" cy="270" r="165" fill="#FAF8F2" fill-opacity="0.08" stroke="#D8AD62" stroke-opacity="0.45" stroke-width="2"/>
+  <circle cx="400" cy="270" r="125" fill="#FAF8F2" fill-opacity="0.12"/>
+
+  <!-- Compassionate Embrace & Caring Hands Illustration -->
+  <g transform="translate(260, 145)">
+    <!-- Heart of Sanctuary -->
+    <path d="M140 96C140 96 92 62 92 30C92 14 105 2 120 2C129 2 136 6.8 140 13.5C144 6.8 151 2 160 2C175 2 188 14 188 30C188 62 140 96 140 96Z" fill="#D8AD62" fill-opacity="0.92"/>
+
+    <!-- Two Figures (Sister & Elderly Mother) -->
+    <circle cx="92" cy="128" r="26" fill="#FAF8F2"/>
+    <circle cx="188" cy="128" r="26" fill="#FAF8F2"/>
+    <path d="M44 245C44 190 66 164 96 164C118 164 134 176 142 198" stroke="#FAF8F2" stroke-width="18" stroke-linecap="round"/>
+    <path d="M236 245C236 190 214 164 184 164C162 164 146 176 138 198" stroke="#D8AD62" stroke-width="18" stroke-linecap="round"/>
+
+    <!-- Supporting Hands Underneath -->
+    <path d="M35 268C72 296 112 306 140 306C168 306 208 296 245 268" stroke="#D8AD62" stroke-width="6" stroke-linecap="round"/>
+    <path d="M65 288C95 308 118 316 140 316C162 316 185 308 215 288" stroke="#FAF8F2" stroke-opacity="0.6" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Subtle Caption Line Inside Artwork -->
+  <text x="400" y="492" text-anchor="middle" fill="#FAF8F2" font-family="Plus Jakarta Sans, sans-serif" font-size="18" font-weight="600" letter-spacing="1.5">
+    DIGNITY · PEACE · BELONGING
+  </text>
+</svg>

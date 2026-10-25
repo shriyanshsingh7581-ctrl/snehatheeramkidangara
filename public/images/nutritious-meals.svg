@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#FAF8F2"/>
+  <rect x="60" y="50" width="680" height="500" rx="28" fill="#183153"/>
+
+  <!-- Warm Dining Glow -->
+  <circle cx="400" cy="290" r="175" fill="#D8AD62" fill-opacity="0.14" stroke="#D8AD62" stroke-opacity="0.4" stroke-width="2"/>
+
+  <!-- Traditional Annadanam Plate & Warm Steam -->
+  <g transform="translate(250, 155)">
+    <!-- Steam Waves -->
+    <path d="M110 55C110 38 126 32 126 15" stroke="#D8AD62" stroke-width="4" stroke-linecap="round"/>
+    <path d="M150 45C150 28 166 22 166 5" stroke="#FAF8F2" stroke-width="4" stroke-linecap="round"/>
+    <path d="M190 55C190 38 206 32 206 15" stroke="#D8AD62" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Serving Bowl / Vessel -->
+    <path d="M60 120H240C240 185 198 225 150 225C102 225 60 185 60 120Z" fill="#FAF8F2"/>
+    <path d="M45 120H255" stroke="#D8AD62" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- Heart on Bowl -->
+    <path d="M150 182C150 182 122 162 122 144C122 135 129 128 138 128C143.5 128 148 131 150 135.5C152 131 156.5 128 162 128C171 128 178 135 178 144C178 162 150 182 150 182Z" fill="#159A91"/>
+
+    <!-- Caring Hands Offering Meal -->
+    <path d="M25 225C58 262 102 278 150 278C198 278 242 262 275 225" stroke="#D8AD62" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <text x="400" y="488" text-anchor="middle" fill="#FAF8F2" font-family="Plus Jakarta Sans, sans-serif" font-size="17" font-weight="600" letter-spacing="1.5">
+    ANNADANAM · NUTRITIOUS DAILY MEALS
+  </text>
+</svg>
