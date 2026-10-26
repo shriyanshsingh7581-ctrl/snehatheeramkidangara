@@ -291,22 +291,23 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ images, onSponsorMea
                   <GraduationCap className="h-5 w-5" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold tracking-wider text-[#2E7D32]">
-                    INTERNSHIPS &amp; VOLUNTEERING
-                  </p>
                   <h3 className="font-display text-lg font-bold text-[#1B5E20]">
-                    Community &amp; Training
+                    {SITE_CONFIG.communityAndTraining.title}
                   </h3>
                 </div>
               </div>
 
-              <p className="mt-3 text-xs leading-relaxed text-[#607D66]">
+              <p className="mt-4 text-sm leading-relaxed text-[#263238]">
                 {SITE_CONFIG.communityAndTraining.description}
               </p>
 
-              <ul className="mt-3 space-y-2">
+              <p className="mt-4 text-sm font-semibold text-[#1B5E20]">
+                {SITE_CONFIG.communityAndTraining.lead}
+              </p>
+
+              <ul className="mt-2.5 space-y-2">
                 {SITE_CONFIG.communityAndTraining.programs.map((prog) => (
-                  <li key={prog} className="flex items-start gap-2 text-xs leading-relaxed text-[#263238]">
+                  <li key={prog} className="flex items-start gap-2 text-sm leading-relaxed text-[#263238]">
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                     <span>{prog}</span>
                   </li>

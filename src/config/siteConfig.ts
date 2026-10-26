@@ -258,28 +258,29 @@ export const SITE_CONFIG = {
     },
   ],
   organogram: {
-    governingBody: 'St. Joseph Province, Changanassery (Sisters of St. Charles Borromeo)',
-    leadership: 'Director / Superior & Administrator',
+    title: 'Organogram',
+    levels: [
+      '1. Trustees / Board of Management – John Paul XXIII Rehabilitation Centre Trust',
+      '2. Executive Management – President, Secretary, Members',
+      '3. Management Team – Director, Manager, Sisters of Destitute',
+    ],
+    departmentsHeading: '4. Departments:',
     departments: [
       {
-        name: 'Medical & Psychiatric Nursing Department',
-        role: '24/7 nursing care, regular physician & psychiatrist consultations, medication management, and health monitoring.',
+        name: 'Administration:',
+        role: 'Coordinator, Accountant, Office Staff',
       },
       {
-        name: 'Psychosocial Counselling & Social Work Department',
-        role: 'Individual & group therapy, case history documentation, mental status assessments, and family tracing & reintegration.',
+        name: 'Clinical & Care:',
+        role: 'Nurses, Psychiatrist (visiting), Counsellor cum Social worker',
       },
       {
-        name: 'Occupational Therapy & Vocational Training Unit',
-        role: 'Handicrafts, rosary & bead making, tailoring, kitchen gardening, and daily living skill development.',
+        name: 'Rehabilitation & Training:',
+        role: 'Psychiatric Social Worker, Trainers, Trainee, Agricultural Staff',
       },
       {
-        name: 'Nutrition, Kitchen & Housekeeping Department',
-        role: 'Hygienic preparation of balanced meals, dietary care, dormitory sanitation, and resident comfort.',
-      },
-      {
-        name: 'Administration, Community Outreach & Training Cell',
-        role: 'Donor coordination, student internships (MSW / BSW / Nursing / Psychology), awareness camps, and statutory compliance.',
+        name: 'Support:',
+        role: 'Kitchen, Housekeeping, Maintenance, Watch Man',
       },
     ],
   },
@@ -361,14 +362,13 @@ export const SITE_CONFIG = {
     },
   ],
   communityAndTraining: {
-    title: 'Community Engagement & Academic Training Opportunities',
+    title: 'Community & Training Opportunities',
     description:
-      'Snehatheeram serves as a recognized field-work and experiential learning centre for students, researchers, and community volunteers.',
+      'We collaborate with hospitals, NGOs, universities, and government bodies for comprehensive rehabilitation.',
+    lead: 'We also offer:',
     programs: [
-      'Field Placements & Internships for BSW, MSW, MSc Psychology, and Psychiatric Nursing students.',
-      'Observational visits and sensitization programmes for school, college, and parish youth groups.',
-      'Community mental health awareness initiatives to reduce stigma and promote early intervention.',
-      'Volunteer opportunities in art therapy, music, recreational celebrations, and organic gardening.',
+      'Volunteer opportunities',
+      'Training & internships for BSW, MSW, and Psychology students',
     ],
   },
   services: [

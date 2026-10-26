@@ -113,53 +113,62 @@ export const MissionVision: React.FC = () => {
             </div>
           </div>
 
-          {/* Organogram & Departments */}
+          {/* Organogram */}
           <div className="rounded-3xl border border-[#2E7D32]/20 bg-white p-6 sm:p-8 lg:col-span-6">
             <div className="flex items-center gap-3">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#E8F5E9] text-[#2E7D32]">
                 <Network className="h-5 w-5" aria-hidden="true" />
               </div>
               <div>
-                <p className="text-xs font-bold tracking-wider text-[#2E7D32]">
-                  ORGANIZATIONAL STRUCTURE
-                </p>
                 <h3 className="font-display text-xl font-bold text-[#1B5E20]">
-                  Organogram &amp; Departments
+                  {SITE_CONFIG.organogram.title}
                 </h3>
               </div>
             </div>
 
-            <div className="mt-5 rounded-2xl border border-[#1B5E20] bg-[#1B5E20] p-4 text-white">
-              <p className="text-[11px] font-bold tracking-wider text-[#E8F5E9]">
-                GOVERNING BODY &amp; LEADERSHIP
-              </p>
-              <p className="font-display mt-1 text-sm font-bold text-white">
-                {SITE_CONFIG.organogram.governingBody}
-              </p>
-              <p className="mt-0.5 text-xs text-[#E8F5E9]">
-                Executive Leadership: {SITE_CONFIG.organogram.leadership}
-              </p>
-            </div>
-
-            <div className="mt-4 space-y-2.5">
-              {SITE_CONFIG.organogram.departments.map((dept, idx) => (
+            <div className="mt-5 space-y-2.5">
+              {SITE_CONFIG.organogram.levels.map((level, index) => (
                 <div
-                  key={dept.name}
-                  className="rounded-xl border border-[#2E7D32]/20 bg-[#E8F5E9]/45 px-4 py-3"
+                  key={level}
+                  className={
+                    index === 0
+                      ? 'rounded-2xl border border-[#1B5E20] bg-[#1B5E20] px-4 py-3 text-white'
+                      : 'rounded-xl border border-[#2E7D32]/20 bg-[#E8F5E9]/60 px-4 py-3'
+                  }
                 >
-                  <div className="flex items-center justify-between gap-2">
-                    <h4 className="font-display text-xs font-bold text-[#1B5E20] sm:text-sm">
-                      {dept.name}
-                    </h4>
-                    <span className="rounded-md bg-[#43A047] px-2 py-0.5 text-[10px] font-bold text-white">
-                      Dept 0{idx + 1}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-xs leading-relaxed text-[#607D66]">
-                    {dept.role}
+                  <p
+                    className={
+                      index === 0
+                        ? 'font-display text-xs font-bold text-white sm:text-sm'
+                        : 'font-display text-xs font-bold text-[#1B5E20] sm:text-sm'
+                    }
+                  >
+                    {level}
                   </p>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-4">
+              <p className="font-display text-xs font-bold text-[#1B5E20] sm:text-sm">
+                {SITE_CONFIG.organogram.departmentsHeading}
+              </p>
+
+              <div className="mt-2.5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                {SITE_CONFIG.organogram.departments.map((dept) => (
+                  <div
+                    key={dept.name}
+                    className="rounded-xl border border-[#2E7D32]/20 bg-[#E8F5E9]/45 px-4 py-3"
+                  >
+                    <h4 className="font-display text-xs font-bold text-[#1B5E20] sm:text-sm">
+                      {dept.name}
+                    </h4>
+                    <p className="mt-1 text-xs leading-relaxed text-[#263238]">
+                      {dept.role}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
