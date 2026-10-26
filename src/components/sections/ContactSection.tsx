@@ -8,7 +8,7 @@ import { MapSection } from './MapSection';
 export const ContactSection: React.FC = () => {
   const live = useLiveConfig();
   const whatsappContactUrl = buildWhatsAppUrl(
-    `Namaskaram, I would like to get in touch with ${live.shortReferenceName} in Kidangara.`
+    `Namaskaram, I would like to get in touch with ${SITE_CONFIG.contactOrganization} (${live.name}) in Kidangara.`
   );
 
   return (
@@ -16,12 +16,15 @@ export const ContactSection: React.FC = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="text-xs font-bold tracking-wider text-[#2E7D32]">
-            REACH US IN KUTTANAD, ALAPPUZHA
+            {SITE_CONFIG.organizationType.toUpperCase()}
           </p>
           <h2 className="font-display mt-2 text-2xl font-bold tracking-tight text-[#1B5E20] sm:text-3xl lg:text-4xl">
-            Contact &amp; Location
+            Contact Us
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-[#607D66]">
+          <p className="mt-2 font-display text-sm font-semibold text-[#2E7D32] sm:text-base">
+            {live.tagline} · <span className="italic">{SITE_CONFIG.supportingQuote}</span>
+          </p>
+          <p className="mt-2 text-base leading-relaxed text-[#607D66]">
             Located in Kidangara P.O., Kuttanad Taluk, Alappuzha District, Kerala – 686107. Feel
             free to call, WhatsApp, email, or visit our rehabilitation centre.
           </p>
@@ -39,21 +42,18 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <p className="text-xs font-bold tracking-wider text-[#2E7D32]">ORGANIZATION</p>
                   <h3 className="font-display mt-0.5 text-lg font-bold text-[#1B5E20]">
-                    {live.name}
+                    {SITE_CONFIG.contactOrganization}
                   </h3>
-                  <p className="text-xs font-semibold text-[#607D66]">
+                  <p className="mt-0.5 text-xs font-bold text-[#2E7D32]">
                     {live.fullName}
                   </p>
-                  <address className="mt-2 not-italic text-sm leading-relaxed text-[#263238]">
-                    {live.addressLines.map((line) => (
-                      <span key={line} className="block">
-                        {line}
-                      </span>
-                    ))}
-                  </address>
-                  <p className="mt-2 text-xs font-semibold text-[#2E7D32]">
-                    {live.landmark}
+                  <p className="mt-0.5 text-xs font-medium text-[#607D66]">
+                    Managing Organization: {SITE_CONFIG.managingOrganization} · {SITE_CONFIG.organizationType}
                   </p>
+                  <address className="mt-3 not-italic text-sm font-medium leading-relaxed text-[#263238]">
+                    <span className="block">Kidangara P.O., Kuttanad Taluk,</span>
+                    <span className="block">Alappuzha District, Kerala – 686107</span>
+                  </address>
                 </div>
               </div>
 
@@ -62,38 +62,28 @@ export const ContactSection: React.FC = () => {
                 <p className="text-xs font-bold tracking-wider text-[#2E7D32]">
                   PHONE NUMBERS (CLICK TO CALL)
                 </p>
-                <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <a
-                    href={`tel:${live.primaryPhoneTel}`}
+                    href="tel:+919400272087"
                     className="flex min-h-[56px] flex-col justify-center rounded-2xl border border-[#2E7D32]/20 bg-[#E8F5E9] px-4 py-3 transition-colors hover:border-[#43A047]"
                   >
                     <span className="text-[11px] font-medium text-[#607D66]">
-                      Primary &amp; WhatsApp
+                      Phone &amp; WhatsApp
                     </span>
                     <span className="font-display mt-0.5 text-sm font-bold text-[#1B5E20] tabular-nums">
-                      {live.primaryPhone}
+                      +91 9400272087
                     </span>
                   </a>
 
                   <a
-                    href={`tel:${live.secondaryPhoneTel}`}
+                    href="tel:+917511133810"
                     className="flex min-h-[56px] flex-col justify-center rounded-2xl border border-[#2E7D32]/20 bg-[#E8F5E9] px-4 py-3 transition-colors hover:border-[#43A047]"
                   >
                     <span className="text-[11px] font-medium text-[#607D66]">
-                      Centre Mobile
+                      Phone Number
                     </span>
                     <span className="font-display mt-0.5 text-sm font-bold text-[#1B5E20] tabular-nums">
-                      {live.secondaryPhone}
-                    </span>
-                  </a>
-
-                  <a
-                    href={`tel:${live.landlineTel}`}
-                    className="flex min-h-[56px] flex-col justify-center rounded-2xl border border-[#2E7D32]/20 bg-[#E8F5E9] px-4 py-3 transition-colors hover:border-[#43A047]"
-                  >
-                    <span className="text-[11px] font-medium text-[#607D66]">Landline</span>
-                    <span className="font-display mt-0.5 text-sm font-bold text-[#1B5E20] tabular-nums">
-                      {live.landline}
+                      +91 7511133810
                     </span>
                   </a>
                 </div>
@@ -104,11 +94,11 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <p className="text-xs font-bold tracking-wider text-[#2E7D32]">EMAIL ADDRESS</p>
                   <a
-                    href={`mailto:${live.email}`}
+                    href="mailto:kidangarasnehatheeram@gmail.com"
                     className="mt-1.5 inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-[#1B5E20] underline-offset-4 hover:text-[#2E7D32] hover:underline break-all"
                   >
                     <Mail className="h-4 w-4 text-[#43A047] shrink-0" aria-hidden="true" />
-                    <span>{live.email}</span>
+                    <span>kidangarasnehatheeram@gmail.com</span>
                   </a>
                 </div>
 
@@ -125,7 +115,7 @@ export const ContactSection: React.FC = () => {
             {/* Functional Action Bar */}
             <div className="mt-6 grid grid-cols-2 gap-3 border-t border-[#E8F5E9] pt-6 sm:grid-cols-4">
               <a
-                href={`tel:${live.primaryPhoneTel}`}
+                href="tel:+919400272087"
                 className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-[#1B5E20] px-3 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#2E7D32] whitespace-nowrap shrink-0"
               >
                 <PhoneCall className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
@@ -143,7 +133,7 @@ export const ContactSection: React.FC = () => {
               </a>
 
               <a
-                href={`mailto:${live.email}`}
+                href="mailto:kidangarasnehatheeram@gmail.com"
                 className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9] px-3 py-2.5 text-xs font-semibold text-[#1B5E20] transition-colors hover:bg-[#43A047] hover:text-white whitespace-nowrap shrink-0"
               >
                 <Mail className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />

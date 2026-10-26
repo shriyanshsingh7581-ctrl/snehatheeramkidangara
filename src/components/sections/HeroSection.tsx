@@ -35,16 +35,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   {live.name}
                 </h1>
 
+                <p className="mt-1.5 text-xs font-semibold text-[#E8F5E9]/90 sm:text-sm">
+                  {SITE_CONFIG.organizationType} · {SITE_CONFIG.managingOrganization}
+                </p>
+
                 <p className="font-display mt-3 text-lg font-semibold leading-snug text-[#E8F5E9] sm:text-xl">
-                  “{live.tagline}”
+                  {live.tagline}
                 </p>
 
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/95 sm:text-base">
                   {live.description}
                 </p>
 
-                {/* Bible Quotation Banner */}
+                {/* Supporting Quote & Scripture Banner */}
                 <blockquote className="mt-5 rounded-2xl border border-white/20 bg-[#1B5E20]/55 p-4 text-xs sm:text-sm italic text-[#E8F5E9]">
+                  <p className="font-display text-sm font-bold text-white not-italic mb-1">
+                    {SITE_CONFIG.supportingQuote}
+                  </p>
                   <span>{live.bibleVerse}</span>
                   <footer className="mt-1 not-italic font-bold text-white">
                     — {live.bibleReference}

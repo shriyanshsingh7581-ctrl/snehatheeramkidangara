@@ -124,20 +124,27 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
 
             <div className="mt-4 space-y-2 border-t border-[#2E7D32]/20 pt-3 text-xs text-[#263238]">
               <p>
-                <strong className="text-[#1B5E20]">Primary Phone &amp; WhatsApp:</strong>{' '}
-                <span className="tabular-nums">{live.primaryPhone}</span>
+                <strong className="text-[#1B5E20]">Organization:</strong>{' '}
+                John Paul XXIII Rehabilitation Centre
               </p>
               <p>
-                <strong className="text-[#1B5E20]">Centre Phone:</strong>{' '}
-                <span className="tabular-nums">{live.secondaryPhone}</span>
+                <strong className="text-[#1B5E20]">Phone Numbers:</strong>{' '}
+                <a href="tel:+919400272087" className="font-semibold text-[#1B5E20] tabular-nums hover:underline">
+                  +91 9400272087
+                </a>
+                {', '}
+                <a href="tel:+917511133810" className="font-semibold text-[#1B5E20] tabular-nums hover:underline">
+                  +91 7511133810
+                </a>
               </p>
               <p>
-                <strong className="text-[#1B5E20]">Landline:</strong>{' '}
-                <span className="tabular-nums">{live.landline}</span>
-              </p>
-              <p>
-                <strong className="text-[#1B5E20]">Verified Email:</strong>{' '}
-                {live.email}
+                <strong className="text-[#1B5E20]">Email:</strong>{' '}
+                <a
+                  href="mailto:kidangarasnehatheeram@gmail.com"
+                  className="font-semibold text-[#1B5E20] hover:underline"
+                >
+                  kidangarasnehatheeram@gmail.com
+                </a>
               </p>
             </div>
           </div>

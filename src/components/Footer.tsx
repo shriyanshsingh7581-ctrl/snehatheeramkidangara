@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({ logoUrl, onOpenBankModal }) => {
   const live = useLiveConfig();
   const currentYear = new Date().getFullYear();
   const whatsappUrl = buildWhatsAppUrl(
-    `Namaskaram, I would like to connect with ${live.name} regarding support and visiting hours.`
+    `Namaskaram, I would like to connect with ${SITE_CONFIG.contactOrganization} (${live.name}) regarding support and visiting hours.`
   );
 
   return (
@@ -43,21 +43,22 @@ export const Footer: React.FC<FooterProps> = ({ logoUrl, onOpenBankModal }) => {
               </div>
             </div>
 
-            <p className="mt-4 text-sm leading-relaxed text-white/85">
+            <p className="mt-3 text-xs font-semibold text-[#E8F5E9]">
+              {live.tagline}
+            </p>
+
+            <p className="mt-3 text-sm leading-relaxed text-white/85">
               {live.description}
             </p>
 
             <blockquote className="mt-4 rounded-xl border border-white/15 bg-[#2E7D32]/40 p-3 text-xs italic text-[#E8F5E9]">
-              <span>{live.bibleVerse}</span>{' '}
-              <span className="not-italic font-bold text-white">
-                ({live.bibleReference})
-              </span>
+              <span>{SITE_CONFIG.supportingQuote}</span>
             </blockquote>
 
             <div className="mt-4 text-xs text-[#E8F5E9]/85">
-              <span>{SITE_CONFIG.management.province}</span>
+              <span>{SITE_CONFIG.managingOrganization}</span>
               <span className="mx-2" aria-hidden="true">·</span>
-              <span>{SITE_CONFIG.management.congregation}</span>
+              <span>{SITE_CONFIG.organizationType}</span>
             </div>
 
             <div className="mt-4 flex items-center gap-2.5 text-xs text-[#E8F5E9]">
@@ -140,53 +141,41 @@ export const Footer: React.FC<FooterProps> = ({ logoUrl, onOpenBankModal }) => {
               <div className="flex items-start gap-2.5">
                 <MapPin className="mt-1 h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                 <address className="not-italic text-xs leading-relaxed">
-                  {live.addressLines.map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
-                  <span className="mt-1 block text-[#E8F5E9]">
-                    {live.landmark}
+                  <span className="block font-bold text-white">
+                    {SITE_CONFIG.contactOrganization}
                   </span>
+                  <span className="block">Kidangara P.O., Kuttanad Taluk,</span>
+                  <span className="block">Alappuzha District, Kerala – 686107</span>
                 </address>
               </div>
 
               <div className="flex items-center gap-2.5">
                 <PhoneCall className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
-                <div className="text-xs tabular-nums">
-                  <a
-                    href={`tel:${live.primaryPhoneTel}`}
-                    className="hover:text-[#E8F5E9] transition-colors"
-                  >
-                    {live.primaryPhone}
-                  </a>
-                  <span className="mx-1.5 text-white/40">,</span>
-                  <a
-                    href={`tel:${live.secondaryPhoneTel}`}
-                    className="hover:text-[#E8F5E9] transition-colors"
-                  >
-                    {live.secondaryPhone}
-                  </a>
-                </div>
+                <a
+                  href="tel:+919400272087"
+                  className="text-xs tabular-nums hover:text-[#E8F5E9] hover:underline transition-colors"
+                >
+                  +91 9400272087
+                </a>
               </div>
 
               <div className="flex items-center gap-2.5">
                 <PhoneCall className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                 <a
-                  href={`tel:${live.landlineTel}`}
-                  className="text-xs tabular-nums hover:text-[#E8F5E9] transition-colors"
+                  href="tel:+917511133810"
+                  className="text-xs tabular-nums hover:text-[#E8F5E9] hover:underline transition-colors"
                 >
-                  Landline: {live.landline}
+                  +91 7511133810
                 </a>
               </div>
 
               <div className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                 <a
-                  href={`mailto:${live.email}`}
-                  className="text-xs hover:text-[#E8F5E9] transition-colors break-all"
+                  href="mailto:kidangarasnehatheeram@gmail.com"
+                  className="text-xs hover:text-[#E8F5E9] hover:underline transition-colors break-all"
                 >
-                  {live.email}
+                  kidangarasnehatheeram@gmail.com
                 </a>
               </div>
             </div>
@@ -219,7 +208,7 @@ export const Footer: React.FC<FooterProps> = ({ logoUrl, onOpenBankModal }) => {
         {/* Bottom Copyright Bar */}
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-6 text-xs text-[#E8F5E9]/85 sm:flex-row sm:items-center">
           <p>
-            &copy; {currentYear} {live.name} ({live.fullName}). All rights reserved.
+            &copy; {currentYear} {live.fullName} ({SITE_CONFIG.managingOrganization}). All rights reserved.
           </p>
         </div>
       </div>

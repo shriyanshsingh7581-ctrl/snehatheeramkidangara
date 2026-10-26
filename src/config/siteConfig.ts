@@ -119,11 +119,15 @@ export const DEFAULT_IMAGES: SiteImagesConfig = {
 };
 
 export const SITE_CONFIG = {
-  name: 'Snehatheeram Kidangara',
-  shortReferenceName: 'Snehatheeram (John Paul XXIII Rehabilitation Centre)',
-  fullName: 'John Paul XXIII Rehabilitation Centre — Psycho Social Rehabilitation Centre For Women',
+  name: 'Snehatheeram',
+  shortReferenceName: 'John Paul XXIII Rehabilitation Centre',
+  fullName: 'Snehatheeram – Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless',
+  managingOrganization: 'John Paul XXIII Rehabilitation Centre Trust',
+  organizationType: 'Psychosocial Rehabilitation Center for Women',
+  contactOrganization: 'John Paul XXIII Rehabilitation Centre',
+  supportingQuote: '"Serving humanity is serving God."',
   memorialTitle: 'Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless',
-  tagline: 'A Sanctuary of Healing, Dignity, and Psychosocial Rehabilitation for Destitute Women.',
+  tagline: 'Empowering Women – Restoring Hope – Rebuilding Lives',
   description:
     'Providing holistic psychosocial rehabilitation, compassionate medical and psychiatric care, vocational skill development, and a loving home for destitute, abandoned, and mentally challenged women in Kidangara, Kuttanad, Alappuzha.',
   mentalHealthIntro: {
@@ -147,19 +151,18 @@ export const SITE_CONFIG = {
       'Over more than a decade of dedicated service since 2012, Snehatheeram has grown into a full-fledged Psychosocial Rehabilitation Centre for Women—combining psychiatric nursing, psychological counselling, occupational therapy, organic farming, and spiritual care.',
   },
   management: {
-    province: 'St. Joseph Province, Changanassery',
-    congregation: 'Sisters of St. Charles Borromeo',
+    province: 'John Paul XXIII Rehabilitation Centre Trust',
+    congregation: 'Psychosocial Rehabilitation Center for Women',
   },
   location: {
     shortLocation: 'Kidangara P.O., Kuttanad Taluk, Alappuzha District, Kerala – 686107',
     addressLines: [
-      'John Paul XXIII Rehabilitation Centre,',
       'Kidangara P.O., Kuttanad Taluk,',
-      'Alappuzha District, Kerala – 686107.',
+      'Alappuzha District, Kerala – 686107',
     ],
     fullAddressSingleLine:
-      'John Paul XXIII Rehabilitation Centre, Kidangara P.O., Kuttanad Taluk, Alappuzha District, Kerala – 686107.',
-    landmark: 'Near Kidangara Bridge, Changanassery–Alappuzha (AC) Road, Kuttanad.',
+      'John Paul XXIII Rehabilitation Centre, Kidangara P.O., Kuttanad Taluk, Alappuzha District, Kerala – 686107',
+    landmark: 'John Paul XXIII Rehabilitation Centre Trust · Psychosocial Rehabilitation Center for Women',
     coordinates: {
       lat: 9.42055,
       lng: 76.49025,
@@ -175,10 +178,10 @@ export const SITE_CONFIG = {
     primaryPhoneTel: '+919400272087',
     secondaryPhoneDisplay: '+91 7511133810',
     secondaryPhoneTel: '+917511133810',
-    landlineDisplay: '0477-2713871',
-    landlineTel: '+914772713871',
-    provinceDisplay: '0481-2721808',
-    provinceTel: '+914812721808',
+    landlineDisplay: '+91 7511133810',
+    landlineTel: '+917511133810',
+    provinceDisplay: '+91 9400272087',
+    provinceTel: '+919400272087',
     email: 'kidangarasnehatheeram@gmail.com',
   },
   bibleQuotation: {
@@ -195,16 +198,16 @@ export const SITE_CONFIG = {
   },
   heroHighlights: [
     {
-      label: 'Psychosocial Rehabilitation',
-      detail: 'Holistic mental health, counselling & occupational therapy since 2012',
+      label: 'Psychosocial Rehabilitation Center for Women',
+      detail: 'Empowering Women – Restoring Hope – Rebuilding Lives',
     },
     {
-      label: '24/7 Medical & Nursing Care',
-      detail: 'Managed by Sisters of St. Charles Borromeo (St. Joseph Province)',
+      label: 'John Paul XXIII Rehabilitation Centre Trust',
+      detail: 'Serving humanity is serving God.',
     },
     {
-      label: 'Kidangara, Kuttanad, Alappuzha',
-      detail: 'John Paul XXIII Rehabilitation Centre · Kerala – 686107',
+      label: 'Kidangara P.O., Kuttanad Taluk',
+      detail: 'Alappuzha District, Kerala – 686107',
     },
   ],
   aboutHighlights: [
