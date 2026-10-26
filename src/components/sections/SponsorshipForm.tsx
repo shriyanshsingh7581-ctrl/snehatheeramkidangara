@@ -10,6 +10,7 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import { SITE_CONFIG } from '../../config/siteConfig';
+import { saveDonationSubmission } from '../../lib/firebase';
 import {
   buildSponsorshipWhatsAppMessage,
   buildWhatsAppUrl,
@@ -177,6 +178,19 @@ export const SponsorshipForm: React.FC<SponsorshipFormProps> = ({
 
     const whatsappUrl = buildWhatsAppUrl(messageText);
     setPreparedEnquiry({ whatsappUrl, messageText });
+
+    // Save submission to Firebase in real-time
+    saveDonationSubmission({
+      fullName: values.fullName,
+      phone: values.phone,
+      occasion: values.occasion,
+      preferredDate: values.preferredDate,
+      sponsorshipType: values.sponsorshipType,
+      prayerNote: values.prayerNote,
+      additionalMessage: values.additionalMessage,
+    }).catch((err) => {
+      console.warn('Firebase submission record notice:', err);
+    });
 
     const tempAnchor = document.createElement('a');
     tempAnchor.href = whatsappUrl;

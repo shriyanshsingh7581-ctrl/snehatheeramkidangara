@@ -1,5 +1,5 @@
 import React from 'react';
-import { PhoneCall, Mail, MapPin, MessageCircle, Navigation, Clock, Image } from 'lucide-react';
+import { PhoneCall, Mail, MapPin, MessageCircle, Navigation, Clock, Image, Lock } from 'lucide-react';
 import { SITE_CONFIG } from '../config/siteConfig';
 import { buildWhatsAppUrl } from '../lib/whatsapp';
 
@@ -7,12 +7,14 @@ interface FooterProps {
   logoUrl: string;
   onOpenBankModal: () => void;
   onOpenMediaModal: () => void;
+  onOpenAdmin?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   logoUrl,
   onOpenBankModal,
   onOpenMediaModal,
+  onOpenAdmin,
 }) => {
   const currentYear = new Date().getFullYear();
   const whatsappUrl = buildWhatsAppUrl(
@@ -113,6 +115,18 @@ export const Footer: React.FC<FooterProps> = ({
                   Contact &amp; Location
                 </a>
               </li>
+              {onOpenAdmin && (
+                <li>
+                  <button
+                    type="button"
+                    onClick={onOpenAdmin}
+                    className="inline-flex items-center gap-1.5 text-left font-semibold text-[#E8F5E9] hover:underline transition-colors cursor-pointer"
+                  >
+                    <Lock className="h-3.5 w-3.5 text-[#43A047]" />
+                    <span>Admin Control Panel</span>
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
 
@@ -224,14 +238,27 @@ export const Footer: React.FC<FooterProps> = ({
             &copy; {currentYear} {SITE_CONFIG.name} ({SITE_CONFIG.fullName}). All rights reserved.
           </p>
 
-          <button
-            type="button"
-            onClick={onOpenMediaModal}
-            className="inline-flex min-h-[36px] items-center gap-1.5 rounded-lg border border-white/20 bg-[#2E7D32]/60 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#43A047] whitespace-nowrap shrink-0 cursor-pointer"
-          >
-            <Image className="h-3.5 w-3.5 text-[#E8F5E9]" aria-hidden="true" />
-            <span>Media &amp; Logo Settings</span>
-          </button>
+          <div className="flex flex-wrap items-center gap-3">
+            {onOpenAdmin && (
+              <button
+                type="button"
+                onClick={onOpenAdmin}
+                className="inline-flex min-h-[36px] items-center gap-1.5 rounded-lg border border-white/25 bg-[#1B5E20] px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-[#2E7D32] whitespace-nowrap shrink-0 cursor-pointer"
+              >
+                <Lock className="h-3.5 w-3.5 text-[#43A047]" aria-hidden="true" />
+                <span>Admin Panel</span>
+              </button>
+            )}
+
+            <button
+              type="button"
+              onClick={onOpenMediaModal}
+              className="inline-flex min-h-[36px] items-center gap-1.5 rounded-lg border border-white/20 bg-[#2E7D32]/60 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#43A047] whitespace-nowrap shrink-0 cursor-pointer"
+            >
+              <Image className="h-3.5 w-3.5 text-[#E8F5E9]" aria-hidden="true" />
+              <span>Media Settings</span>
+            </button>
+          </div>
         </div>
       </div>
     </footer>

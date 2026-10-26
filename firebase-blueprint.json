@@ -1,0 +1,96 @@
+{
+  "entities": {
+    "SiteSettings": {
+      "title": "Site Settings",
+      "description": "Customizable website text content, contact details, bank configuration, and organization information.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 150 },
+        "tagline": { "type": "string", "maxLength": 300 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "mentalHealthHeading": { "type": "string", "maxLength": 200 },
+        "mentalHealthLead": { "type": "string", "maxLength": 500 },
+        "mentalHealthBody": { "type": "string", "maxLength": 2000 },
+        "mission": { "type": "string", "maxLength": 1000 },
+        "vision": { "type": "string", "maxLength": 1000 },
+        "primaryPhone": { "type": "string", "maxLength": 30 },
+        "secondaryPhone": { "type": "string", "maxLength": 30 },
+        "landline": { "type": "string", "maxLength": 30 },
+        "email": { "type": "string", "maxLength": 100 },
+        "addressLines": { "type": "string", "maxLength": 500 },
+        "landmark": { "type": "string", "maxLength": 200 },
+        "bankAccountName": { "type": "string", "maxLength": 100 },
+        "bankName": { "type": "string", "maxLength": 100 },
+        "bankAccountNumber": { "type": "string", "maxLength": 50 },
+        "bankIfsc": { "type": "string", "maxLength": 30 },
+        "bankUpiId": { "type": "string", "maxLength": 50 },
+        "bankIsConfigured": { "type": "boolean" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "SitePhotos": {
+      "title": "Site Photos",
+      "description": "Mapping of website section image URLs uploaded to Cloudinary or custom links.",
+      "type": "object",
+      "properties": {
+        "heroSanctuary": { "type": "string", "maxLength": 1000 },
+        "everyMotherLove": { "type": "string", "maxLength": 1000 },
+        "kuttanadCampus": { "type": "string", "maxLength": 1000 },
+        "psychosocialRehab": { "type": "string", "maxLength": 1000 },
+        "mentalHealthCounselling": { "type": "string", "maxLength": 1000 },
+        "vocationalTraining": { "type": "string", "maxLength": 1000 },
+        "medicalNursing": { "type": "string", "maxLength": 1000 },
+        "clinicalCheckup": { "type": "string", "maxLength": 1000 },
+        "recreationalActivities": { "type": "string", "maxLength": 1000 },
+        "sustainabilityKitchen": { "type": "string", "maxLength": 1000 },
+        "nutritiousMeals": { "type": "string", "maxLength": 1000 },
+        "spiritualSupport": { "type": "string", "maxLength": 1000 },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "Submission": {
+      "title": "Donation & Sponsorship Submission",
+      "description": "Inquiries submitted by donors to sponsor meals, medical care, or general support.",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string", "maxLength": 100, "minLength": 2 },
+        "phone": { "type": "string", "maxLength": 30, "minLength": 8 },
+        "occasion": { "type": "string", "maxLength": 100 },
+        "preferredDate": { "type": "string", "maxLength": 30 },
+        "sponsorshipType": { "type": "string", "maxLength": 150 },
+        "prayerNote": { "type": "string", "maxLength": 500 },
+        "additionalMessage": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["new", "contacted", "confirmed", "archived"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["fullName", "phone", "occasion", "preferredDate", "sponsorshipType"]
+    },
+    "Admin": {
+      "title": "Admin Record",
+      "description": "Authorized administrator user identifiers.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "maxLength": 150 },
+        "role": { "type": "string", "enum": ["admin", "editor"] }
+      }
+    }
+  },
+  "firestore": {
+    "/settings/content": {
+      "schema": "SiteSettings",
+      "description": "General website text configuration and contact information."
+    },
+    "/settings/photos": {
+      "schema": "SitePhotos",
+      "description": "Website photo URLs mapping across all sections."
+    },
+    "/submissions/{submissionId}": {
+      "schema": "Submission",
+      "description": "Inquiries submitted through the Annadanam & Support desk form."
+    },
+    "/admins/{adminId}": {
+      "schema": "Admin",
+      "description": "List of authorized administrator user accounts."
+    }
+  }
+}

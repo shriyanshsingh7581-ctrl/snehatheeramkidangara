@@ -18,18 +18,42 @@ import { ContactSection } from './components/sections/ContactSection';
 import { Footer } from './components/Footer';
 import { BankDetailsModal } from './components/BankDetailsModal';
 import { MediaConfigModal } from './components/MediaConfigModal';
+import { AdminLoginModal } from './components/admin/AdminLoginModal';
+import { AdminPortal } from './components/admin/AdminPortal';
+import { useLiveSiteData } from './hooks/useLiveSiteData';
 import { useMediaConfig } from './hooks/useMediaConfig';
 
 export default function App() {
-  const { images, updateImages, resetImages } = useMediaConfig();
+  const { images, contentOverrides, isFirebaseLoaded } = useLiveSiteData();
+  const { updateImages, resetImages } = useMediaConfig();
+
   const [activeSection, setActiveSection] = useState<string>('home');
   const [isBankModalOpen, setIsBankModalOpen] = useState(false);
   const [isMediaModalOpen, setIsMediaModalOpen] = useState(false);
+  const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
+  const [isAdminPortalOpen, setIsAdminPortalOpen] = useState(false);
 
   const [preselectedOccasion, setPreselectedOccasion] = useState<string | null>(null);
   const [preselectedSponsorshipType, setPreselectedSponsorshipType] = useState<string | null>(
     null
   );
+
+  // Check URL hash for direct #admin access
+  useEffect(() => {
+    const checkHash = () => {
+      if (window.location.hash === '#admin') {
+        const isAuth = localStorage.getItem('snehatheeram_admin_authenticated') === 'true';
+        if (isAuth) {
+          setIsAdminPortalOpen(true);
+        } else {
+          setIsAdminLoginOpen(true);
+        }
+      }
+    };
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => window.removeEventListener('hashchange', checkHash);
+  }, []);
 
   useEffect(() => {
     const sectionIds = ['home', 'about', 'services', 'support', 'contact'];
@@ -70,10 +94,22 @@ export default function App() {
     scrollToElement('annadanam-desk');
   };
 
+  const handleAdminClick = () => {
+    const isAuth = localStorage.getItem('snehatheeram_admin_authenticated') === 'true';
+    if (isAuth) {
+      setIsAdminPortalOpen(true);
+    } else {
+      setIsAdminLoginOpen(true);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#E8F5E9] text-[#263238]">
-      {/* SECTION A — HEADER */}
-      <Header onDonateClick={() => scrollToElement('support')} />
+      {/* SECTION A — HEADER WITH ADMIN & DONATE BUTTONS */}
+      <Header
+        onDonateClick={() => scrollToElement('support')}
+        onAdminClick={handleAdminClick}
+      />
 
       {/* MAIN CONTENT */}
       <main className="flex-1">
@@ -119,6 +155,7 @@ export default function App() {
         logoUrl={images.logoUrl}
         onOpenBankModal={() => setIsBankModalOpen(true)}
         onOpenMediaModal={() => setIsMediaModalOpen(true)}
+        onOpenAdmin={handleAdminClick}
       />
 
       {/* PERSISTENT FLOATING WHATSAPP CONTACT & MOBILE BOTTOM BAR */}
@@ -133,6 +170,28 @@ export default function App() {
         images={images}
         onSave={updateImages}
         onReset={resetImages}
+      />
+
+      {/* ADMIN CONTROL PORTAL & LOGIN MODAL */}
+      <AdminLoginModal
+        isOpen={isAdminLoginOpen}
+        onClose={() => setIsAdminLoginOpen(false)}
+        onAuthenticated={() => {
+          setIsAdminLoginOpen(false);
+          setIsAdminPortalOpen(true);
+        }}
+      />
+
+      <AdminPortal
+        isOpen={isAdminPortalOpen}
+        onClose={() => {
+          setIsAdminPortalOpen(false);
+          if (window.location.hash === '#admin') {
+            window.history.replaceState(null, '', ' ');
+          }
+        }}
+        currentImages={images}
+        currentContentOverrides={contentOverrides}
       />
     </div>
   );

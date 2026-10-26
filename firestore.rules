@@ -1,0 +1,60 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isBootstrappedAdmin() {
+      return isSignedIn() && (
+        (request.auth.token.email == "singhshriyansh51@gmail.com" && request.auth.token.email_verified == true) ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Validation for public submissions from Annadanam / Sponsorship form
+    function isValidSubmission(data) {
+      return data.keys().hasAll(['fullName', 'phone', 'occasion', 'preferredDate', 'sponsorshipType']) &&
+        data.fullName is string && data.fullName.size() >= 2 && data.fullName.size() <= 100 &&
+        data.phone is string && data.phone.size() >= 8 && data.phone.size() <= 30 &&
+        data.occasion is string && data.occasion.size() <= 100 &&
+        data.preferredDate is string && data.preferredDate.size() <= 30 &&
+        data.sponsorshipType is string && data.sponsorshipType.size() <= 150 &&
+        (!('prayerNote' in data) || (data.prayerNote is string && data.prayerNote.size() <= 500)) &&
+        (!('additionalMessage' in data) || (data.additionalMessage is string && data.additionalMessage.size() <= 1000));
+    }
+
+    // 1. Settings Collection (Content & Photos)
+    match /settings/{settingId} {
+      allow get: if isValidId(settingId);
+      allow list: if true;
+      allow write: if isBootstrappedAdmin() && isValidId(settingId);
+    }
+
+    // 2. Submissions Collection (Donation & Sponsorship inquiries)
+    match /submissions/{submissionId} {
+      // Anyone can create a new inquiry with validated fields
+      allow create: if isValidId(submissionId) && isValidSubmission(request.resource.data);
+      // Only admins can read, list, update status, or delete inquiries
+      allow read, list, delete: if isBootstrappedAdmin();
+      allow update: if isBootstrappedAdmin() && isValidId(submissionId);
+    }
+
+    // 3. Admin records
+    match /admins/{adminId} {
+      allow read: if isSignedIn() && (request.auth.uid == adminId || isBootstrappedAdmin());
+      allow write: if isBootstrappedAdmin() && isValidId(adminId);
+    }
+  }
+}
