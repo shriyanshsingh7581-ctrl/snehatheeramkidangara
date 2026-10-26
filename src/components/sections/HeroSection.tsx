@@ -1,5 +1,5 @@
 import React from 'react';
-import { Utensils, PhoneCall, ShieldCheck, HeartHandshake, MapPin } from 'lucide-react';
+import { Utensils, PhoneCall, ShieldCheck, HeartHandshake, MapPin, CheckCircle2 } from 'lucide-react';
 import { SITE_CONFIG, SiteImagesConfig } from '../../config/siteConfig';
 import { SmartImage } from '../SmartImage';
 
@@ -25,7 +25,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Left Copy Column */}
             <div className="flex flex-col justify-between lg:col-span-7">
               <div>
-                {/* Institutional Heading — Clean unboxed typography */}
                 <p className="text-xs font-semibold tracking-wide text-[#E8F5E9] sm:text-sm">
                   {SITE_CONFIG.fullName}
                 </p>
@@ -38,9 +37,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   “{SITE_CONFIG.tagline}”
                 </p>
 
-                <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/90 sm:text-base">
+                <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/95 sm:text-base">
                   {SITE_CONFIG.description}
                 </p>
+
+                {/* Bible Quotation Pill/Banner */}
+                <blockquote className="mt-5 rounded-2xl border border-white/20 bg-[#1B5E20]/55 p-4 text-xs sm:text-sm italic text-[#E8F5E9]">
+                  <span>{SITE_CONFIG.bibleQuotation.verse}</span>
+                  <footer className="mt-1 not-italic font-bold text-white">
+                    — {SITE_CONFIG.bibleQuotation.reference}
+                  </footer>
+                </blockquote>
               </div>
 
               {/* Primary Buttons */}
@@ -57,22 +64,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <button
                   type="button"
                   onClick={onContactClick}
-                  className="inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-2xl border border-white/35 bg-[#1B5E20]/50 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1B5E20]/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white whitespace-nowrap shrink-0 cursor-pointer"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-2xl border border-white/35 bg-[#43A047] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1B5E20] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white whitespace-nowrap shrink-0 cursor-pointer"
                 >
-                  <PhoneCall className="h-4 w-4 shrink-0 text-[#E8F5E9]" aria-hidden="true" />
+                  <PhoneCall className="h-4 w-4 shrink-0 text-white" aria-hidden="true" />
                   <span>Contact Us</span>
                 </button>
               </div>
             </div>
 
-            {/* Right Visual Column */}
+            {/* Right Visual Column — Client Photo 1 (Outdoor Centre & Team Group Photo) */}
             <div className="flex flex-col justify-center lg:col-span-5">
               <div className="overflow-hidden rounded-2xl border border-white/20 bg-[#1B5E20]">
                 <SmartImage
                   src={images.heroSanctuary.url}
                   alt={images.heroSanctuary.alt}
                   caption={images.heroSanctuary.caption}
-                  aspectRatioClass="aspect-video lg:aspect-[16/11]"
+                  aspectRatioClass="aspect-[4/3] lg:aspect-[16/11]"
                   priority={true}
                 />
               </div>
@@ -107,40 +114,64 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* SECTION C — EVERY MOTHER DESERVES LOVE */}
+        {/* SECTION C — INTRODUCTION TO MENTAL HEALTH & OUR FOCUS */}
         <div className="mt-10 rounded-3xl border border-[#2E7D32]/20 bg-white p-6 sm:mt-12 sm:p-8 lg:p-10">
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-7">
-              <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-[#2E7D32]">
-                <span>DIGNITY IN EVERY SEASON OF LIFE</span>
+              <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-[#2E7D32]">
+                <span>INTRODUCTION TO MENTAL HEALTH</span>
                 <span aria-hidden="true">·</span>
-                <span>KIDANGARA SANCTUARY</span>
+                <span>OUR FOCUS</span>
               </div>
 
               <h2 className="font-display mt-2 text-2xl font-bold tracking-tight text-[#1B5E20] sm:text-3xl">
-                Every Mother Deserves Love
+                {SITE_CONFIG.mentalHealthIntro.heading}
               </h2>
 
-              <p className="mt-4 text-base leading-relaxed text-[#1B5E20]/90">
-                At Snehatheeram, no mother is left behind. Managed with unwavering devotion by the
-                Sisters, we provide a warm family where elderly women live with dignity, peace, and
-                joy.
+              <p className="mt-3 text-base font-medium leading-relaxed text-[#263238]">
+                {SITE_CONFIG.mentalHealthIntro.lead}
               </p>
+
+              <p className="mt-3 text-sm leading-relaxed text-[#607D66] sm:text-base">
+                {SITE_CONFIG.mentalHealthIntro.body}
+              </p>
+
+              {/* Our Focus List */}
+              <div className="mt-5 space-y-2.5">
+                <p className="text-xs font-bold tracking-wider text-[#1B5E20]">
+                  OUR CORE FOCUS AREAS:
+                </p>
+                <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  {SITE_CONFIG.ourFocus.map((focusItem) => (
+                    <li
+                      key={focusItem}
+                      className="flex items-start gap-2 rounded-xl border border-[#2E7D32]/15 bg-[#E8F5E9]/60 p-3 text-xs leading-relaxed text-[#263238]"
+                    >
+                      <CheckCircle2
+                        className="mt-0.5 h-4 w-4 shrink-0 text-[#43A047]"
+                        aria-hidden="true"
+                      />
+                      <span>{focusItem}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* Dedicated-Service Information Card */}
               <div className="mt-6 rounded-2xl border border-[#2E7D32]/20 bg-[#E8F5E9] p-5 sm:p-6">
                 <p className="text-xs font-bold tracking-wider text-[#2E7D32]">
-                  DEDICATED SERVICE BY
+                  ADMINISTERED &amp; DEDICATED SERVICE BY
                 </p>
                 <p className="font-display mt-1.5 text-lg font-bold text-[#1B5E20] sm:text-xl">
                   {SITE_CONFIG.management.province}
                 </p>
-                <p className="mt-1 text-sm font-semibold text-[#2E7D32]">
-                  {SITE_CONFIG.management.congregation}
+                <p className="mt-1 text-sm font-semibold text-[#607D66]">
+                  {SITE_CONFIG.management.congregation} · {SITE_CONFIG.memorialTitle}
                 </p>
               </div>
             </div>
 
+            {/* Client Photo 2 (Indoor Sign & Inauguration Plaque Group Photo) */}
             <div className="lg:col-span-5">
               <div className="overflow-hidden rounded-2xl border border-[#2E7D32]/20">
                 <SmartImage

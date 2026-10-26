@@ -49,14 +49,21 @@ export const Footer: React.FC<FooterProps> = ({
               {SITE_CONFIG.description}
             </p>
 
+            <blockquote className="mt-4 rounded-xl border border-white/15 bg-[#2E7D32]/40 p-3 text-xs italic text-[#E8F5E9]">
+              <span>{SITE_CONFIG.bibleQuotation.verse}</span>{' '}
+              <span className="not-italic font-bold text-white">
+                ({SITE_CONFIG.bibleQuotation.reference})
+              </span>
+            </blockquote>
+
             <div className="mt-4 text-xs text-[#E8F5E9]/85">
               <span>{SITE_CONFIG.management.province}</span>
               <span className="mx-2" aria-hidden="true">·</span>
               <span>{SITE_CONFIG.management.congregation}</span>
             </div>
 
-            <div className="mt-5 flex items-center gap-2.5 text-xs text-[#E8F5E9]">
-              <Clock className="h-4 w-4 shrink-0 text-[#E8F5E9]" aria-hidden="true" />
+            <div className="mt-4 flex items-center gap-2.5 text-xs text-[#E8F5E9]">
+              <Clock className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
               <span>Visiting Hours: 9:30 AM – 5:00 PM daily</span>
             </div>
           </div>
@@ -74,7 +81,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <a href="#about" className="hover:text-[#E8F5E9] hover:underline transition-colors">
-                  About Our Sanctuary
+                  About Us &amp; History
                 </a>
               </li>
               <li>
@@ -112,7 +119,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Column 3: Services Links */}
           <div className="lg:col-span-3">
             <h3 className="font-display text-xs font-bold tracking-wider text-[#E8F5E9]">
-              OUR CARE SERVICES
+              OUR REHABILITATION SERVICES
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm text-white/90">
               {SITE_CONFIG.services.map((service) => (
@@ -133,7 +140,7 @@ export const Footer: React.FC<FooterProps> = ({
 
             <div className="mt-4 space-y-3 text-sm text-white/90">
               <div className="flex items-start gap-2.5">
-                <MapPin className="mt-1 h-4 w-4 shrink-0 text-[#E8F5E9]" aria-hidden="true" />
+                <MapPin className="mt-1 h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                 <address className="not-italic text-xs leading-relaxed">
                   {SITE_CONFIG.location.addressLines.map((line) => (
                     <span key={line} className="block">
@@ -147,7 +154,7 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
 
               <div className="flex items-center gap-2.5">
-                <PhoneCall className="h-4 w-4 shrink-0 text-[#E8F5E9]" aria-hidden="true" />
+                <PhoneCall className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                 <div className="text-xs tabular-nums">
                   <a
                     href={`tel:${SITE_CONFIG.contact.primaryPhoneTel}`}
@@ -155,31 +162,31 @@ export const Footer: React.FC<FooterProps> = ({
                   >
                     {SITE_CONFIG.contact.whatsappDisplay}
                   </a>
-                  <span className="mx-1.5 text-white/40">·</span>
+                  <span className="mx-1.5 text-white/40">,</span>
                   <a
-                    href={`tel:${SITE_CONFIG.contact.landlineTel}`}
+                    href={`tel:${SITE_CONFIG.contact.secondaryPhoneTel}`}
                     className="hover:text-[#E8F5E9] transition-colors"
                   >
-                    {SITE_CONFIG.contact.landlineDisplay}
+                    {SITE_CONFIG.contact.secondaryPhoneDisplay}
                   </a>
                 </div>
               </div>
 
               <div className="flex items-center gap-2.5">
-                <PhoneCall className="h-4 w-4 shrink-0 text-[#E8F5E9]" aria-hidden="true" />
+                <PhoneCall className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                 <a
-                  href={`tel:${SITE_CONFIG.contact.provinceTel}`}
+                  href={`tel:${SITE_CONFIG.contact.landlineTel}`}
                   className="text-xs tabular-nums hover:text-[#E8F5E9] transition-colors"
                 >
-                  Province: {SITE_CONFIG.contact.provinceDisplay}
+                  Landline: {SITE_CONFIG.contact.landlineDisplay}
                 </a>
               </div>
 
               <div className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 shrink-0 text-[#E8F5E9]" aria-hidden="true" />
+                <Mail className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                 <a
                   href={`mailto:${SITE_CONFIG.contact.email}`}
-                  className="text-xs hover:text-[#E8F5E9] transition-colors"
+                  className="text-xs hover:text-[#E8F5E9] transition-colors break-all"
                 >
                   {SITE_CONFIG.contact.email}
                 </a>
@@ -192,7 +199,7 @@ export const Footer: React.FC<FooterProps> = ({
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[40px] items-center gap-1.5 rounded-xl bg-[#2E7D32] px-3.5 py-2 text-xs font-semibold text-white transition-colors hover:bg-white hover:text-[#1B5E20] whitespace-nowrap shrink-0"
+                className="inline-flex min-h-[40px] items-center gap-1.5 rounded-xl bg-[#43A047] px-3.5 py-2 text-xs font-semibold text-white transition-colors hover:bg-white hover:text-[#1B5E20] whitespace-nowrap shrink-0"
               >
                 <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>WhatsApp</span>
@@ -220,7 +227,7 @@ export const Footer: React.FC<FooterProps> = ({
           <button
             type="button"
             onClick={onOpenMediaModal}
-            className="inline-flex min-h-[36px] items-center gap-1.5 rounded-lg border border-white/20 bg-[#2E7D32]/50 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#2E7D32] whitespace-nowrap shrink-0 cursor-pointer"
+            className="inline-flex min-h-[36px] items-center gap-1.5 rounded-lg border border-white/20 bg-[#2E7D32]/60 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#43A047] whitespace-nowrap shrink-0 cursor-pointer"
           >
             <Image className="h-3.5 w-3.5 text-[#E8F5E9]" aria-hidden="true" />
             <span>Media &amp; Logo Settings</span>

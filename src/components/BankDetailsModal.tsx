@@ -60,7 +60,7 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
             type="button"
             onClick={onClose}
             aria-label="Close dialog"
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl text-[#2E7D32] transition-colors hover:bg-[#E8F5E9] hover:text-[#1B5E20] cursor-pointer"
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl text-[#607D66] transition-colors hover:bg-[#E8F5E9] hover:text-[#1B5E20] cursor-pointer"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -70,19 +70,19 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
           <div className="mt-5 space-y-3 rounded-2xl border border-[#2E7D32]/20 bg-[#E8F5E9] p-4 text-sm">
             {bankDetails.accountName && (
               <div className="flex justify-between gap-2">
-                <span className="text-[#2E7D32]">Account Name:</span>
+                <span className="text-[#607D66]">Account Name:</span>
                 <span className="font-semibold text-[#1B5E20]">{bankDetails.accountName}</span>
               </div>
             )}
             {bankDetails.bankName && (
               <div className="flex justify-between gap-2">
-                <span className="text-[#2E7D32]">Bank:</span>
+                <span className="text-[#607D66]">Bank:</span>
                 <span className="font-semibold text-[#1B5E20]">{bankDetails.bankName}</span>
               </div>
             )}
             {bankDetails.accountNumber && (
               <div className="flex justify-between gap-2">
-                <span className="text-[#2E7D32]">Account Number:</span>
+                <span className="text-[#607D66]">Account Number:</span>
                 <span className="font-mono font-semibold text-[#1B5E20] tabular-nums">
                   {bankDetails.accountNumber}
                 </span>
@@ -90,7 +90,7 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
             )}
             {bankDetails.ifscCode && (
               <div className="flex justify-between gap-2">
-                <span className="text-[#2E7D32]">IFSC Code:</span>
+                <span className="text-[#607D66]">IFSC Code:</span>
                 <span className="font-mono font-semibold text-[#1B5E20]">
                   {bankDetails.ifscCode}
                 </span>
@@ -98,7 +98,7 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
             )}
             {bankDetails.upiId && (
               <div className="flex justify-between gap-2">
-                <span className="text-[#2E7D32]">UPI ID:</span>
+                <span className="text-[#607D66]">UPI ID:</span>
                 <span className="font-mono font-semibold text-[#1B5E20]">{bankDetails.upiId}</span>
               </div>
             )}
@@ -106,31 +106,32 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
         ) : (
           <div className="mt-5 rounded-2xl border border-[#2E7D32]/30 bg-[#E8F5E9] p-5">
             <div className="flex items-start gap-3">
-              <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-[#1B5E20]" aria-hidden="true" />
+              <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-[#2E7D32]" aria-hidden="true" />
               <div>
                 <h3 className="font-display text-sm font-bold text-[#1B5E20]">
                   Request Verified Bank / UPI Details Directly
                 </h3>
-                <p className="mt-1.5 text-xs leading-relaxed text-[#1B5E20]/90">
+                <p className="mt-1.5 text-xs leading-relaxed text-[#263238]">
                   For your security and to ensure every contribution reaches{' '}
-                  <strong>{SITE_CONFIG.shortReferenceName}</strong> safely, official Bank Account
-                  and UPI transfer details are shared directly by the Sisters upon inquiry.
+                  <strong className="text-[#1B5E20]">{SITE_CONFIG.shortReferenceName}</strong>{' '}
+                  safely, official Bank Account and UPI transfer details are shared directly by the
+                  Sisters upon inquiry.
                 </p>
               </div>
             </div>
 
-            <div className="mt-4 space-y-2 border-t border-[#2E7D32]/20 pt-3 text-xs text-[#1B5E20]/85">
+            <div className="mt-4 space-y-2 border-t border-[#2E7D32]/20 pt-3 text-xs text-[#263238]">
               <p>
                 <strong className="text-[#1B5E20]">Primary Phone &amp; WhatsApp:</strong>{' '}
                 <span className="tabular-nums">{SITE_CONFIG.contact.whatsappDisplay}</span>
               </p>
               <p>
-                <strong className="text-[#1B5E20]">Centre Landline:</strong>{' '}
-                <span className="tabular-nums">{SITE_CONFIG.contact.landlineDisplay}</span>
+                <strong className="text-[#1B5E20]">Centre Phone:</strong>{' '}
+                <span className="tabular-nums">{SITE_CONFIG.contact.secondaryPhoneDisplay}</span>
               </p>
               <p>
-                <strong className="text-[#1B5E20]">Province Office:</strong>{' '}
-                <span className="tabular-nums">{SITE_CONFIG.contact.provinceDisplay}</span>
+                <strong className="text-[#1B5E20]">Landline:</strong>{' '}
+                <span className="tabular-nums">{SITE_CONFIG.contact.landlineDisplay}</span>
               </p>
               <p>
                 <strong className="text-[#1B5E20]">Verified Email:</strong>{' '}
@@ -155,7 +156,7 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
             href={`tel:${SITE_CONFIG.contact.primaryPhoneTel}`}
             className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl border border-[#2E7D32] bg-white px-4 py-3 text-xs font-semibold text-[#1B5E20] transition-colors hover:bg-[#E8F5E9] whitespace-nowrap shrink-0"
           >
-            <PhoneCall className="h-4 w-4 shrink-0 text-[#2E7D32]" aria-hidden="true" />
+            <PhoneCall className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
             <span>Call {SITE_CONFIG.contact.whatsappDisplay}</span>
           </a>
 
@@ -163,7 +164,7 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
             href={`mailto:${SITE_CONFIG.contact.email}?subject=${encodeURIComponent(
               'Donation / Bank Details Inquiry — Snehatheeram Kidangara'
             )}`}
-            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl border border-[#2E7D32]/25 bg-[#E8F5E9] px-4 py-3 text-xs font-semibold text-[#1B5E20] transition-colors hover:bg-[#2E7D32] hover:text-white whitespace-nowrap shrink-0"
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl border border-[#2E7D32]/25 bg-[#E8F5E9] px-4 py-3 text-xs font-semibold text-[#1B5E20] transition-colors hover:bg-[#43A047] hover:text-white whitespace-nowrap shrink-0"
           >
             <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span>Email</span>

@@ -20,7 +20,7 @@ export const Header: React.FC<HeaderProps> = ({ onDonateClick }) => {
         {/* Zone 2: 5 clean single-line text navigation links */}
         <nav
           aria-label="Primary Navigation"
-          className="hidden md:flex items-center gap-7 text-sm font-medium text-[#2E7D32]"
+          className="hidden md:flex items-center gap-7 text-sm font-medium text-[#607D66]"
         >
           <a
             href="#home"
@@ -30,25 +30,25 @@ export const Header: React.FC<HeaderProps> = ({ onDonateClick }) => {
           </a>
           <a
             href="#about"
-            className="py-2 hover:text-[#1B5E20] hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
+            className="py-2 hover:text-[#2E7D32] hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
           >
             About Us
           </a>
           <a
             href="#services"
-            className="py-2 hover:text-[#1B5E20] hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
+            className="py-2 hover:text-[#2E7D32] hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
           >
             Services
           </a>
           <a
             href="#support"
-            className="py-2 hover:text-[#1B5E20] hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
+            className="py-2 hover:text-[#2E7D32] hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
           >
             Support
           </a>
           <a
             href="#contact"
-            className="py-2 hover:text-[#1B5E20] hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
+            className="py-2 hover:text-[#2E7D32] hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
           >
             Contact
           </a>

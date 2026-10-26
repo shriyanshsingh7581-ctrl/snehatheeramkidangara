@@ -32,8 +32,8 @@ export const MapSection: React.FC = () => {
             <p className="font-display mt-3 text-base font-bold text-[#1B5E20]">
               {SITE_CONFIG.shortReferenceName}
             </p>
-            <p className="mt-1 text-xs text-[#2E7D32]">{SITE_CONFIG.location.landmark}</p>
-            <p className="mt-1 font-mono text-xs text-[#1B5E20] tabular-nums">{display}</p>
+            <p className="mt-1 text-xs text-[#607D66]">{SITE_CONFIG.location.landmark}</p>
+            <p className="mt-1 font-mono text-xs text-[#263238] tabular-nums">{display}</p>
           </div>
         )}
       </div>
@@ -43,8 +43,8 @@ export const MapSection: React.FC = () => {
           <p className="font-display text-sm font-bold text-[#1B5E20]">
             {SITE_CONFIG.location.landmark}
           </p>
-          <p className="mt-0.5 text-xs text-[#2E7D32]">
-            Coordinates: <span className="font-mono tabular-nums">{display}</span>
+          <p className="mt-0.5 text-xs text-[#607D66]">
+            Coordinates: <span className="font-mono text-[#263238] tabular-nums">{display}</span>
           </p>
         </div>
 

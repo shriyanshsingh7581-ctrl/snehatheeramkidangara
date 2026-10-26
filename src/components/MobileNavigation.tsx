@@ -30,12 +30,12 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ activeSectio
               className={`flex min-h-[44px] min-w-[44px] flex-col items-center justify-center rounded-xl transition-colors whitespace-nowrap shrink-0 ${
                 isActive
                   ? 'bg-[#E8F5E9] text-[#1B5E20] font-semibold'
-                  : 'text-[#2E7D32] hover:text-[#1B5E20] font-medium'
+                  : 'text-[#607D66] hover:text-[#2E7D32] font-medium'
               }`}
             >
               <Icon
                 className={`h-5 w-5 transition-transform duration-150 ${
-                  isActive ? 'scale-105 text-[#1B5E20]' : 'text-[#2E7D32]'
+                  isActive ? 'scale-105 text-[#2E7D32]' : 'text-[#607D66]'
                 }`}
                 aria-hidden="true"
               />

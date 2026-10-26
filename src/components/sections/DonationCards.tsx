@@ -22,10 +22,10 @@ export const DonationCards: React.FC<DonationCardsProps> = ({
           <h2 className="font-display mt-2 text-2xl font-bold tracking-tight text-[#1B5E20] sm:text-3xl lg:text-4xl">
             How You Can Help
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-[#1B5E20]/90">
+          <p className="mt-3 text-base leading-relaxed text-[#607D66]">
             Snehatheeram relies on the generosity of kind-hearted individuals and well-wishers to
-            meet the daily needs of our residents. Every contribution brings a smile to a
-            mother&apos;s face.
+            meet the daily nutritional, psychiatric, and rehabilitation needs of our residents.
+            Every contribution brings healing and dignity to a sister or mother in need.
           </p>
         </div>
 
@@ -48,7 +48,7 @@ export const DonationCards: React.FC<DonationCardsProps> = ({
 
               <p className="mt-3 text-sm leading-relaxed text-[#E8F5E9]/90">
                 Celebrate your birthdays, wedding anniversaries, or remember your loved ones by
-                sponsoring breakfast, lunch, or dinner for our residents.
+                sponsoring breakfast, lunch, tea, or dinner for our residents.
               </p>
             </div>
 
@@ -77,12 +77,12 @@ export const DonationCards: React.FC<DonationCardsProps> = ({
               </div>
 
               <h3 className="font-display mt-4 text-xl font-bold text-[#1B5E20] sm:text-2xl">
-                Medical Sponsorship
+                Medical &amp; Psychiatric Sponsorship
               </h3>
 
-              <p className="mt-3 text-sm leading-relaxed text-[#1B5E20]/80">
-                Help cover the monthly expenses for essential medicines, adult diapers, and regular
-                medical check-ups for frail and bedridden mothers.
+              <p className="mt-3 text-sm leading-relaxed text-[#607D66]">
+                Help cover the monthly expenses for essential psychiatric and general medicines,
+                counselling sessions, and regular clinical check-ups for our residents.
               </p>
             </div>
 
@@ -103,7 +103,7 @@ export const DonationCards: React.FC<DonationCardsProps> = ({
             <div>
               <div className="flex items-center justify-between gap-2">
                 <span className="text-xs font-bold tracking-wider text-[#1B5E20]">
-                  DIRECT SUPPORT · OPERATIONS
+                  DIRECT SUPPORT · REHABILITATION
                 </span>
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#E8F5E9] text-[#1B5E20]">
                   <Landmark className="h-5 w-5" aria-hidden="true" />
@@ -114,9 +114,9 @@ export const DonationCards: React.FC<DonationCardsProps> = ({
                 General Donation
               </h3>
 
-              <p className="mt-3 text-sm leading-relaxed text-[#1B5E20]/80">
-                Contribute towards building maintenance, clothing, bedding, and daily operational
-                costs via Bank Transfer or UPI.
+              <p className="mt-3 text-sm leading-relaxed text-[#607D66]">
+                Contribute towards vocational training materials, clothing, bedding, and daily
+                rehabilitation centre operations via Bank Transfer or UPI.
               </p>
             </div>
 
@@ -124,7 +124,7 @@ export const DonationCards: React.FC<DonationCardsProps> = ({
               <button
                 type="button"
                 onClick={onViewBankDetailsClick}
-                className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl border border-[#2E7D32] bg-transparent px-5 py-3 text-sm font-semibold text-[#1B5E20] transition-colors hover:bg-[#2E7D32] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B5E20] whitespace-nowrap shrink-0 cursor-pointer"
+                className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl border border-[#2E7D32] bg-transparent px-5 py-3 text-sm font-semibold text-[#1B5E20] transition-colors hover:bg-[#43A047] hover:border-[#43A047] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B5E20] whitespace-nowrap shrink-0 cursor-pointer"
               >
                 <span>View Bank / UPI Details</span>
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />

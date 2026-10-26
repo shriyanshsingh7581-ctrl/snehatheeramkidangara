@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { DEFAULT_IMAGES, SiteImagesConfig } from '../config/siteConfig';
 
-const STORAGE_KEY = 'snehatheeram_media_config_v3';
+const STORAGE_KEY = 'snehatheeram_media_config_v4';
 
 export function useMediaConfig() {
   const [images, setImages] = useState<SiteImagesConfig>(() => {
@@ -15,11 +15,36 @@ export function useMediaConfig() {
           heroSanctuary: { ...DEFAULT_IMAGES.heroSanctuary, ...(parsed.heroSanctuary || {}) },
           everyMotherLove: { ...DEFAULT_IMAGES.everyMotherLove, ...(parsed.everyMotherLove || {}) },
           kuttanadCampus: { ...DEFAULT_IMAGES.kuttanadCampus, ...(parsed.kuttanadCampus || {}) },
-          nutritiousMeals: { ...DEFAULT_IMAGES.nutritiousMeals, ...(parsed.nutritiousMeals || {}) },
-          elderlyCare: { ...DEFAULT_IMAGES.elderlyCare, ...(parsed.elderlyCare || {}) },
-          digitalLearning: { ...DEFAULT_IMAGES.digitalLearning, ...(parsed.digitalLearning || {}) },
+          psychosocialRehab: {
+            ...DEFAULT_IMAGES.psychosocialRehab,
+            ...(parsed.psychosocialRehab || {}),
+          },
+          mentalHealthCounselling: {
+            ...DEFAULT_IMAGES.mentalHealthCounselling,
+            ...(parsed.mentalHealthCounselling || {}),
+          },
+          vocationalTraining: {
+            ...DEFAULT_IMAGES.vocationalTraining,
+            ...(parsed.vocationalTraining || {}),
+          },
           medicalNursing: { ...DEFAULT_IMAGES.medicalNursing, ...(parsed.medicalNursing || {}) },
-          spiritualSupport: { ...DEFAULT_IMAGES.spiritualSupport, ...(parsed.spiritualSupport || {}) },
+          clinicalCheckup: {
+            ...DEFAULT_IMAGES.clinicalCheckup,
+            ...(parsed.clinicalCheckup || {}),
+          },
+          recreationalActivities: {
+            ...DEFAULT_IMAGES.recreationalActivities,
+            ...(parsed.recreationalActivities || {}),
+          },
+          sustainabilityKitchen: {
+            ...DEFAULT_IMAGES.sustainabilityKitchen,
+            ...(parsed.sustainabilityKitchen || {}),
+          },
+          nutritiousMeals: { ...DEFAULT_IMAGES.nutritiousMeals, ...(parsed.nutritiousMeals || {}) },
+          spiritualSupport: {
+            ...DEFAULT_IMAGES.spiritualSupport,
+            ...(parsed.spiritualSupport || {}),
+          },
         };
       }
     } catch {

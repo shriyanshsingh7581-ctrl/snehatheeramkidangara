@@ -49,7 +49,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
             Snehatheeram Kidangara
           </p>
           <p className="mt-1 max-w-xs text-xs text-[#E8F5E9]/85">
-            Pope John XXIII Rehabilitation &amp; Old Age Women Care Center
+            John Paul XXIII Psychosocial Rehabilitation Centre For Women
           </p>
         </div>
       )}

@@ -3,19 +3,19 @@
 @layer base {
   :root {
     --color-primary: #2E7D32;
-    --color-secondary: #1B5E20;
-    --color-accent: #E8F5E9;
-    --color-bg: #E8F5E9;
+    --color-dark-green: #1B5E20;
+    --color-light-green: #E8F5E9;
+    --color-accent: #43A047;
     --color-surface: #FFFFFF;
-    --color-text-main: #1B5E20;
-    --color-text-muted: #2E7D32;
+    --color-text-main: #263238;
+    --color-text-secondary: #607D66;
     --color-border: #C8E6C9;
     --color-whatsapp: #2E7D32;
   }
 
   html {
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #1B5E20;
+    color: #263238;
     background-color: #E8F5E9;
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;

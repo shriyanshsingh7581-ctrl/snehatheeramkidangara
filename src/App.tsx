@@ -61,7 +61,7 @@ export default function App() {
   };
 
   const handleSponsorMedicinesNavigate = () => {
-    setPreselectedSponsorshipType('Medical Sponsorship');
+    setPreselectedSponsorshipType('Medical & Psychiatric Care Sponsorship');
     scrollToElement('annadanam-desk');
   };
 
@@ -71,26 +71,26 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#E8F5E9] text-[#1B5E20]">
+    <div className="min-h-screen flex flex-col bg-[#E8F5E9] text-[#263238]">
       {/* SECTION A — HEADER */}
       <Header onDonateClick={() => scrollToElement('support')} />
 
       {/* MAIN CONTENT */}
       <main className="flex-1">
-        {/* SECTION B & C — HERO & EVERY MOTHER DESERVES LOVE */}
+        {/* SECTION B & C — HERO & INTRODUCTION TO MENTAL HEALTH */}
         <HeroSection
           images={images}
           onSponsorMealClick={handleSponsorMealNavigate}
           onContactClick={() => scrollToElement('contact')}
         />
 
-        {/* SECTION D — ABOUT OUR SANCTUARY */}
+        {/* SECTION D — ABOUT US, HISTORY & IMPACT SINCE 2012 */}
         <AboutSection images={images} />
 
-        {/* SECTION E — MISSION AND VISION */}
+        {/* SECTION E — MISSION, VISION, CORE VALUES & ORGANOGRAM */}
         <MissionVision />
 
-        {/* SECTION F — OUR SERVICES & FACILITIES */}
+        {/* SECTION F — SERVICES, REHABILITATION PRINCIPLES, HEALTH, SUSTAINABILITY & TRAINING */}
         <ServicesGrid images={images} onSponsorMealClick={handleSponsorMealNavigate} />
 
         {/* SECTION G — SUPPORT & GENEROSITY */}
@@ -107,7 +107,7 @@ export default function App() {
           onViewBankDetailsClick={() => setIsBankModalOpen(true)}
         />
 
-        {/* SECTION I — SPECIAL PRAYER OFFERING */}
+        {/* SECTION I — LIFE AT SNEHATHEERAM, DAILY ROUTINE & PRAYER OFFERING */}
         <PrayerOffering images={images} onPrayerInquiryClick={handlePrayerOfferingNavigate} />
 
         {/* SECTION J — CONTACT & LOCATION */}

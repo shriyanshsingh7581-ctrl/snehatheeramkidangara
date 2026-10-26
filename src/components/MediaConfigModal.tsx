@@ -74,13 +74,13 @@ export const MediaConfigModal: React.FC<MediaConfigModalProps> = ({
             type="button"
             onClick={onClose}
             aria-label="Close dialog"
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl text-[#2E7D32] hover:bg-[#E8F5E9] hover:text-[#1B5E20] cursor-pointer"
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl text-[#607D66] hover:bg-[#E8F5E9] hover:text-[#1B5E20] cursor-pointer"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
 
-        <p className="mt-4 text-xs leading-relaxed text-[#1B5E20]/80">
+        <p className="mt-4 text-xs leading-relaxed text-[#607D66]">
           Update image URLs below to preview custom organization photographs or logos. You can also
           permanently update URLs in <code className="font-mono text-[#1B5E20]">src/config/siteConfig.ts</code>.
         </p>
@@ -94,7 +94,7 @@ export const MediaConfigModal: React.FC<MediaConfigModalProps> = ({
               type="text"
               value={draft.logoUrl}
               onChange={(e) => setDraft({ ...draft, logoUrl: e.target.value })}
-              className="mt-1.5 block min-h-[44px] w-full rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9]/60 px-3.5 py-2 text-xs text-[#1B5E20]"
+              className="mt-1.5 block min-h-[44px] w-full rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9]/60 px-3.5 py-2 text-xs text-[#263238]"
             />
           </div>
 
@@ -111,13 +111,13 @@ export const MediaConfigModal: React.FC<MediaConfigModalProps> = ({
                   heroSanctuary: { ...draft.heroSanctuary, url: e.target.value },
                 })
               }
-              className="mt-1.5 block min-h-[44px] w-full rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9]/60 px-3.5 py-2 text-xs text-[#1B5E20]"
+              className="mt-1.5 block min-h-[44px] w-full rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9]/60 px-3.5 py-2 text-xs text-[#263238]"
             />
           </div>
 
           <div>
             <label className="block text-xs font-bold text-[#1B5E20]">
-              &ldquo;Every Mother Deserves Love&rdquo; (About Us) Image URL
+              About Us &amp; History Image URL
             </label>
             <input
               type="text"
@@ -128,13 +128,13 @@ export const MediaConfigModal: React.FC<MediaConfigModalProps> = ({
                   everyMotherLove: { ...draft.everyMotherLove, url: e.target.value },
                 })
               }
-              className="mt-1.5 block min-h-[44px] w-full rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9]/60 px-3.5 py-2 text-xs text-[#1B5E20]"
+              className="mt-1.5 block min-h-[44px] w-full rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9]/60 px-3.5 py-2 text-xs text-[#263238]"
             />
           </div>
 
           <div>
             <label className="block text-xs font-bold text-[#1B5E20]">
-              Care Home / Kuttanad Campus Image URL
+              Facilities &amp; Accommodation Image URL
             </label>
             <input
               type="text"
@@ -145,7 +145,7 @@ export const MediaConfigModal: React.FC<MediaConfigModalProps> = ({
                   kuttanadCampus: { ...draft.kuttanadCampus, url: e.target.value },
                 })
               }
-              className="mt-1.5 block min-h-[44px] w-full rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9]/60 px-3.5 py-2 text-xs text-[#1B5E20]"
+              className="mt-1.5 block min-h-[44px] w-full rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9]/60 px-3.5 py-2 text-xs text-[#263238]"
             />
           </div>
 
@@ -162,7 +162,7 @@ export const MediaConfigModal: React.FC<MediaConfigModalProps> = ({
                   nutritiousMeals: { ...draft.nutritiousMeals, url: e.target.value },
                 })
               }
-              className="mt-1.5 block min-h-[44px] w-full rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9]/60 px-3.5 py-2 text-xs text-[#1B5E20]"
+              className="mt-1.5 block min-h-[44px] w-full rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9]/60 px-3.5 py-2 text-xs text-[#263238]"
             />
           </div>
 
@@ -173,7 +173,7 @@ export const MediaConfigModal: React.FC<MediaConfigModalProps> = ({
                 onReset();
                 onClose();
               }}
-              className="inline-flex min-h-[44px] items-center gap-1.5 rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9] px-4 py-2 text-xs font-semibold text-[#1B5E20] hover:bg-[#2E7D32] hover:text-white cursor-pointer"
+              className="inline-flex min-h-[44px] items-center gap-1.5 rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9] px-4 py-2 text-xs font-semibold text-[#1B5E20] hover:bg-[#43A047] hover:text-white cursor-pointer"
             >
               <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
               <span>Reset to Defaults</span>
