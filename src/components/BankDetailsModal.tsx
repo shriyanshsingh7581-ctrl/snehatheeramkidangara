@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { X, Landmark, MessageCircle, PhoneCall, Mail, ShieldAlert } from 'lucide-react';
-import { SITE_CONFIG } from '../config/siteConfig';
+import { useLiveConfig } from '../hooks/useLiveSiteData';
 import { buildWhatsAppUrl } from '../lib/whatsapp';
 
 interface BankDetailsModalProps {
@@ -9,6 +9,8 @@ interface BankDetailsModalProps {
 }
 
 export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onClose }) => {
+  const live = useLiveConfig();
+
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -21,10 +23,10 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
   if (!isOpen) return null;
 
   const bankEnquiryWhatsAppUrl = buildWhatsAppUrl(
-    `Namaskaram, I would like to request the official Bank Transfer / UPI details for ${SITE_CONFIG.name} (${SITE_CONFIG.fullName}) to make a contribution.`
+    `Namaskaram, I would like to request the official Bank Transfer / UPI details for ${live.name} (${live.fullName}) to make a contribution.`
   );
 
-  const { bankDetails } = SITE_CONFIG;
+  const { bankDetails } = live;
 
   return (
     <div
@@ -113,7 +115,7 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
                 </h3>
                 <p className="mt-1.5 text-xs leading-relaxed text-[#263238]">
                   For your security and to ensure every contribution reaches{' '}
-                  <strong className="text-[#1B5E20]">{SITE_CONFIG.shortReferenceName}</strong>{' '}
+                  <strong className="text-[#1B5E20]">{live.shortReferenceName}</strong>{' '}
                   safely, official Bank Account and UPI transfer details are shared directly by the
                   Sisters upon inquiry.
                 </p>
@@ -123,19 +125,19 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
             <div className="mt-4 space-y-2 border-t border-[#2E7D32]/20 pt-3 text-xs text-[#263238]">
               <p>
                 <strong className="text-[#1B5E20]">Primary Phone &amp; WhatsApp:</strong>{' '}
-                <span className="tabular-nums">{SITE_CONFIG.contact.whatsappDisplay}</span>
+                <span className="tabular-nums">{live.primaryPhone}</span>
               </p>
               <p>
                 <strong className="text-[#1B5E20]">Centre Phone:</strong>{' '}
-                <span className="tabular-nums">{SITE_CONFIG.contact.secondaryPhoneDisplay}</span>
+                <span className="tabular-nums">{live.secondaryPhone}</span>
               </p>
               <p>
                 <strong className="text-[#1B5E20]">Landline:</strong>{' '}
-                <span className="tabular-nums">{SITE_CONFIG.contact.landlineDisplay}</span>
+                <span className="tabular-nums">{live.landline}</span>
               </p>
               <p>
                 <strong className="text-[#1B5E20]">Verified Email:</strong>{' '}
-                {SITE_CONFIG.contact.email}
+                {live.email}
               </p>
             </div>
           </div>
@@ -153,15 +155,15 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
           </a>
 
           <a
-            href={`tel:${SITE_CONFIG.contact.primaryPhoneTel}`}
+            href={`tel:${live.primaryPhoneTel}`}
             className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl border border-[#2E7D32] bg-white px-4 py-3 text-xs font-semibold text-[#1B5E20] transition-colors hover:bg-[#E8F5E9] whitespace-nowrap shrink-0"
           >
             <PhoneCall className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
-            <span>Call {SITE_CONFIG.contact.whatsappDisplay}</span>
+            <span>Call {live.primaryPhone}</span>
           </a>
 
           <a
-            href={`mailto:${SITE_CONFIG.contact.email}?subject=${encodeURIComponent(
+            href={`mailto:${live.email}?subject=${encodeURIComponent(
               'Donation / Bank Details Inquiry — Snehatheeram Kidangara'
             )}`}
             className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl border border-[#2E7D32]/25 bg-[#E8F5E9] px-4 py-3 text-xs font-semibold text-[#1B5E20] transition-colors hover:bg-[#43A047] hover:text-white whitespace-nowrap shrink-0"

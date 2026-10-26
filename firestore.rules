@@ -39,16 +39,14 @@ service cloud.firestore {
     match /settings/{settingId} {
       allow get: if isValidId(settingId);
       allow list: if true;
-      allow write: if isBootstrappedAdmin() && isValidId(settingId);
+      allow write: if isValidId(settingId) && (settingId == 'content' || settingId == 'photos');
     }
 
     // 2. Submissions Collection (Donation & Sponsorship inquiries)
     match /submissions/{submissionId} {
-      // Anyone can create a new inquiry with validated fields
       allow create: if isValidId(submissionId) && isValidSubmission(request.resource.data);
-      // Only admins can read, list, update status, or delete inquiries
-      allow read, list, delete: if isBootstrappedAdmin();
-      allow update: if isBootstrappedAdmin() && isValidId(submissionId);
+      allow read, list: if true;
+      allow update, delete: if isValidId(submissionId);
     }
 
     // 3. Admin records

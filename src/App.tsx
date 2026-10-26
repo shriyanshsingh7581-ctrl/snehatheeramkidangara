@@ -17,45 +17,51 @@ import { PrayerOffering } from './components/sections/PrayerOffering';
 import { ContactSection } from './components/sections/ContactSection';
 import { Footer } from './components/Footer';
 import { BankDetailsModal } from './components/BankDetailsModal';
-import { MediaConfigModal } from './components/MediaConfigModal';
-import { AdminLoginModal } from './components/admin/AdminLoginModal';
 import { AdminPortal } from './components/admin/AdminPortal';
-import { useLiveSiteData } from './hooks/useLiveSiteData';
-import { useMediaConfig } from './hooks/useMediaConfig';
+import { useLiveSiteData, LiveSiteContext } from './hooks/useLiveSiteData';
+
+function checkIsAdminRoute(): boolean {
+  if (typeof window === 'undefined') return false;
+  const pathname = window.location.pathname.toLowerCase();
+  const search = window.location.search.toLowerCase();
+  const hash = window.location.hash.toLowerCase();
+  return (
+    pathname === '/admin' ||
+    pathname.startsWith('/admin/') ||
+    search.includes('admin=true') ||
+    search === '?admin' ||
+    hash === '#admin' ||
+    hash === '#/admin'
+  );
+}
 
 export default function App() {
-  const { images, contentOverrides, isFirebaseLoaded } = useLiveSiteData();
-  const { updateImages, resetImages } = useMediaConfig();
+  const { images, contentOverrides, liveConfig } = useLiveSiteData();
+  const [isAdminRoute, setIsAdminRoute] = useState<boolean>(checkIsAdminRoute);
 
   const [activeSection, setActiveSection] = useState<string>('home');
   const [isBankModalOpen, setIsBankModalOpen] = useState(false);
-  const [isMediaModalOpen, setIsMediaModalOpen] = useState(false);
-  const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
-  const [isAdminPortalOpen, setIsAdminPortalOpen] = useState(false);
 
   const [preselectedOccasion, setPreselectedOccasion] = useState<string | null>(null);
   const [preselectedSponsorshipType, setPreselectedSponsorshipType] = useState<string | null>(
     null
   );
 
-  // Check URL hash for direct #admin access
+  // Listen for URL changes (popstate / hashchange) between / and /admin
   useEffect(() => {
-    const checkHash = () => {
-      if (window.location.hash === '#admin') {
-        const isAuth = localStorage.getItem('snehatheeram_admin_authenticated') === 'true';
-        if (isAuth) {
-          setIsAdminPortalOpen(true);
-        } else {
-          setIsAdminLoginOpen(true);
-        }
-      }
+    const handleLocationChange = () => {
+      setIsAdminRoute(checkIsAdminRoute());
     };
-    checkHash();
-    window.addEventListener('hashchange', checkHash);
-    return () => window.removeEventListener('hashchange', checkHash);
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
   }, []);
 
   useEffect(() => {
+    if (isAdminRoute) return;
     const sectionIds = ['home', 'about', 'services', 'support', 'contact'];
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 180;
@@ -70,7 +76,7 @@ export default function App() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isAdminRoute]);
 
   const scrollToElement = (id: string) => {
     const el = document.getElementById(id);
@@ -94,105 +100,77 @@ export default function App() {
     scrollToElement('annadanam-desk');
   };
 
-  const handleAdminClick = () => {
-    const isAuth = localStorage.getItem('snehatheeram_admin_authenticated') === 'true';
-    if (isAuth) {
-      setIsAdminPortalOpen(true);
-    } else {
-      setIsAdminLoginOpen(true);
-    }
-  };
+  // SEPARATE LINK 2: Standalone Admin Panel (/admin)
+  if (isAdminRoute) {
+    return (
+      <LiveSiteContext.Provider value={liveConfig}>
+        <AdminPortal
+          currentImages={images}
+          currentContentOverrides={contentOverrides}
+        />
+      </LiveSiteContext.Provider>
+    );
+  }
 
+  // SEPARATE LINK 1: Public Website (/) — No Admin UI shown on public site
   return (
-    <div className="min-h-screen flex flex-col bg-[#E8F5E9] text-[#263238]">
-      {/* SECTION A — HEADER WITH ADMIN & DONATE BUTTONS */}
-      <Header
-        onDonateClick={() => scrollToElement('support')}
-        onAdminClick={handleAdminClick}
-      />
+    <LiveSiteContext.Provider value={liveConfig}>
+      <div className="min-h-screen flex flex-col bg-[#E8F5E9] text-[#263238]">
+        {/* SECTION A — HEADER */}
+        <Header logoUrl={images.logoUrl} onDonateClick={() => scrollToElement('support')} />
 
-      {/* MAIN CONTENT */}
-      <main className="flex-1">
-        {/* SECTION B & C — HERO & INTRODUCTION TO MENTAL HEALTH */}
-        <HeroSection
-          images={images}
-          onSponsorMealClick={handleSponsorMealNavigate}
-          onContactClick={() => scrollToElement('contact')}
+        {/* MAIN CONTENT */}
+        <main className="flex-1">
+          {/* SECTION B & C — HERO & INTRODUCTION TO MENTAL HEALTH */}
+          <HeroSection
+            images={images}
+            onSponsorMealClick={handleSponsorMealNavigate}
+            onContactClick={() => scrollToElement('contact')}
+          />
+
+          {/* SECTION D — ABOUT US, HISTORY & IMPACT SINCE 2012 */}
+          <AboutSection images={images} />
+
+          {/* SECTION E — MISSION, VISION, CORE VALUES & ORGANOGRAM */}
+          <MissionVision />
+
+          {/* SECTION F — SERVICES, REHABILITATION PRINCIPLES, HEALTH, SUSTAINABILITY & TRAINING */}
+          <ServicesGrid images={images} onSponsorMealClick={handleSponsorMealNavigate} />
+
+          {/* SECTION G — SUPPORT & GENEROSITY */}
+          <DonationCards
+            onBookMealClick={handleSponsorMealNavigate}
+            onSponsorMedicinesClick={handleSponsorMedicinesNavigate}
+            onViewBankDetailsClick={() => setIsBankModalOpen(true)}
+          />
+
+          {/* SECTION H — ANNADANAM & SUPPORT DESK */}
+          <SponsorshipForm
+            preselectedOccasion={preselectedOccasion}
+            preselectedSponsorshipType={preselectedSponsorshipType}
+            onViewBankDetailsClick={() => setIsBankModalOpen(true)}
+          />
+
+          {/* SECTION I — LIFE AT SNEHATHEERAM, DAILY ROUTINE & PRAYER OFFERING */}
+          <PrayerOffering images={images} onPrayerInquiryClick={handlePrayerOfferingNavigate} />
+
+          {/* SECTION J — CONTACT & LOCATION */}
+          <ContactSection />
+        </main>
+
+        {/* SECTION K — FOOTER */}
+        <Footer
+          logoUrl={images.logoUrl}
+          onOpenBankModal={() => setIsBankModalOpen(true)}
         />
 
-        {/* SECTION D — ABOUT US, HISTORY & IMPACT SINCE 2012 */}
-        <AboutSection images={images} />
+        {/* PERSISTENT FLOATING WHATSAPP CONTACT & MOBILE BOTTOM BAR */}
+        <WhatsAppFloatingButton />
+        <MobileNavigation activeSection={activeSection} />
 
-        {/* SECTION E — MISSION, VISION, CORE VALUES & ORGANOGRAM */}
-        <MissionVision />
-
-        {/* SECTION F — SERVICES, REHABILITATION PRINCIPLES, HEALTH, SUSTAINABILITY & TRAINING */}
-        <ServicesGrid images={images} onSponsorMealClick={handleSponsorMealNavigate} />
-
-        {/* SECTION G — SUPPORT & GENEROSITY */}
-        <DonationCards
-          onBookMealClick={handleSponsorMealNavigate}
-          onSponsorMedicinesClick={handleSponsorMedicinesNavigate}
-          onViewBankDetailsClick={() => setIsBankModalOpen(true)}
-        />
-
-        {/* SECTION H — ANNADANAM & SUPPORT DESK */}
-        <SponsorshipForm
-          preselectedOccasion={preselectedOccasion}
-          preselectedSponsorshipType={preselectedSponsorshipType}
-          onViewBankDetailsClick={() => setIsBankModalOpen(true)}
-        />
-
-        {/* SECTION I — LIFE AT SNEHATHEERAM, DAILY ROUTINE & PRAYER OFFERING */}
-        <PrayerOffering images={images} onPrayerInquiryClick={handlePrayerOfferingNavigate} />
-
-        {/* SECTION J — CONTACT & LOCATION */}
-        <ContactSection />
-      </main>
-
-      {/* SECTION K — FOOTER */}
-      <Footer
-        logoUrl={images.logoUrl}
-        onOpenBankModal={() => setIsBankModalOpen(true)}
-        onOpenMediaModal={() => setIsMediaModalOpen(true)}
-        onOpenAdmin={handleAdminClick}
-      />
-
-      {/* PERSISTENT FLOATING WHATSAPP CONTACT & MOBILE BOTTOM BAR */}
-      <WhatsAppFloatingButton />
-      <MobileNavigation activeSection={activeSection} />
-
-      {/* ACCESSIBLE DIALOGS */}
-      <BankDetailsModal isOpen={isBankModalOpen} onClose={() => setIsBankModalOpen(false)} />
-      <MediaConfigModal
-        isOpen={isMediaModalOpen}
-        onClose={() => setIsMediaModalOpen(false)}
-        images={images}
-        onSave={updateImages}
-        onReset={resetImages}
-      />
-
-      {/* ADMIN CONTROL PORTAL & LOGIN MODAL */}
-      <AdminLoginModal
-        isOpen={isAdminLoginOpen}
-        onClose={() => setIsAdminLoginOpen(false)}
-        onAuthenticated={() => {
-          setIsAdminLoginOpen(false);
-          setIsAdminPortalOpen(true);
-        }}
-      />
-
-      <AdminPortal
-        isOpen={isAdminPortalOpen}
-        onClose={() => {
-          setIsAdminPortalOpen(false);
-          if (window.location.hash === '#admin') {
-            window.history.replaceState(null, '', ' ');
-          }
-        }}
-        currentImages={images}
-        currentContentOverrides={contentOverrides}
-      />
-    </div>
+        {/* ACCESSIBLE DIALOGS */}
+        <BankDetailsModal isOpen={isBankModalOpen} onClose={() => setIsBankModalOpen(false)} />
+      </div>
+    </LiveSiteContext.Provider>
   );
 }

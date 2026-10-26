@@ -55,7 +55,7 @@ export interface VerifiedBankDetails {
  * dedicated sections with zero repetition across the website.
  */
 export const DEFAULT_IMAGES: SiteImagesConfig = {
-  logoUrl: '/favicon.svg',
+  logoUrl: '/assets/aistudio/logo_extracted_f3521143.png',
   heroSanctuary: {
     url: '/assets/aistudio/IMG-20261026-WA0030_6233e329.jpg',
     alt: 'Residents, Sisters, Priest, and staff standing together in front of Snehatheeram Kidangara Rehabilitation Centre',

@@ -1,8 +1,11 @@
 import React from 'react';
 import { Compass, Eye, ShieldCheck, Network } from 'lucide-react';
 import { SITE_CONFIG } from '../../config/siteConfig';
+import { useLiveConfig } from '../../hooks/useLiveSiteData';
 
 export const MissionVision: React.FC = () => {
+  const live = useLiveConfig();
+
   return (
     <section aria-label="Mission, Vision, Core Values and Organogram" className="py-6 sm:py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -26,7 +29,7 @@ export const MissionVision: React.FC = () => {
               </div>
 
               <p className="mt-5 text-base leading-relaxed text-[#263238]">
-                {SITE_CONFIG.mission}
+                {live.mission}
               </p>
             </div>
 
@@ -59,7 +62,7 @@ export const MissionVision: React.FC = () => {
               </div>
 
               <p className="mt-5 text-base leading-relaxed text-[#263238]">
-                {SITE_CONFIG.vision}
+                {live.vision}
               </p>
             </div>
 

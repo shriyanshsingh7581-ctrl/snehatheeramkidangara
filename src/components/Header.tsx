@@ -1,28 +1,37 @@
 import React from 'react';
-import { Lock } from 'lucide-react';
-import { SITE_CONFIG } from '../config/siteConfig';
+import { useLiveConfig } from '../hooks/useLiveSiteData';
 
 interface HeaderProps {
+  logoUrl?: string;
   onDonateClick: () => void;
-  onAdminClick?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onDonateClick, onAdminClick }) => {
+export const Header: React.FC<HeaderProps> = ({
+  logoUrl = '/assets/aistudio/logo_extracted_f3521143.png',
+  onDonateClick,
+}) => {
+  const live = useLiveConfig();
+
   return (
     <header className="sticky top-0 z-30 border-b border-[#2E7D32]/20 bg-white/95 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        {/* Zone 1: Single text element wordmark */}
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+        {/* Zone 1: Official Emblem Logo + Organization Name */}
         <a
           href="#home"
-          className="font-display text-base font-bold tracking-tight text-[#1B5E20] transition-colors hover:text-[#2E7D32] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E7D32] sm:text-lg whitespace-nowrap shrink-0"
+          className="flex items-center gap-3 font-display text-base font-bold tracking-tight text-[#1B5E20] transition-colors hover:text-[#2E7D32] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E7D32] sm:text-lg whitespace-nowrap shrink-0"
         >
-          {SITE_CONFIG.name}
+          <img
+            src={logoUrl}
+            alt={`${live.name} official logo`}
+            className="h-11 w-11 rounded-full object-contain shrink-0"
+          />
+          <span>{live.name}</span>
         </a>
 
-        {/* Zone 2: clean text navigation links */}
+        {/* Zone 2: 5 clean single-line text navigation links */}
         <nav
           aria-label="Primary Navigation"
-          className="hidden md:flex items-center gap-6 text-sm font-medium text-[#607D66]"
+          className="hidden md:flex items-center gap-7 text-sm font-medium text-[#607D66]"
         >
           <a
             href="#home"
@@ -56,20 +65,8 @@ export const Header: React.FC<HeaderProps> = ({ onDonateClick, onAdminClick }) =
           </a>
         </nav>
 
-        {/* Zone 3: Actions (Donate + Admin) */}
-        <div className="flex items-center gap-2.5 shrink-0">
-          {onAdminClick && (
-            <button
-              type="button"
-              onClick={onAdminClick}
-              title="Admin Control Panel"
-              className="inline-flex min-h-[40px] items-center gap-1.5 rounded-xl border border-[#2E7D32]/25 bg-[#E8F5E9] px-3 py-2 text-xs font-semibold text-[#1B5E20] transition-colors hover:bg-[#2E7D32] hover:text-white cursor-pointer"
-            >
-              <Lock className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Admin</span>
-            </button>
-          )}
-
+        {/* Zone 3: 1 primary action */}
+        <div className="flex items-center shrink-0">
           <button
             type="button"
             onClick={onDonateClick}

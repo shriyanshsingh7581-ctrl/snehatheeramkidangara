@@ -1,6 +1,7 @@
 import React from 'react';
 import { Clock, Heart, Trees, Sparkles, PhoneCall, Award, CalendarCheck } from 'lucide-react';
 import { SITE_CONFIG, SiteImagesConfig } from '../../config/siteConfig';
+import { useLiveConfig } from '../../hooks/useLiveSiteData';
 import { SmartImage } from '../SmartImage';
 
 interface AboutSectionProps {
@@ -8,6 +9,7 @@ interface AboutSectionProps {
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ images }) => {
+  const live = useLiveConfig();
   const cardIcons = [Heart, Trees, Sparkles];
 
   return (
@@ -78,7 +80,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ images }) => {
               </h3>
             </div>
             <p className="text-xs font-medium text-[#607D66]">
-              John Paul XXIII Rehabilitation Centre · Kidangara, Kuttanad
+              {live.fullName}
             </p>
           </div>
 
@@ -132,7 +134,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ images }) => {
               <div className="mt-5 rounded-2xl border border-white/20 bg-[#2E7D32]/60 p-4">
                 <p className="text-xs font-medium text-[#E8F5E9]">Daily Visiting Schedule</p>
                 <p className="font-display mt-1 text-xl font-bold tracking-tight text-white tabular-nums">
-                  {SITE_CONFIG.visitingHours.schedule}
+                  {live.visitingHoursSchedule}
                 </p>
               </div>
 
@@ -147,18 +149,18 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ images }) => {
               </span>
               <div className="flex flex-wrap gap-2">
                 <a
-                  href={`tel:${SITE_CONFIG.contact.primaryPhoneTel}`}
+                  href={`tel:${live.primaryPhoneTel}`}
                   className="inline-flex min-h-[40px] items-center gap-1.5 rounded-xl bg-white px-3.5 py-2 text-xs font-semibold text-[#1B5E20] transition-colors hover:bg-[#E8F5E9] whitespace-nowrap shrink-0"
                 >
                   <PhoneCall className="h-3.5 w-3.5 text-[#2E7D32]" aria-hidden="true" />
-                  <span className="tabular-nums">{SITE_CONFIG.contact.whatsappDisplay}</span>
+                  <span className="tabular-nums">{live.primaryPhone}</span>
                 </a>
                 <a
-                  href={`tel:${SITE_CONFIG.contact.secondaryPhoneTel}`}
+                  href={`tel:${live.secondaryPhoneTel}`}
                   className="inline-flex min-h-[40px] items-center gap-1.5 rounded-xl bg-[#43A047] px-3.5 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#2E7D32] whitespace-nowrap shrink-0"
                 >
                   <PhoneCall className="h-3.5 w-3.5 text-white" aria-hidden="true" />
-                  <span className="tabular-nums">{SITE_CONFIG.contact.secondaryPhoneDisplay}</span>
+                  <span className="tabular-nums">{live.secondaryPhone}</span>
                 </a>
               </div>
             </div>

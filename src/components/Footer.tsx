@@ -1,24 +1,19 @@
 import React from 'react';
-import { PhoneCall, Mail, MapPin, MessageCircle, Navigation, Clock, Image, Lock } from 'lucide-react';
+import { PhoneCall, Mail, MapPin, MessageCircle, Navigation, Clock } from 'lucide-react';
 import { SITE_CONFIG } from '../config/siteConfig';
+import { useLiveConfig } from '../hooks/useLiveSiteData';
 import { buildWhatsAppUrl } from '../lib/whatsapp';
 
 interface FooterProps {
   logoUrl: string;
   onOpenBankModal: () => void;
-  onOpenMediaModal: () => void;
-  onOpenAdmin?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({
-  logoUrl,
-  onOpenBankModal,
-  onOpenMediaModal,
-  onOpenAdmin,
-}) => {
+export const Footer: React.FC<FooterProps> = ({ logoUrl, onOpenBankModal }) => {
+  const live = useLiveConfig();
   const currentYear = new Date().getFullYear();
   const whatsappUrl = buildWhatsAppUrl(
-    `Namaskaram, I would like to connect with ${SITE_CONFIG.name} regarding support and visiting hours.`
+    `Namaskaram, I would like to connect with ${live.name} regarding support and visiting hours.`
   );
 
   return (
@@ -30,31 +25,32 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="flex items-center gap-3">
               <img
                 src={logoUrl}
-                alt={`${SITE_CONFIG.name} emblem`}
+                alt={`${live.name} emblem`}
                 referrerPolicy="no-referrer"
                 onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).src = '/favicon.svg';
+                  (e.currentTarget as HTMLImageElement).src =
+                    '/assets/aistudio/logo_extracted_f3521143.png';
                 }}
-                className="h-10 w-10 rounded-xl border border-white/20 bg-white/10 object-cover shrink-0"
+                className="h-12 w-12 rounded-full bg-white p-0.5 object-contain shrink-0 shadow-xs"
               />
               <div>
                 <p className="font-display text-lg font-bold tracking-tight text-white">
-                  {SITE_CONFIG.name}
+                  {live.name}
                 </p>
                 <p className="text-xs font-medium text-[#E8F5E9]">
-                  {SITE_CONFIG.fullName}
+                  {live.fullName}
                 </p>
               </div>
             </div>
 
             <p className="mt-4 text-sm leading-relaxed text-white/85">
-              {SITE_CONFIG.description}
+              {live.description}
             </p>
 
             <blockquote className="mt-4 rounded-xl border border-white/15 bg-[#2E7D32]/40 p-3 text-xs italic text-[#E8F5E9]">
-              <span>{SITE_CONFIG.bibleQuotation.verse}</span>{' '}
+              <span>{live.bibleVerse}</span>{' '}
               <span className="not-italic font-bold text-white">
-                ({SITE_CONFIG.bibleQuotation.reference})
+                ({live.bibleReference})
               </span>
             </blockquote>
 
@@ -66,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({
 
             <div className="mt-4 flex items-center gap-2.5 text-xs text-[#E8F5E9]">
               <Clock className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
-              <span>Visiting Hours: 9:30 AM – 5:00 PM daily</span>
+              <span>Visiting Hours: {live.visitingHoursSchedule}</span>
             </div>
           </div>
 
@@ -115,18 +111,6 @@ export const Footer: React.FC<FooterProps> = ({
                   Contact &amp; Location
                 </a>
               </li>
-              {onOpenAdmin && (
-                <li>
-                  <button
-                    type="button"
-                    onClick={onOpenAdmin}
-                    className="inline-flex items-center gap-1.5 text-left font-semibold text-[#E8F5E9] hover:underline transition-colors cursor-pointer"
-                  >
-                    <Lock className="h-3.5 w-3.5 text-[#43A047]" />
-                    <span>Admin Control Panel</span>
-                  </button>
-                </li>
-              )}
             </ul>
           </div>
 
@@ -156,13 +140,13 @@ export const Footer: React.FC<FooterProps> = ({
               <div className="flex items-start gap-2.5">
                 <MapPin className="mt-1 h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                 <address className="not-italic text-xs leading-relaxed">
-                  {SITE_CONFIG.location.addressLines.map((line) => (
+                  {live.addressLines.map((line) => (
                     <span key={line} className="block">
                       {line}
                     </span>
                   ))}
                   <span className="mt-1 block text-[#E8F5E9]">
-                    {SITE_CONFIG.location.landmark}
+                    {live.landmark}
                   </span>
                 </address>
               </div>
@@ -171,17 +155,17 @@ export const Footer: React.FC<FooterProps> = ({
                 <PhoneCall className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                 <div className="text-xs tabular-nums">
                   <a
-                    href={`tel:${SITE_CONFIG.contact.primaryPhoneTel}`}
+                    href={`tel:${live.primaryPhoneTel}`}
                     className="hover:text-[#E8F5E9] transition-colors"
                   >
-                    {SITE_CONFIG.contact.whatsappDisplay}
+                    {live.primaryPhone}
                   </a>
                   <span className="mx-1.5 text-white/40">,</span>
                   <a
-                    href={`tel:${SITE_CONFIG.contact.secondaryPhoneTel}`}
+                    href={`tel:${live.secondaryPhoneTel}`}
                     className="hover:text-[#E8F5E9] transition-colors"
                   >
-                    {SITE_CONFIG.contact.secondaryPhoneDisplay}
+                    {live.secondaryPhone}
                   </a>
                 </div>
               </div>
@@ -189,20 +173,20 @@ export const Footer: React.FC<FooterProps> = ({
               <div className="flex items-center gap-2.5">
                 <PhoneCall className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                 <a
-                  href={`tel:${SITE_CONFIG.contact.landlineTel}`}
+                  href={`tel:${live.landlineTel}`}
                   className="text-xs tabular-nums hover:text-[#E8F5E9] transition-colors"
                 >
-                  Landline: {SITE_CONFIG.contact.landlineDisplay}
+                  Landline: {live.landline}
                 </a>
               </div>
 
               <div className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                 <a
-                  href={`mailto:${SITE_CONFIG.contact.email}`}
+                  href={`mailto:${live.email}`}
                   className="text-xs hover:text-[#E8F5E9] transition-colors break-all"
                 >
-                  {SITE_CONFIG.contact.email}
+                  {live.email}
                 </a>
               </div>
             </div>
@@ -232,33 +216,11 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Bottom Copyright & Media Configuration Bar */}
+        {/* Bottom Copyright Bar */}
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-6 text-xs text-[#E8F5E9]/85 sm:flex-row sm:items-center">
           <p>
-            &copy; {currentYear} {SITE_CONFIG.name} ({SITE_CONFIG.fullName}). All rights reserved.
+            &copy; {currentYear} {live.name} ({live.fullName}). All rights reserved.
           </p>
-
-          <div className="flex flex-wrap items-center gap-3">
-            {onOpenAdmin && (
-              <button
-                type="button"
-                onClick={onOpenAdmin}
-                className="inline-flex min-h-[36px] items-center gap-1.5 rounded-lg border border-white/25 bg-[#1B5E20] px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-[#2E7D32] whitespace-nowrap shrink-0 cursor-pointer"
-              >
-                <Lock className="h-3.5 w-3.5 text-[#43A047]" aria-hidden="true" />
-                <span>Admin Panel</span>
-              </button>
-            )}
-
-            <button
-              type="button"
-              onClick={onOpenMediaModal}
-              className="inline-flex min-h-[36px] items-center gap-1.5 rounded-lg border border-white/20 bg-[#2E7D32]/60 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#43A047] whitespace-nowrap shrink-0 cursor-pointer"
-            >
-              <Image className="h-3.5 w-3.5 text-[#E8F5E9]" aria-hidden="true" />
-              <span>Media Settings</span>
-            </button>
-          </div>
         </div>
       </div>
     </footer>

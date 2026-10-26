@@ -1,11 +1,91 @@
-import { useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { SITE_CONFIG, DEFAULT_IMAGES, SiteImagesConfig } from '../config/siteConfig';
 import {
   subscribeToSiteContent,
   subscribeToSitePhotos,
   StoredSiteContent,
-  StoredSitePhotos,
 } from '../lib/firebase';
+
+export interface LiveSiteConfig {
+  name: string;
+  shortReferenceName: string;
+  fullName: string;
+  tagline: string;
+  description: string;
+  mentalHealthHeading: string;
+  mentalHealthLead: string;
+  mentalHealthBody: string;
+  mission: string;
+  vision: string;
+  primaryPhone: string;
+  primaryPhoneTel: string;
+  whatsappNumberClean: string;
+  secondaryPhone: string;
+  secondaryPhoneTel: string;
+  landline: string;
+  landlineTel: string;
+  provincePhone: string;
+  email: string;
+  addressLines: string[];
+  landmark: string;
+  bankDetails: {
+    isConfigured: boolean;
+    accountName?: string;
+    bankName?: string;
+    accountNumber?: string;
+    ifscCode?: string;
+    upiId?: string;
+  };
+  bibleVerse: string;
+  bibleReference: string;
+  visitingHoursSchedule: string;
+}
+
+const DEFAULT_LIVE_CONFIG: LiveSiteConfig = {
+  name: SITE_CONFIG.name,
+  shortReferenceName: SITE_CONFIG.shortReferenceName,
+  fullName: SITE_CONFIG.fullName,
+  tagline: SITE_CONFIG.tagline,
+  description: SITE_CONFIG.description,
+  mentalHealthHeading: SITE_CONFIG.mentalHealthIntro.heading,
+  mentalHealthLead: SITE_CONFIG.mentalHealthIntro.lead,
+  mentalHealthBody: SITE_CONFIG.mentalHealthIntro.body,
+  mission: SITE_CONFIG.mission,
+  vision: SITE_CONFIG.vision,
+  primaryPhone: SITE_CONFIG.contact.whatsappDisplay,
+  primaryPhoneTel: SITE_CONFIG.contact.primaryPhoneTel,
+  whatsappNumberClean: SITE_CONFIG.contact.whatsappNumberClean,
+  secondaryPhone: SITE_CONFIG.contact.secondaryPhoneDisplay,
+  secondaryPhoneTel: SITE_CONFIG.contact.secondaryPhoneTel,
+  landline: SITE_CONFIG.contact.landlineDisplay,
+  landlineTel: SITE_CONFIG.contact.landlineTel,
+  provincePhone: SITE_CONFIG.contact.provinceDisplay,
+  email: SITE_CONFIG.contact.email,
+  addressLines: SITE_CONFIG.location.addressLines,
+  landmark: SITE_CONFIG.location.landmark,
+  bankDetails: {
+    isConfigured: SITE_CONFIG.bankDetails.isConfigured,
+    accountName: SITE_CONFIG.bankDetails.accountName,
+    bankName: SITE_CONFIG.bankDetails.bankName,
+    accountNumber: SITE_CONFIG.bankDetails.accountNumber,
+    ifscCode: SITE_CONFIG.bankDetails.ifscCode,
+    upiId: SITE_CONFIG.bankDetails.upiId,
+  },
+  bibleVerse: SITE_CONFIG.bibleQuotation.verse,
+  bibleReference: SITE_CONFIG.bibleQuotation.reference,
+  visitingHoursSchedule: SITE_CONFIG.visitingHours.schedule,
+};
+
+export const LiveSiteContext = createContext<LiveSiteConfig>(DEFAULT_LIVE_CONFIG);
+
+export function useLiveConfig(): LiveSiteConfig {
+  return useContext(LiveSiteContext);
+}
+
+function cleanTel(phoneStr: string, fallback: string): string {
+  const digits = phoneStr.replace(/[^\d+]/g, '');
+  return digits.length >= 8 ? digits : fallback;
+}
 
 export function useLiveSiteData() {
   const [images, setImages] = useState<SiteImagesConfig>(DEFAULT_IMAGES);
@@ -97,8 +177,12 @@ export function useLiveSiteData() {
     };
   }, []);
 
-  // Compute live active configuration merging defaults with real-time Firebase overrides
-  const liveConfig = {
+  const primaryPhone = contentOverrides?.primaryPhone || SITE_CONFIG.contact.whatsappDisplay;
+  const secondaryPhone =
+    contentOverrides?.secondaryPhone || SITE_CONFIG.contact.secondaryPhoneDisplay;
+  const landline = contentOverrides?.landline || SITE_CONFIG.contact.landlineDisplay;
+
+  const liveConfig: LiveSiteConfig = {
     name: contentOverrides?.name || SITE_CONFIG.name,
     shortReferenceName: contentOverrides?.shortReferenceName || SITE_CONFIG.shortReferenceName,
     fullName: contentOverrides?.fullName || SITE_CONFIG.fullName,
@@ -110,13 +194,17 @@ export function useLiveSiteData() {
     mentalHealthBody: contentOverrides?.mentalHealthBody || SITE_CONFIG.mentalHealthIntro.body,
     mission: contentOverrides?.mission || SITE_CONFIG.mission,
     vision: contentOverrides?.vision || SITE_CONFIG.vision,
-    primaryPhone: contentOverrides?.primaryPhone || SITE_CONFIG.contact.whatsappDisplay,
-    secondaryPhone: contentOverrides?.secondaryPhone || SITE_CONFIG.contact.secondaryPhoneDisplay,
-    landline: contentOverrides?.landline || SITE_CONFIG.contact.landlineDisplay,
+    primaryPhone,
+    primaryPhoneTel: cleanTel(primaryPhone, SITE_CONFIG.contact.primaryPhoneTel),
+    whatsappNumberClean: primaryPhone.replace(/[^\d]/g, '') || SITE_CONFIG.contact.whatsappNumberClean,
+    secondaryPhone,
+    secondaryPhoneTel: cleanTel(secondaryPhone, SITE_CONFIG.contact.secondaryPhoneTel),
+    landline,
+    landlineTel: cleanTel(landline, SITE_CONFIG.contact.landlineTel),
     provincePhone: contentOverrides?.provincePhone || SITE_CONFIG.contact.provinceDisplay,
     email: contentOverrides?.email || SITE_CONFIG.contact.email,
     addressLines: contentOverrides?.addressLines
-      ? contentOverrides.addressLines.split('\n')
+      ? contentOverrides.addressLines.split('\n').filter((line) => line.trim().length > 0)
       : SITE_CONFIG.location.addressLines,
     landmark: contentOverrides?.landmark || SITE_CONFIG.location.landmark,
     bankDetails: {

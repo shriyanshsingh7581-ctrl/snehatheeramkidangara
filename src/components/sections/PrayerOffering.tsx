@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sparkles, PhoneCall, MessageCircle, ArrowUpRight, Sun, BookOpen } from 'lucide-react';
 import { SITE_CONFIG, SiteImagesConfig } from '../../config/siteConfig';
+import { useLiveConfig } from '../../hooks/useLiveSiteData';
 import { SmartImage } from '../SmartImage';
 
 interface PrayerOfferingProps {
@@ -12,6 +13,8 @@ export const PrayerOffering: React.FC<PrayerOfferingProps> = ({
   images,
   onPrayerInquiryClick,
 }) => {
+  const live = useLiveConfig();
+
   return (
     <section aria-label="Life at Snehatheeram, Daily Routine and Prayer Offering" className="py-8 sm:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
@@ -76,10 +79,10 @@ export const PrayerOffering: React.FC<PrayerOfferingProps> = ({
                   <BookOpen className="mt-0.5 h-4 w-4 shrink-0 text-[#E8F5E9]" aria-hidden="true" />
                   <div>
                     <p className="text-xs sm:text-sm italic text-white">
-                      {SITE_CONFIG.bibleQuotation.verse}
+                      {live.bibleVerse}
                     </p>
                     <p className="mt-1 text-xs font-bold text-[#E8F5E9]">
-                      — {SITE_CONFIG.bibleQuotation.reference}
+                      — {live.bibleReference}
                     </p>
                   </div>
                 </div>
@@ -88,19 +91,19 @@ export const PrayerOffering: React.FC<PrayerOfferingProps> = ({
               {/* Contact Numbers within Prayer Offering */}
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <a
-                  href={`tel:${SITE_CONFIG.contact.primaryPhoneTel}`}
+                  href={`tel:${live.primaryPhoneTel}`}
                   className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-white/20 whitespace-nowrap shrink-0"
                 >
                   <MessageCircle className="h-4 w-4 text-[#E8F5E9]" aria-hidden="true" />
-                  <span className="tabular-nums">{SITE_CONFIG.contact.whatsappDisplay}</span>
+                  <span className="tabular-nums">{live.primaryPhone}</span>
                 </a>
 
                 <a
-                  href={`tel:${SITE_CONFIG.contact.secondaryPhoneTel}`}
+                  href={`tel:${live.secondaryPhoneTel}`}
                   className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-white/20 whitespace-nowrap shrink-0"
                 >
                   <PhoneCall className="h-4 w-4 text-[#E8F5E9]" aria-hidden="true" />
-                  <span className="tabular-nums">{SITE_CONFIG.contact.secondaryPhoneDisplay}</span>
+                  <span className="tabular-nums">{live.secondaryPhone}</span>
                 </a>
               </div>
 

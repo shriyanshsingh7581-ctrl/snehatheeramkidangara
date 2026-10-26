@@ -1,6 +1,7 @@
 import React from 'react';
 import { Utensils, PhoneCall, ShieldCheck, HeartHandshake, MapPin, CheckCircle2 } from 'lucide-react';
 import { SITE_CONFIG, SiteImagesConfig } from '../../config/siteConfig';
+import { useLiveConfig } from '../../hooks/useLiveSiteData';
 import { SmartImage } from '../SmartImage';
 
 interface HeroSectionProps {
@@ -14,6 +15,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onSponsorMealClick,
   onContactClick,
 }) => {
+  const live = useLiveConfig();
   const highlightIcons = [ShieldCheck, HeartHandshake, MapPin];
 
   return (
@@ -26,26 +28,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <div className="flex flex-col justify-between lg:col-span-7">
               <div>
                 <p className="text-xs font-semibold tracking-wide text-[#E8F5E9] sm:text-sm">
-                  {SITE_CONFIG.fullName}
+                  {live.fullName}
                 </p>
 
                 <h1 className="font-display mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-                  {SITE_CONFIG.name}
+                  {live.name}
                 </h1>
 
                 <p className="font-display mt-3 text-lg font-semibold leading-snug text-[#E8F5E9] sm:text-xl">
-                  “{SITE_CONFIG.tagline}”
+                  “{live.tagline}”
                 </p>
 
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/95 sm:text-base">
-                  {SITE_CONFIG.description}
+                  {live.description}
                 </p>
 
-                {/* Bible Quotation Pill/Banner */}
+                {/* Bible Quotation Banner */}
                 <blockquote className="mt-5 rounded-2xl border border-white/20 bg-[#1B5E20]/55 p-4 text-xs sm:text-sm italic text-[#E8F5E9]">
-                  <span>{SITE_CONFIG.bibleQuotation.verse}</span>
+                  <span>{live.bibleVerse}</span>
                   <footer className="mt-1 not-italic font-bold text-white">
-                    — {SITE_CONFIG.bibleQuotation.reference}
+                    — {live.bibleReference}
                   </footer>
                 </blockquote>
               </div>
@@ -72,7 +74,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
             </div>
 
-            {/* Right Visual Column — Client Photo 1 (Outdoor Centre & Team Group Photo) */}
+            {/* Right Visual Column — Client Photo 1 */}
             <div className="flex flex-col justify-center lg:col-span-5">
               <div className="overflow-hidden rounded-2xl border border-white/20 bg-[#1B5E20]">
                 <SmartImage
@@ -125,15 +127,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
 
               <h2 className="font-display mt-2 text-2xl font-bold tracking-tight text-[#1B5E20] sm:text-3xl">
-                {SITE_CONFIG.mentalHealthIntro.heading}
+                {live.mentalHealthHeading}
               </h2>
 
               <p className="mt-3 text-base font-medium leading-relaxed text-[#263238]">
-                {SITE_CONFIG.mentalHealthIntro.lead}
+                {live.mentalHealthLead}
               </p>
 
               <p className="mt-3 text-sm leading-relaxed text-[#607D66] sm:text-base">
-                {SITE_CONFIG.mentalHealthIntro.body}
+                {live.mentalHealthBody}
               </p>
 
               {/* Our Focus List */}
@@ -171,7 +173,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
             </div>
 
-            {/* Client Photo 2 (Indoor Sign & Inauguration Plaque Group Photo) */}
+            {/* Client Photo 2 */}
             <div className="lg:col-span-5">
               <div className="overflow-hidden rounded-2xl border border-[#2E7D32]/20">
                 <SmartImage
