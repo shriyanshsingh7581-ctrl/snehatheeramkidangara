@@ -25,6 +25,11 @@ import {
   ChevronDown,
   ChevronUp,
   Image as ImageIcon,
+  Film,
+  Play,
+  Plus,
+  Video,
+  X,
 } from 'lucide-react';
 import { SITE_CONFIG, DEFAULT_IMAGES, SiteImagesConfig } from '../../config/siteConfig';
 import {
@@ -41,13 +46,22 @@ import {
 } from '../../lib/firebase';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { uploadImageToCloudinary, CLOUDINARY_CONFIG } from '../../lib/cloudinary';
+import {
+  VideoItem,
+  VIDEO_CATEGORIES,
+  DEFAULT_VIDEOS,
+  subscribeToSiteVideos,
+  syncVideosToFirestore,
+  deleteVideoBlob,
+} from '../../lib/videoStorage';
+import { UploadVideoModal } from '../UploadVideoModal';
 
 interface AdminPortalProps {
   currentImages: SiteImagesConfig;
   currentContentOverrides: StoredSiteContent | null;
 }
 
-type TabType = 'photos' | 'content' | 'submissions' | 'cloud-info';
+type TabType = 'photos' | 'videos' | 'content' | 'submissions' | 'cloud-info';
 type PhotoCategory = 'all' | 'hero-about' | 'rehab-medical' | 'daily-life';
 type ContentSectionTab = 'all' | 'identity' | 'mental-health' | 'mission' | 'contact' | 'bank';
 
@@ -78,6 +92,44 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
   const origin = typeof window !== 'undefined' ? window.location.origin : '';
   const publicWebsiteUrl = `${origin}/`;
   const adminPanelUrl = `${origin}/admin`;
+
+  // --- VIDEO MANAGEMENT STATE ---
+  const [videos, setVideos] = useState<VideoItem[]>(DEFAULT_VIDEOS);
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [activeAdminVideo, setActiveAdminVideo] = useState<VideoItem | null>(null);
+  const [videoCategoryFilter, setVideoCategoryFilter] = useState<string>('All');
+  const [videoActionNotice, setVideoActionNotice] = useState<string | null>(null);
+
+  useEffect(() => {
+    const unsub = subscribeToSiteVideos((updated) => {
+      setVideos(updated);
+    });
+    return () => unsub();
+  }, []);
+
+  const handleVideoAdded = (newVid: VideoItem) => {
+    const updated = [newVid, ...videos];
+    setVideos(updated);
+    syncVideosToFirestore(updated);
+    setVideoActionNotice(`Video "${newVid.title}" uploaded and published live!`);
+    setTimeout(() => setVideoActionNotice(null), 3500);
+  };
+
+  const handleDeleteAdminVideo = async (vid: VideoItem) => {
+    if (window.confirm(`Are you sure you want to delete "${vid.title}"?`)) {
+      if (vid.sourceType === 'local_file') {
+        await deleteVideoBlob(vid.id);
+      }
+      const updated = videos.filter((v) => v.id !== vid.id);
+      setVideos(updated);
+      syncVideosToFirestore(updated);
+      setVideoActionNotice('Video removed successfully');
+      setTimeout(() => setVideoActionNotice(null), 3000);
+      if (activeAdminVideo?.id === vid.id) {
+        setActiveAdminVideo(null);
+      }
+    }
+  };
 
   // --- PHOTO MANAGEMENT STATE ---
   const [photoDraft, setPhotoDraft] = useState<Record<string, string>>({
@@ -642,6 +694,17 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
             </button>
             <button
               type="button"
+              onClick={() => setActiveTab('videos')}
+              className={`py-2 transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                activeTab === 'videos'
+                  ? 'text-white underline underline-offset-8'
+                  : 'hover:text-white'
+              }`}
+            >
+              Videos ({videos.length})
+            </button>
+            <button
+              type="button"
               onClick={() => setActiveTab('content')}
               className={`py-2 transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                 activeTab === 'content'
@@ -705,8 +768,8 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
       {/* ==================================================================== */}
       <main className="flex-1 px-4 pt-4 pb-28 sm:px-6 lg:px-8 md:pb-12">
         <div className="mx-auto max-w-7xl space-y-5">
-          {/* MOBILE-FIRST 2x2 / 4-COLUMN SUMMARY METRIC STRIP */}
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {/* MOBILE-FIRST 2x2 / 5-COLUMN SUMMARY METRIC STRIP */}
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             <button
               type="button"
               onClick={() => setActiveTab('photos')}
@@ -722,6 +785,24 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                   12
                 </span>
                 <span className="text-[11px] font-medium text-[#2E7D32]">Cloudinary</span>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActiveTab('videos')}
+              className={`flex flex-col justify-between rounded-2xl border p-3.5 text-left transition-colors cursor-pointer ${
+                activeTab === 'videos'
+                  ? 'border-[#2E7D32] bg-white shadow-xs'
+                  : 'border-[#2E7D32]/15 bg-white/80 hover:bg-white'
+              }`}
+            >
+              <span className="text-xs font-medium text-[#607D66]">Center Videos</span>
+              <div className="mt-1 flex items-baseline justify-between gap-2">
+                <span className="font-display text-xl font-bold tabular-nums text-[#1B5E20] sm:text-2xl">
+                  {videos.length}
+                </span>
+                <span className="text-[11px] font-medium text-[#2E7D32]">Media</span>
               </div>
             </button>
 
@@ -997,6 +1078,187 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                   );
                 })}
               </div>
+            </div>
+          )}
+
+          {/* ============================================================== */}
+          {/* TAB 1.5: WEBSITE VIDEO & MEDIA MANAGER                         */}
+          {/* ============================================================== */}
+          {activeTab === 'videos' && (
+            <div className="space-y-4">
+              {/* Header card with Upload Video button */}
+              <div className="rounded-3xl border border-[#2E7D32]/20 bg-white p-4 sm:p-6">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <h2 className="font-display text-base font-bold text-[#1B5E20] sm:text-xl">
+                      Website Video Manager
+                    </h2>
+                    <p className="mt-0.5 text-xs text-[#607D66]">
+                      Upload local MP4 videos or paste YouTube links for rehabilitation activities,
+                      vocational training, and center tour.
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsUploadModalOpen(true)}
+                    className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-2xl bg-[#2E7D32] px-4 py-2.5 text-xs font-bold text-white transition-transform active:scale-[0.98] hover:bg-[#1B5E20] cursor-pointer whitespace-nowrap shrink-0 shadow-xs"
+                  >
+                    <Plus className="h-4 w-4" />
+                    <span>Upload / Add Video</span>
+                  </button>
+                </div>
+
+                {/* Video Action Notice */}
+                {videoActionNotice && (
+                  <div className="mt-4 flex items-center gap-2 rounded-2xl border border-green-200 bg-green-50 p-3 text-xs font-semibold text-green-800">
+                    <CheckCircle2 className="h-4 w-4 text-green-600 shrink-0" />
+                    <span>{videoActionNotice}</span>
+                  </div>
+                )}
+
+                {/* Category Carousel */}
+                <div className="mt-4 flex items-center gap-1.5 overflow-x-auto rounded-2xl bg-[#E8F5E9] p-1.5">
+                  {VIDEO_CATEGORIES.map((cat) => {
+                    const isSelected = videoCategoryFilter === cat;
+                    return (
+                      <button
+                        key={cat}
+                        type="button"
+                        onClick={() => setVideoCategoryFilter(cat)}
+                        className={`min-h-[40px] rounded-xl px-3.5 py-2 text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                          isSelected
+                            ? 'bg-[#2E7D32] text-white shadow-2xs'
+                            : 'text-[#1B5E20] hover:bg-white/60'
+                        }`}
+                      >
+                        {cat} {cat === 'All' ? `(${videos.length})` : ''}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Videos Grid */}
+              {videos.filter((v) => videoCategoryFilter === 'All' || v.category === videoCategoryFilter).length === 0 ? (
+                <div className="flex flex-col items-center justify-center rounded-3xl border-2 border-dashed border-[#2E7D32]/20 bg-white py-16 px-4 text-center">
+                  <Film className="h-10 w-10 text-[#2E7D32]/60 mb-2" />
+                  <p className="font-display text-sm font-bold text-[#1B5E20]">No videos in this category</p>
+                  <p className="mt-1 text-xs text-gray-500 max-w-xs">
+                    Upload a video file or add a YouTube link to show here.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setIsUploadModalOpen(true)}
+                    className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#2E7D32] px-4 py-2 text-xs font-semibold text-white hover:bg-[#1B5E20]"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Upload Video
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {videos
+                    .filter((v) => videoCategoryFilter === 'All' || v.category === videoCategoryFilter)
+                    .map((video) => (
+                      <div
+                        key={video.id}
+                        className="overflow-hidden rounded-3xl border border-[#2E7D32]/20 bg-white shadow-xs flex flex-col justify-between"
+                      >
+                        <div>
+                          {/* Video Box */}
+                          <div
+                            onClick={() => setActiveAdminVideo(video)}
+                            className="relative aspect-video w-full bg-black cursor-pointer group overflow-hidden"
+                          >
+                            {video.sourceType === 'local_file' && video.videoUrl ? (
+                              <video
+                                src={video.videoUrl}
+                                preload="metadata"
+                                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                              />
+                            ) : (
+                              <img
+                                src={video.thumbnailUrl || '/assets/aistudio/hero_rehab_support.jpg'}
+                                alt={video.title}
+                                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                              />
+                            )}
+
+                            {/* Overlay */}
+                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-colors group-hover:bg-black/20">
+                              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-[#1B5E20] shadow-md group-hover:scale-110 transition-transform">
+                                <Play className="h-5 w-5 fill-current ml-0.5" />
+                              </div>
+                            </div>
+
+                            <span className="absolute top-2.5 left-2.5 rounded-md bg-[#1B5E20]/90 px-2 py-0.5 text-[10px] font-bold text-white">
+                              {video.category}
+                            </span>
+
+                            <span className="absolute bottom-2.5 right-2.5 rounded-md bg-black/75 px-2 py-0.5 text-[10px] font-semibold text-white">
+                              {video.sourceType === 'local_file'
+                                ? `Local File ${video.fileSizeMb ? `(${video.fileSizeMb}MB)` : ''}`
+                                : video.sourceType === 'youtube'
+                                ? 'YouTube'
+                                : 'Web Stream'}
+                            </span>
+                          </div>
+
+                          {/* Info */}
+                          <div className="p-4">
+                            <h3 className="font-display text-sm font-bold text-[#1B5E20] line-clamp-1">
+                              {video.title}
+                            </h3>
+                            <p className="mt-1 text-xs text-[#607D66] line-clamp-2">
+                              {video.description}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Card Actions */}
+                        <div className="border-t border-[#2E7D32]/10 bg-[#E8F5E9]/30 p-3 flex items-center justify-between gap-2">
+                          <button
+                            type="button"
+                            onClick={() => setActiveAdminVideo(video)}
+                            className="inline-flex items-center gap-1.5 rounded-xl bg-[#2E7D32] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#1B5E20]"
+                          >
+                            <Play className="h-3.5 w-3.5 fill-current" />
+                            <span>Preview</span>
+                          </button>
+
+                          <div className="flex items-center gap-2">
+                            {video.videoUrl && (
+                              <button
+                                type="button"
+                                title="Copy Video Link"
+                                onClick={async () => {
+                                  try {
+                                    await navigator.clipboard.writeText(video.videoUrl);
+                                    setVideoActionNotice(`Copied link for "${video.title}"`);
+                                    setTimeout(() => setVideoActionNotice(null), 2500);
+                                  } catch {}
+                                }}
+                                className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#2E7D32]/20 bg-white text-[#2E7D32] hover:bg-[#E8F5E9]"
+                              >
+                                <Copy className="h-3.5 w-3.5" />
+                              </button>
+                            )}
+
+                            <button
+                              type="button"
+                              title="Delete Video"
+                              onClick={() => handleDeleteAdminVideo(video)}
+                              className="flex h-8 w-8 items-center justify-center rounded-lg border border-red-200 bg-white text-red-600 hover:bg-red-50"
+                            >
+                              <Trash2 className="h-3.5 w-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              )}
             </div>
           )}
 
@@ -1935,7 +2197,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
         aria-label="Mobile Admin Navigation"
         className="fixed bottom-0 left-0 right-0 z-40 border-t border-[#2E7D32]/20 bg-white/95 backdrop-blur-md md:hidden"
       >
-        <div className="grid h-16 grid-cols-4 items-center px-2">
+        <div className="grid h-16 grid-cols-5 items-center px-1">
           <button
             type="button"
             onClick={() => setActiveTab('photos')}
@@ -1945,6 +2207,19 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
           >
             <UploadCloud className="h-5 w-5" />
             <span className="mt-1 text-[10px] font-bold tracking-tight">Photos</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('videos')}
+            className={`flex min-h-[48px] flex-col items-center justify-center rounded-xl transition-colors cursor-pointer ${
+              activeTab === 'videos' ? 'text-[#2E7D32]' : 'text-[#607D66]'
+            }`}
+          >
+            <Film className="h-5 w-5" />
+            <span className="mt-1 text-[10px] font-bold tracking-tight">
+              Videos {videos.length > 0 ? `(${videos.length})` : ''}
+            </span>
           </button>
 
           <button
@@ -1983,6 +2258,62 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
           </button>
         </div>
       </nav>
+
+      {/* Video Player Modal for Admin Preview */}
+      {activeAdminVideo && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-6 backdrop-blur-sm"
+          onClick={() => setActiveAdminVideo(null)}
+        >
+          <div
+            className="relative w-full max-w-3xl overflow-hidden rounded-2xl bg-[#1B5E20] shadow-2xl border border-white/20 text-white"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
+              <span className="truncate text-xs sm:text-sm font-bold">
+                {activeAdminVideo.title}
+              </span>
+              <button
+                type="button"
+                onClick={() => setActiveAdminVideo(null)}
+                className="flex h-7 w-7 items-center justify-center rounded-lg hover:bg-white/10 text-white"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="relative aspect-video w-full bg-black">
+              {activeAdminVideo.embedUrl ? (
+                <iframe
+                  src={activeAdminVideo.embedUrl}
+                  title={activeAdminVideo.title}
+                  className="h-full w-full border-0"
+                  allowFullScreen
+                />
+              ) : activeAdminVideo.videoUrl ? (
+                <video
+                  src={activeAdminVideo.videoUrl}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="h-full w-full object-contain"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center text-white/60">
+                  <Film className="h-10 w-10 mr-2" />
+                  <span>Video source unavailable</span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Upload Video Modal */}
+      <UploadVideoModal
+        isOpen={isUploadModalOpen}
+        onClose={() => setIsUploadModalOpen(false)}
+        onVideoAdded={handleVideoAdded}
+      />
     </div>
   );
 };

@@ -1,17 +1,14 @@
 import React from 'react';
-import { Compass, Eye, ShieldCheck, Network } from 'lucide-react';
+import { Compass, Eye, ShieldCheck, Network, CheckCircle2 } from 'lucide-react';
 import { SITE_CONFIG } from '../../config/siteConfig';
-import { useLiveConfig } from '../../hooks/useLiveSiteData';
 
 export const MissionVision: React.FC = () => {
-  const live = useLiveConfig();
-
   return (
     <section aria-label="Mission, Vision, Core Values and Organogram" className="py-6 sm:py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* MISSION & VISION CARDS */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {/* OUR MISSION */}
+          {/* MISSION */}
           <div className="flex flex-col justify-between rounded-3xl border border-[#2E7D32]/20 bg-white p-6 sm:p-8">
             <div>
               <div className="flex items-center gap-3.5">
@@ -23,28 +20,26 @@ export const MissionVision: React.FC = () => {
                     PURPOSE &amp; DEVOTION
                   </p>
                   <h2 className="font-display text-xl font-bold text-[#1B5E20] sm:text-2xl">
-                    OUR MISSION
+                    Mission
                   </h2>
                 </div>
               </div>
 
               <p className="mt-5 text-base leading-relaxed text-[#263238]">
-                {live.mission}
+                {SITE_CONFIG.mission}
               </p>
             </div>
 
             <div className="mt-6 border-t border-[#E8F5E9] pt-4 text-xs font-medium text-[#607D66]">
-              <span>Safe Shelter</span>
+              <span>Compassionate Care</span>
               <span className="mx-2" aria-hidden="true">·</span>
-              <span>Psychiatric Care</span>
+              <span>Therapeutic Support</span>
               <span className="mx-2" aria-hidden="true">·</span>
-              <span>Counselling</span>
-              <span className="mx-2" aria-hidden="true">·</span>
-              <span>Reintegration</span>
+              <span>Skill-Building</span>
             </div>
           </div>
 
-          {/* OUR VISION */}
+          {/* VISION */}
           <div className="flex flex-col justify-between rounded-3xl border border-[#2E7D32]/20 bg-white p-6 sm:p-8">
             <div>
               <div className="flex items-center gap-3.5">
@@ -56,24 +51,22 @@ export const MissionVision: React.FC = () => {
                     DIGNITY FOR EVERY WOMAN
                   </p>
                   <h2 className="font-display text-xl font-bold text-[#1B5E20] sm:text-2xl">
-                    OUR VISION
+                    Vision
                   </h2>
                 </div>
               </div>
 
               <p className="mt-5 text-base leading-relaxed text-[#263238]">
-                {live.vision}
+                {SITE_CONFIG.vision}
               </p>
             </div>
 
             <div className="mt-6 border-t border-[#E8F5E9] pt-4 text-xs font-medium text-[#607D66]">
-              <span>Valued</span>
+              <span>Respected</span>
               <span className="mx-2" aria-hidden="true">·</span>
-              <span>Loved</span>
+              <span>Supported</span>
               <span className="mx-2" aria-hidden="true">·</span>
               <span>Empowered</span>
-              <span className="mx-2" aria-hidden="true">·</span>
-              <span>Zero Stigma</span>
             </div>
           </div>
         </div>
@@ -91,23 +84,28 @@ export const MissionVision: React.FC = () => {
                   GUIDING ETHOS
                 </p>
                 <h3 className="font-display text-xl font-bold text-[#1B5E20]">
-                  Our Core Values
+                  Core Values
                 </h3>
               </div>
             </div>
 
-            <div className="mt-5 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+            <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {SITE_CONFIG.coreValues.map((val) => (
                 <div
                   key={val.title}
                   className="rounded-2xl border border-[#2E7D32]/15 bg-[#E8F5E9]/60 p-4"
                 >
-                  <h4 className="font-display text-sm font-bold text-[#1B5E20]">
-                    {val.title}
-                  </h4>
-                  <p className="mt-1 text-xs leading-relaxed text-[#607D66]">
-                    {val.description}
-                  </p>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
+                    <div>
+                      <h4 className="font-display text-sm font-bold text-[#1B5E20]">
+                        {val.title}
+                      </h4>
+                      <p className="mt-1 text-xs leading-relaxed text-[#607D66]">
+                        {val.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -161,7 +159,7 @@ export const MissionVision: React.FC = () => {
                     className="rounded-xl border border-[#2E7D32]/20 bg-[#E8F5E9]/45 px-4 py-3"
                   >
                     <h4 className="font-display text-xs font-bold text-[#1B5E20] sm:text-sm">
-                      {dept.name}
+                      • {dept.name}
                     </h4>
                     <p className="mt-1 text-xs leading-relaxed text-[#263238]">
                       {dept.role}

@@ -11,6 +11,8 @@ import { HeroSection } from './components/sections/HeroSection';
 import { AboutSection } from './components/sections/AboutSection';
 import { MissionVision } from './components/sections/MissionVision';
 import { ServicesGrid } from './components/sections/ServicesGrid';
+import { PhotoGallerySection } from './components/sections/PhotoGallerySection';
+import { VideoGallerySection } from './components/sections/VideoGallerySection';
 import { DonationCards } from './components/sections/DonationCards';
 import { SponsorshipForm } from './components/sections/SponsorshipForm';
 import { PrayerOffering } from './components/sections/PrayerOffering';
@@ -62,7 +64,7 @@ export default function App() {
 
   useEffect(() => {
     if (isAdminRoute) return;
-    const sectionIds = ['home', 'about', 'services', 'support', 'contact'];
+    const sectionIds = ['home', 'about', 'services', 'gallery', 'support', 'contact'];
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 180;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -137,11 +139,18 @@ export default function App() {
           {/* SECTION F — SERVICES, REHABILITATION PRINCIPLES, HEALTH, SUSTAINABILITY & TRAINING */}
           <ServicesGrid images={images} onSponsorMealClick={handleSponsorMealNavigate} />
 
-          {/* SECTION G — SUPPORT & GENEROSITY */}
+          {/* SECTION F2 — PHOTO GALLERY */}
+          <PhotoGallerySection images={images} />
+
+          {/* SECTION F3 — VIDEO GALLERY & UPLOAD */}
+          <VideoGallerySection />
+
+          {/* SECTION G — SUPPORT US */}
           <DonationCards
             onBookMealClick={handleSponsorMealNavigate}
             onSponsorMedicinesClick={handleSponsorMedicinesNavigate}
             onViewBankDetailsClick={() => setIsBankModalOpen(true)}
+            onContactClick={() => scrollToElement('contact')}
           />
 
           {/* SECTION H — ANNADANAM & SUPPORT DESK */}

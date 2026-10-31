@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, PhoneCall, MessageCircle, ArrowUpRight, Sun, BookOpen } from 'lucide-react';
+import { Sparkles, PhoneCall, MessageCircle, ArrowUpRight, Sun, BookOpen, CheckCircle2 } from 'lucide-react';
 import { SITE_CONFIG, SiteImagesConfig } from '../../config/siteConfig';
 import { useLiveConfig } from '../../hooks/useLiveSiteData';
 import { SmartImage } from '../SmartImage';
@@ -21,36 +21,42 @@ export const PrayerOffering: React.FC<PrayerOfferingProps> = ({
         {/* LIFE AT SNEHATHEERAM & DAILY ROUTINE */}
         <div className="rounded-3xl border border-[#2E7D32]/20 bg-white p-6 sm:p-8 lg:p-10">
           <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
-            <div className="max-w-2xl">
+            <div className="max-w-3xl">
               <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-[#2E7D32]">
                 <Sun className="h-4 w-4 text-[#43A047]" aria-hidden="true" />
-                <span>THERAPEUTIC COMMUNITY RHYTHM</span>
+                <span>ROUND-THE-CLOCK CARE FOR 40 WOMEN</span>
               </div>
               <h2 className="font-display mt-2 text-2xl font-bold tracking-tight text-[#1B5E20] sm:text-3xl">
-                Life at Snehatheeram &amp; Daily Routine
+                {SITE_CONFIG.lifeAtSnehatheeram.heading}
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-[#607D66] sm:text-base">
-                A structured, peaceful daily schedule brings emotional security, mindfulness, and
-                shared joy to our residents—balancing prayer, therapy, nutritious meals, and
-                recreation.
+              <p className="mt-2 text-sm leading-relaxed text-[#263238] sm:text-base">
+                {SITE_CONFIG.lifeAtSnehatheeram.description}
               </p>
             </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
-            {SITE_CONFIG.dailyRoutine.map((slot) => (
-              <div
-                key={slot.time}
-                className="rounded-2xl border border-[#2E7D32]/15 bg-[#E8F5E9]/65 p-4"
-              >
-                <p className="font-mono text-xs font-bold text-[#2E7D32] tabular-nums">
-                  {slot.time}
-                </p>
-                <p className="mt-1.5 text-xs font-medium leading-relaxed text-[#263238]">
-                  {slot.activity}
-                </p>
-              </div>
-            ))}
+          <div className="mt-6">
+            <h3 className="font-display text-lg font-bold text-[#1B5E20]">
+              Daily Routine:
+            </h3>
+            <div className="mt-4 grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+              {SITE_CONFIG.dailyRoutine.map((slot) => (
+                <div
+                  key={slot.activity}
+                  className="flex items-start gap-2.5 rounded-2xl border border-[#2E7D32]/15 bg-[#E8F5E9]/65 p-4"
+                >
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
+                  <div>
+                    <p className="font-mono text-xs font-bold text-[#2E7D32]">
+                      {slot.time}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold leading-relaxed text-[#1B5E20]">
+                      - {slot.activity}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -73,16 +79,16 @@ export const PrayerOffering: React.FC<PrayerOfferingProps> = ({
                 during the daily community prayer service.
               </p>
 
-              {/* Bible Quotation Card */}
+              {/* Bible Quotation Card from Brochure */}
               <div className="mt-5 rounded-2xl border border-white/20 bg-[#1B5E20]/50 p-4">
                 <div className="flex items-start gap-2.5">
                   <BookOpen className="mt-0.5 h-4 w-4 shrink-0 text-[#E8F5E9]" aria-hidden="true" />
                   <div>
                     <p className="text-xs sm:text-sm italic text-white">
-                      {live.bibleVerse}
+                      {SITE_CONFIG.bibleQuotation.verse}
                     </p>
                     <p className="mt-1 text-xs font-bold text-[#E8F5E9]">
-                      — {live.bibleReference}
+                      -{SITE_CONFIG.bibleQuotation.reference}
                     </p>
                   </div>
                 </div>

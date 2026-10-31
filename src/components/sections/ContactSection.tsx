@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, PhoneCall, MessageCircle, Mail, Navigation } from 'lucide-react';
+import { MapPin, PhoneCall, MessageCircle, Mail, Navigation, Instagram, Facebook } from 'lucide-react';
 import { SITE_CONFIG } from '../../config/siteConfig';
 import { useLiveConfig } from '../../hooks/useLiveSiteData';
 import { buildWhatsAppUrl } from '../../lib/whatsapp';
@@ -8,7 +8,7 @@ import { MapSection } from './MapSection';
 export const ContactSection: React.FC = () => {
   const live = useLiveConfig();
   const whatsappContactUrl = buildWhatsAppUrl(
-    `Namaskaram, I would like to get in touch with ${SITE_CONFIG.contactOrganization} (${live.name}) in Kidangara.`
+    `Namaskaram, I would like to get in touch with ${SITE_CONFIG.contactOrganization} in Kidangara.`
   );
 
   return (
@@ -31,7 +31,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-display text-lg font-bold text-[#1B5E20]">
-                    John Paul XXIII Rehabilitation Centre
+                    {SITE_CONFIG.contactOrganization}
                   </h3>
                   <p className="mt-3 text-xs font-bold tracking-wider text-[#2E7D32]">
                     Address:
@@ -84,6 +84,39 @@ export const ContactSection: React.FC = () => {
                   </a>
                 </p>
               </div>
+
+              {/* Social Media */}
+              <div className="border-t border-[#E8F5E9] pt-5">
+                <p className="text-xs font-bold tracking-wider text-[#2E7D32]">
+                  Social Media:
+                </p>
+                <div className="mt-3 space-y-2.5">
+                  <div className="flex items-start gap-2.5 rounded-xl border border-[#2E7D32]/20 bg-[#E8F5E9]/60 px-3.5 py-2.5 text-xs sm:text-sm text-[#263238]">
+                    <Instagram className="mt-0.5 h-4 w-4 shrink-0 text-[#2E7D32]" aria-hidden="true" />
+                    <div>
+                      <span className="font-bold text-[#1B5E20]">Instagram: </span>
+                      <span className="font-medium">{SITE_CONFIG.socialMedia.instagram}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2.5 rounded-xl border border-[#2E7D32]/20 bg-[#E8F5E9]/60 px-3.5 py-2.5 text-xs sm:text-sm text-[#263238]">
+                    <Facebook className="mt-0.5 h-4 w-4 shrink-0 text-[#2E7D32]" aria-hidden="true" />
+                    <div>
+                      <span className="font-bold text-[#1B5E20]">Facebook: </span>
+                      <span className="font-medium">{SITE_CONFIG.socialMedia.facebook}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Brochure Bible Quote */}
+              <blockquote className="rounded-2xl border border-[#2E7D32]/20 bg-[#E8F5E9]/70 p-4 text-xs sm:text-sm italic text-[#1B5E20]">
+                <p className="font-semibold">
+                  {SITE_CONFIG.bibleQuotation.verse}
+                </p>
+                <footer className="mt-1 not-italic font-bold text-[#2E7D32]">
+                  -{SITE_CONFIG.bibleQuotation.reference}
+                </footer>
+              </blockquote>
             </div>
 
             {/* Functional Action Bar */}

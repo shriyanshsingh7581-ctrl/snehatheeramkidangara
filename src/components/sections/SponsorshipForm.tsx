@@ -397,12 +397,15 @@ export const SponsorshipForm: React.FC<SponsorshipFormProps> = ({
 
             {/* 5. SPONSORSHIP / MEAL TYPE * */}
             <div>
-              <label
-                htmlFor="sponsor-type"
-                className="block text-xs font-bold tracking-wide text-[#1B5E20]"
-              >
-                SPONSORSHIP / MEAL TYPE <span className="text-[#2E7D32]">*</span>
-              </label>
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor="sponsor-type"
+                  className="block text-xs font-bold tracking-wide text-[#1B5E20]"
+                >
+                  SPONSORSHIP / MEAL TYPE <span className="text-[#2E7D32]">*</span>
+                </label>
+                <span className="text-xs font-medium text-[#43A047]">Popular meal rates</span>
+              </div>
               <select
                 id="sponsor-type"
                 name="sponsorshipType"
@@ -418,6 +421,33 @@ export const SponsorshipForm: React.FC<SponsorshipFormProps> = ({
                   </option>
                 ))}
               </select>
+
+              {/* Quick Select Buttons for Confirmed Amounts */}
+              <div className="mt-2.5 flex flex-wrap items-center gap-2">
+                <span className="text-xs text-[#607D66]">Quick Select:</span>
+                <button
+                  type="button"
+                  onClick={() => handleFieldChange('sponsorshipType', 'Breakfast + Dinner — ₹7,500')}
+                  className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors cursor-pointer ${
+                    values.sponsorshipType === 'Breakfast + Dinner — ₹7,500'
+                      ? 'bg-[#1B5E20] text-white shadow-xs'
+                      : 'border border-[#2E7D32]/25 bg-white text-[#1B5E20] hover:bg-[#E8F5E9]'
+                  }`}
+                >
+                  Breakfast + Dinner (₹7,500)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleFieldChange('sponsorshipType', 'Lunch — ₹10,000')}
+                  className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors cursor-pointer ${
+                    values.sponsorshipType === 'Lunch — ₹10,000'
+                      ? 'bg-[#1B5E20] text-white shadow-xs'
+                      : 'border border-[#2E7D32]/25 bg-white text-[#1B5E20] hover:bg-[#E8F5E9]'
+                  }`}
+                >
+                  Lunch (₹10,000)
+                </button>
+              </div>
             </div>
 
             {/* 6. NAME OF PERSON / SPECIAL PRAYER NOTE (OPTIONAL) */}

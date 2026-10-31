@@ -1,5 +1,5 @@
 import React from 'react';
-import { PhoneCall, Mail, MapPin, MessageCircle, Navigation, Clock } from 'lucide-react';
+import { PhoneCall, Mail, MapPin, MessageCircle, Navigation, Clock, Instagram, Facebook } from 'lucide-react';
 import { SITE_CONFIG } from '../config/siteConfig';
 import { useLiveConfig } from '../hooks/useLiveSiteData';
 import { buildWhatsAppUrl } from '../lib/whatsapp';
@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({ logoUrl, onOpenBankModal }) => {
   const live = useLiveConfig();
   const currentYear = new Date().getFullYear();
   const whatsappUrl = buildWhatsAppUrl(
-    `Namaskaram, I would like to connect with ${SITE_CONFIG.contactOrganization} (${live.name}) regarding support and visiting hours.`
+    `Namaskaram, I would like to connect with ${live.name} regarding support and visiting hours.`
   );
 
   return (
@@ -34,11 +34,11 @@ export const Footer: React.FC<FooterProps> = ({ logoUrl, onOpenBankModal }) => {
                 className="h-12 w-12 rounded-full bg-white p-0.5 object-contain shrink-0 shadow-xs"
               />
               <div>
-                <p className="font-display text-lg font-bold tracking-tight text-white">
+                <p className="font-display text-base font-bold tracking-tight text-white sm:text-lg">
                   {live.name}
                 </p>
                 <p className="text-xs font-medium text-[#E8F5E9]">
-                  {live.fullName}
+                  {SITE_CONFIG.memorialTitle}
                 </p>
               </div>
             </div>
@@ -89,6 +89,11 @@ export const Footer: React.FC<FooterProps> = ({ logoUrl, onOpenBankModal }) => {
                 </a>
               </li>
               <li>
+                <a href="#gallery" className="hover:text-[#E8F5E9] hover:underline transition-colors">
+                  Photo Gallery
+                </a>
+              </li>
+              <li>
                 <a href="#support" className="hover:text-[#E8F5E9] hover:underline transition-colors">
                   How You Can Help
                 </a>
@@ -131,10 +136,10 @@ export const Footer: React.FC<FooterProps> = ({ logoUrl, onOpenBankModal }) => {
             </ul>
           </div>
 
-          {/* Column 4: Contact & Address */}
+          {/* Column 4: Contact, Address & Social Media */}
           <div className="lg:col-span-3">
             <h3 className="font-display text-xs font-bold tracking-wider text-[#E8F5E9]">
-              CONTACT &amp; ADDRESS
+              CONTACT &amp; SOCIAL MEDIA
             </h3>
 
             <div className="mt-4 space-y-3 text-sm text-white/90">
@@ -142,7 +147,7 @@ export const Footer: React.FC<FooterProps> = ({ logoUrl, onOpenBankModal }) => {
                 <MapPin className="mt-1 h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
                 <address className="not-italic text-xs leading-relaxed">
                   <span className="block font-bold text-white">
-                    {SITE_CONFIG.contactOrganization}
+                    {live.name}
                   </span>
                   <span className="block">Kidangara P.O., Kuttanad Taluk,</span>
                   <span className="block">Alappuzha District, Kerala – 686107</span>
@@ -178,6 +183,22 @@ export const Footer: React.FC<FooterProps> = ({ logoUrl, onOpenBankModal }) => {
                   kidangarasnehatheeram@gmail.com
                 </a>
               </div>
+
+              <div className="flex items-start gap-2.5 pt-1">
+                <Instagram className="mt-0.5 h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
+                <p className="text-xs leading-relaxed">
+                  <span className="font-semibold text-white">Instagram: </span>
+                  <span>{SITE_CONFIG.socialMedia.instagram}</span>
+                </p>
+              </div>
+
+              <div className="flex items-start gap-2.5">
+                <Facebook className="mt-0.5 h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
+                <p className="text-xs leading-relaxed">
+                  <span className="font-semibold text-white">Facebook: </span>
+                  <span>{SITE_CONFIG.socialMedia.facebook}</span>
+                </p>
+              </div>
             </div>
 
             {/* Footer Action Buttons */}
@@ -208,7 +229,7 @@ export const Footer: React.FC<FooterProps> = ({ logoUrl, onOpenBankModal }) => {
         {/* Bottom Copyright Bar */}
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-6 text-xs text-[#E8F5E9]/85 sm:flex-row sm:items-center">
           <p>
-            &copy; {currentYear} {live.fullName} ({SITE_CONFIG.managingOrganization}). All rights reserved.
+            &copy; {currentYear} {live.name}. All rights reserved.
           </p>
         </div>
       </div>

@@ -5,32 +5,48 @@ interface DonationCardsProps {
   onBookMealClick: () => void;
   onSponsorMedicinesClick: () => void;
   onViewBankDetailsClick: () => void;
+  onContactClick?: () => void;
 }
 
 export const DonationCards: React.FC<DonationCardsProps> = ({
   onBookMealClick,
   onSponsorMedicinesClick,
   onViewBankDetailsClick,
+  onContactClick,
 }) => {
   return (
     <section id="support" className="scroll-mt-16 py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
-          <p className="text-xs font-bold tracking-wider text-[#2E7D32]">
-            SUPPORT &amp; GENEROSITY
-          </p>
-          <h2 className="font-display mt-2 text-2xl font-bold tracking-tight text-[#1B5E20] sm:text-3xl lg:text-4xl">
-            How You Can Help
-          </h2>
-          <p className="mt-3 text-base leading-relaxed text-[#607D66]">
-            Snehatheeram relies on the generosity of kind-hearted individuals and well-wishers to
-            meet the daily nutritional, psychiatric, and rehabilitation needs of our residents.
-            Every contribution brings healing and dignity to a sister or mother in need.
-          </p>
+        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div className="max-w-3xl">
+            <p className="text-xs font-bold tracking-wider text-[#2E7D32]">
+              SUPPORT US
+            </p>
+            <h2 className="font-display mt-2 text-2xl font-bold tracking-tight text-[#1B5E20] sm:text-3xl lg:text-4xl">
+              Support Us
+            </h2>
+            <p className="mt-3 text-base leading-relaxed text-[#607D66]">
+              Snehatheeram relies on the generosity of kind-hearted individuals and well-wishers to
+              meet the daily nutritional, psychiatric, and rehabilitation needs of our residents.
+              Every contribution brings healing and dignity to a sister or mother in need.
+            </p>
+          </div>
+
+          {onContactClick && (
+            <div className="shrink-0">
+              <button
+                type="button"
+                onClick={onContactClick}
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-2xl border border-[#2E7D32] bg-white px-5 py-2.5 text-sm font-semibold text-[#1B5E20] transition-colors hover:bg-[#E8F5E9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B5E20] whitespace-nowrap shrink-0 cursor-pointer"
+              >
+                <span>Contact Us</span>
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
-          {/* CARD 1 — MOST POPULAR */}
+          {/* CARD 1 — MOST POPULAR: SPONSOR A MEAL */}
           <div className="flex flex-col justify-between rounded-3xl border border-[#1B5E20] bg-[#1B5E20] p-6 text-white sm:p-8">
             <div>
               <div className="flex items-center justify-between gap-2">
@@ -43,22 +59,39 @@ export const DonationCards: React.FC<DonationCardsProps> = ({
               </div>
 
               <h3 className="font-display mt-4 text-xl font-bold text-white sm:text-2xl">
-                Sponsor a Day&apos;s Meal (Annadanam)
+                Sponsor a Meal (Annadanam)
               </h3>
 
               <p className="mt-3 text-sm leading-relaxed text-[#E8F5E9]/90">
                 Celebrate your birthdays, wedding anniversaries, or remember your loved ones by
-                sponsoring breakfast, lunch, tea, or dinner for our residents.
+                sponsoring freshly prepared meals for our residents.
               </p>
+
+              {/* Confirmed Sponsorship Rates */}
+              <div className="mt-4 rounded-2xl border border-white/20 bg-white/10 p-3.5 space-y-2">
+                <p className="text-xs font-bold tracking-wider text-[#E8F5E9]">
+                  SPONSORSHIP OPTIONS:
+                </p>
+                <div className="flex flex-col gap-1.5 text-xs text-white">
+                  <div className="flex items-center justify-between rounded-lg bg-[#2E7D32]/60 px-3 py-1.5 font-medium">
+                    <span>Breakfast + Dinner</span>
+                    <span className="font-bold tabular-nums">₹7,500</span>
+                  </div>
+                  <div className="flex items-center justify-between rounded-lg bg-[#2E7D32]/60 px-3 py-1.5 font-medium">
+                    <span>Lunch</span>
+                    <span className="font-bold tabular-nums">₹10,000</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="mt-8 pt-5 border-t border-white/15">
+            <div className="mt-6 pt-5 border-t border-white/15">
               <button
                 type="button"
                 onClick={onBookMealClick}
                 className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-bold text-[#1B5E20] transition-colors hover:bg-[#E8F5E9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white whitespace-nowrap shrink-0 cursor-pointer"
               >
-                <span>Book a Meal Below</span>
+                <span>Sponsor a Meal</span>
                 <ArrowRight className="h-4 w-4 shrink-0 text-[#2E7D32]" aria-hidden="true" />
               </button>
             </div>

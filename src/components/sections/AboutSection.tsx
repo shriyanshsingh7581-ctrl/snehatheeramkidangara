@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Heart, Trees, Sparkles, PhoneCall, Award, CalendarCheck } from 'lucide-react';
+import { Clock, Heart, Trees, Sparkles, PhoneCall, Award, CalendarCheck, CheckCircle2, Home } from 'lucide-react';
 import { SITE_CONFIG, SiteImagesConfig } from '../../config/siteConfig';
 import { useLiveConfig } from '../../hooks/useLiveSiteData';
 import { SmartImage } from '../SmartImage';
@@ -18,10 +18,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ images }) => {
         {/* Section Header — About Us & History */}
         <div className="max-w-4xl">
           <p className="text-xs font-bold tracking-wider text-[#2E7D32]">
-            ABOUT US &amp; OUR HISTORY (SINCE {SITE_CONFIG.aboutHistory.establishedYear})
+            ABOUT US &amp; HISTORY (INAUGURATED {SITE_CONFIG.aboutHistory.establishedDate.toUpperCase()})
           </p>
           <h2 className="font-display mt-2 text-2xl font-bold tracking-tight text-[#1B5E20] sm:text-3xl lg:text-4xl">
-            Who We Are &amp; Our Journey Since 2012
+            {SITE_CONFIG.aboutHistory.heading}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-[#263238]">
             {SITE_CONFIG.aboutHistory.story}
@@ -34,11 +34,15 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ images }) => {
           <div className="mt-5 flex flex-wrap items-center gap-3 text-xs font-semibold text-[#1B5E20]">
             <span className="inline-flex items-center gap-1.5 rounded-xl border border-[#2E7D32]/25 bg-white px-3.5 py-2">
               <CalendarCheck className="h-4 w-4 text-[#43A047]" aria-hidden="true" />
-              <span>Established: {SITE_CONFIG.aboutHistory.establishedYear}</span>
+              <span>Inaugurated: {SITE_CONFIG.aboutHistory.establishedDate}</span>
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-xl border border-[#2E7D32]/25 bg-white px-3.5 py-2">
               <Award className="h-4 w-4 text-[#43A047]" aria-hidden="true" />
-              <span>Inaugurated by: {SITE_CONFIG.aboutHistory.inauguratedBy}</span>
+              <span>By: {SITE_CONFIG.aboutHistory.inauguratedBy}</span>
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-xl border border-[#2E7D32]/25 bg-white px-3.5 py-2">
+              <Sparkles className="h-4 w-4 text-[#43A047]" aria-hidden="true" />
+              <span>Registered: {SITE_CONFIG.aboutHistory.registeredAct}</span>
             </span>
           </div>
         </div>
@@ -76,11 +80,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ images }) => {
                 MEASURABLE COMPASSION
               </p>
               <h3 className="font-display mt-1 text-xl font-bold text-[#1B5E20] sm:text-2xl">
-                Our Impact Since 2012
+                Impact Since 2012
               </h3>
             </div>
             <p className="text-xs font-medium text-[#607D66]">
-              {live.fullName}
+              {SITE_CONFIG.fullName}
             </p>
           </div>
 
@@ -100,15 +104,45 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ images }) => {
           </div>
         </div>
 
-        {/* Facilities & Accommodation Visual (Client Photo 3) & Visiting Hours Card */}
+        {/* FACILITIES & VISITING HOURS */}
         <div className="mt-8 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-12">
-          <div className="overflow-hidden rounded-3xl border border-[#2E7D32]/20 bg-white lg:col-span-7">
-            <SmartImage
-              src={images.kuttanadCampus.url}
-              alt={images.kuttanadCampus.alt}
-              caption={images.kuttanadCampus.caption}
-              aspectRatioClass="aspect-[4/3] h-full"
-            />
+          <div className="flex flex-col justify-between rounded-3xl border border-[#2E7D32]/20 bg-white p-6 sm:p-8 lg:col-span-7">
+            <div>
+              <div className="flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#E8F5E9] text-[#2E7D32]">
+                  <Home className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold tracking-wider text-[#2E7D32]">
+                    RESIDENTIAL CARE &amp; INFRASTRUCTURE
+                  </p>
+                  <h3 className="font-display text-xl font-bold text-[#1B5E20]">
+                    Facilities
+                  </h3>
+                </div>
+              </div>
+
+              <ul className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                {SITE_CONFIG.facilities.map((facility) => (
+                  <li
+                    key={facility}
+                    className="flex items-start gap-2.5 rounded-xl border border-[#2E7D32]/15 bg-[#E8F5E9]/60 p-3 text-xs sm:text-sm font-medium text-[#263238]"
+                  >
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#43A047]" aria-hidden="true" />
+                    <span>{facility}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-6 overflow-hidden rounded-2xl border border-[#2E7D32]/20">
+              <SmartImage
+                src={images.kuttanadCampus.url}
+                alt={images.kuttanadCampus.alt}
+                caption={images.kuttanadCampus.caption}
+                aspectRatioClass="aspect-[16/9]"
+              />
+            </div>
           </div>
 
           <div className="flex flex-col justify-between rounded-3xl border border-[#1B5E20] bg-[#1B5E20] p-6 text-white sm:p-8 lg:col-span-5">

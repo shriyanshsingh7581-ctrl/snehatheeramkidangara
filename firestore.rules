@@ -35,11 +35,17 @@ service cloud.firestore {
         (!('additionalMessage' in data) || (data.additionalMessage is string && data.additionalMessage.size() <= 1000));
     }
 
-    // 1. Settings Collection (Content & Photos)
+    // 1. Settings Collection (Content, Photos & Videos)
     match /settings/{settingId} {
       allow get: if isValidId(settingId);
       allow list: if true;
-      allow write: if isValidId(settingId) && (settingId == 'content' || settingId == 'photos');
+      allow write: if isValidId(settingId) && (settingId == 'content' || settingId == 'photos' || settingId == 'videos');
+    }
+
+    // 1.b Videos Collection
+    match /videos/{videoId} {
+      allow read, list: if true;
+      allow create, update, delete: if isValidId(videoId);
     }
 
     // 2. Submissions Collection (Donation & Sponsorship inquiries)

@@ -36,11 +36,6 @@ export interface SiteImagesConfig {
 }
 
 export interface VerifiedBankDetails {
-  /**
-   * Leave isConfigured as false until official bank/UPI details are verified
-   * in writing by Snehatheeram Kidangara administration.
-   * Never fabricate account numbers, IFSC codes, or UPI IDs.
-   */
   isConfigured: boolean;
   accountName?: string;
   bankName?: string;
@@ -50,125 +45,144 @@ export interface VerifiedBankDetails {
   upiId?: string;
 }
 
-/**
- * All 12 client-provided photographs are mapped individually to their
- * dedicated sections with zero repetition across the website.
- */
 export const DEFAULT_IMAGES: SiteImagesConfig = {
   logoUrl: '/assets/aistudio/logo_extracted_f3521143.png',
   heroSanctuary: {
-    url: '/assets/aistudio/IMG-20261026-WA0030_6233e329.jpg',
-    alt: 'Residents, Sisters, Priest, and staff standing together in front of Snehatheeram Kidangara Rehabilitation Centre',
-    caption: 'Snehatheeram Kidangara — John Paul XXIII Psychosocial Rehabilitation Centre',
+    url: '/assets/aistudio/hero_rehab_support.jpg',
+    alt: 'Compassionate rehabilitation professional gently holding a woman’s hand and helping her stand up with dignity and care',
+    caption:
+      'Snehatheeram Psychosocial Rehabilitation Center for Women — Empowering Women – Restoring Hope – Rebuilding Lives',
   },
   everyMotherLove: {
     url: '/assets/aistudio/IMG-20261026-WA0029_d413bd8c.jpg',
-    alt: 'Sisters, Priest, and residents beneath the Snehatheeram Kidangara Psycho Social Rehabilitation Centre For Women board and inauguration plaque',
-    caption: 'Established 2012 · Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless',
+    alt: 'Sisters, Priest, and residents beneath the Psycho Social Rehabilitation Centre For Women board and inauguration plaque',
+    caption:
+      'Inaugurated on 8 September 2012 · Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless',
   },
   kuttanadCampus: {
     url: '/assets/aistudio/7Q2A2590_858511fe.JPG',
-    alt: 'Sister assisting an elderly resident in a wheelchair inside the accessible residential block at Snehatheeram',
-    caption: 'Facilities & Accommodation · Barrier-free, compassionate residential care',
+    alt: 'Sister assisting an elderly resident in a wheelchair inside the accessible residential block',
+    caption: 'Facilities · Accommodation for 34 residents with attached bathrooms and sanitation',
   },
   psychosocialRehab: {
     url: '/assets/aistudio/7Q2A2637_39d0a060.JPG',
     alt: 'Group psychosocial rehabilitation and interactive therapy session with residents in the community hall',
-    caption: 'Psychosocial Rehabilitation · Group therapy & social reintegration',
+    caption: 'Psychosocial rehabilitation · Group therapy and psychoeducation',
   },
   mentalHealthCounselling: {
     url: '/assets/aistudio/7Q2A2569_33e33c8b.JPG',
     alt: 'Individual mental health support, counselling, and psychological assessment session with a resident',
-    caption: 'Mental Health Support & Counselling · Personalized assessment & care',
+    caption: 'Mental health support & counselling · Psycho Therapies (CBT, REBT, DBT, etc..)',
   },
   vocationalTraining: {
     url: '/assets/aistudio/7Q2A2610_8555403e.JPG',
     alt: 'Residents engaged in vocational training and life-skills development making beaded rosaries by hand',
-    caption: 'Vocational Training & Life Skills · Craft making & occupational therapy',
+    caption: 'Vocational training (tailoring, handicrafts, cooking, gardening) & Life skills training',
   },
   medicalNursing: {
     url: '/assets/aistudio/7Q2A2563_d68c28ba.JPG',
-    alt: 'Medical professional and clinical nurse checking blood pressure of a resident at Snehatheeram',
-    caption: 'Medical Care · Regular clinical check-ups & psychiatric supervision',
+    alt: 'Medical professional and clinical nurse checking blood pressure of a resident',
+    caption: 'Medical care and medication management · Regular medical check-ups',
   },
   clinicalCheckup: {
     url: '/assets/aistudio/7Q2A2564_6163c16e.JPG',
     alt: 'Healthcare nurse conducting a vital signs and stethoscope check-up for a resident mother',
-    caption: 'Health & Safety Measures · Continuous health monitoring & nursing care',
+    caption: 'Health & Safety Measures · Psychological first aid and crisis intervention',
   },
   recreationalActivities: {
     url: '/assets/aistudio/7Q2A2645_d172c330.JPG',
     alt: 'Residents clapping, singing, and dancing together during recreational and cultural activities',
-    caption: 'Recreational & Cultural Activities · Music, dance & joyful fellowship',
+    caption: 'Recreational and cultural programs · International Observance Day Celebrations',
   },
   sustainabilityKitchen: {
     url: '/assets/aistudio/7Q2A2711_3b8d0ebf.JPG',
     alt: 'Sister and residents preparing fresh local vegetables together in the kitchen',
-    caption: 'Organic Farming, Kitchen & Life Skills · Sustainable daily living in Kuttanad',
+    caption: 'Location & Sustainability Efforts · 5 acres of paddy cultivation & organic vegetable gardens',
   },
   nutritiousMeals: {
     url: '/assets/aistudio/7Q2A2768_f2a7b43e.JPG',
-    alt: 'Residents enjoying freshly prepared nutritious meals together in the Snehatheeram dining hall',
-    caption: 'Nutritious Diet & Annadanam · Wholesome daily meals served with love',
+    alt: 'Residents enjoying freshly prepared nutritious meals together in the dining hall',
+    caption: 'Nutritious meals from organic farm produce · Balanced diet for immunity support',
   },
   spiritualSupport: {
     url: '/assets/aistudio/7Q2A2759_f2f58fae.JPG',
     alt: 'Priest, Sister, and residents gathered in prayer before meals in the community dining hall',
-    caption: 'Life at Snehatheeram · Daily prayer, spiritual renewal & community living',
+    caption: 'Life at Snehatheeram · Morning prayer & meditation and evening reflection',
   },
 };
 
 export const SITE_CONFIG = {
-  name: 'Snehatheeram',
-  shortReferenceName: 'John Paul XXIII Rehabilitation Centre',
-  fullName: 'Snehatheeram – Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless',
-  managingOrganization: 'John Paul XXIII Rehabilitation Centre Trust',
+  name: 'Pope John XXIII Rehabilitation centre Trust',
+  shortReferenceName: 'Pope John XXIII Rehabilitation centre Trust',
+  brochureTitle: 'Snehatheeram Psychosocial Rehabilitation Center for Women',
+  fullName:
+    'Snehatheeram – Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless',
+  managingOrganization: 'Pope John XXIII Rehabilitation centre Trust',
   organizationType: 'Psychosocial Rehabilitation Center for Women',
-  contactOrganization: 'John Paul XXIII Rehabilitation Centre',
+  contactOrganization: 'Pope John XXIII Rehabilitation centre Trust',
   supportingQuote: '"Serving humanity is serving God."',
-  memorialTitle: 'Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless',
+  heroSubtitle: 'A sanctuary of care, compassion, and dignity for women in need.',
+  memorialTitle:
+    'Pope John XXIII Rehabilitation centre Trust — Snehatheeram – Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless',
   tagline: 'Empowering Women – Restoring Hope – Rebuilding Lives',
   description:
-    'Providing holistic psychosocial rehabilitation, compassionate medical and psychiatric care, vocational skill development, and a loving home for destitute, abandoned, and mentally challenged women in Kidangara, Kuttanad, Alappuzha.',
+    'A sanctuary of care, compassion, and dignity for women in need. Snehatheeram – Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless is a safe and nurturing home for women facing psychosocial challenges, abandonment, or homelessness under the Pope John XXIII Rehabilitation centre Trust at Kidangara P.O., Kuttanad Taluk, Alappuzha District, Kerala.',
+  socialMedia: {
+    instagram: 'Pope John XXIII Rehabilitation centre Trust, Kidangara',
+    facebook: 'Snehatheeram',
+  },
   mentalHealthIntro: {
-    heading: 'Understanding Mental Health & Our Calling',
-    lead: 'Mental health is an integral foundation of human dignity—shaping how individuals think, feel, connect with others, and rebuild their lives.',
-    body: 'Women experiencing severe mental illness, emotional trauma, homelessness, and social abandonment often face stigma and neglect. At Snehatheeram, we bridge the gap between clinical treatment and social reintegration by offering a stigma-free, family-like environment where every woman is respected, heard, and empowered on her journey to recovery.',
+    heading: 'Introduction to Mental Health',
+    lead: 'Mental health is an essential component of overall well-being.',
+    body: 'According to the World Health Organization (WHO), “Mental health is a state of well-being in which every individual realizes his or her own potential, can cope with the normal stresses of life, can work productively and fruitfully, and is able to make a contribution to her or his community.” At Snehatheeram, we recognize the importance of mental health as a foundation for a meaningful and dignified life.',
+  },
+  ourFocusSection: {
+    heading: 'Our Focus',
+    body: 'We are a dedicated psychosocial rehabilitation center that exclusively admits women with psychiatric conditions. Our primary goal is to provide rehabilitation, not acute medical treatment. We focus on recovery-oriented support, helping our residents regain functional abilities, improve quality of life, and reintegrate into their communities.',
   },
   ourFocus: [
-    'Comprehensive psychosocial rehabilitation for destitute, abandoned, and mentally ill women.',
-    'Restoring human dignity, self-reliance, and emotional stability through structured therapeutic care.',
-    'Preventing homelessness and social exclusion by providing a safe, permanent or transitional sanctuary.',
-    'Facilitating family tracing, counselling, and safe reintegration with loved ones whenever possible.',
+    'Dedicated psychosocial rehabilitation center that exclusively admits women with psychiatric conditions.',
+    'Primary goal is to provide rehabilitation, not acute medical treatment.',
+    'Focus on recovery-oriented support, helping our residents regain functional abilities.',
+    'Improve quality of life and reintegrate residents into their communities.',
   ],
   aboutHistory: {
+    heading: 'About Us & History',
+    establishedDate: '8 September 2012',
     establishedYear: '2012',
-    inauguratedBy: 'Mar Joseph Perumthottam (Metropolitan Archbishop of Changanacherry)',
+    registeredAct: 'Travancore-Cochin Literary and Charitable Societies Act, 1955',
+    inauguratedBy:
+      'Archbishop Mar Joseph Perumthottam, Metropolitan Archbishop of Changanacherry',
     memorialName: 'Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless',
+    managedBy: 'Archdiocese of Changanacherry',
     story:
-      'Founded in 2012 in the serene backwater village of Kidangara in Kuttanad Taluk, Alappuzha District, Snehatheeram (John Paul XXIII Rehabilitation Centre) was established as the Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless and inaugurated by Mar Joseph Perumthottam. Administered by the Sisters of St. Charles Borromeo (St. Joseph Province, Changanassery), the centre began with a mission to rescue and rehabilitate wandering, destitute, and mentally challenged women who had nowhere else to turn.',
+      'Snehatheeram – Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless is a safe and nurturing home for women facing psychosocial challenges, abandonment, or homelessness. It is a dedicated project under the Pope John XXIII Rehabilitation centre Trust, located at Kidangara P.O., Kuttanad Taluk, Alappuzha District, Kerala, and registered under the Travancore-Cochin Literary and Charitable Societies Act, 1955.',
     growth:
-      'Over more than a decade of dedicated service since 2012, Snehatheeram has grown into a full-fledged Psychosocial Rehabilitation Centre for Women—combining psychiatric nursing, psychological counselling, occupational therapy, organic farming, and spiritual care.',
+      'Founded in loving memory of Rev. Fr. Francis Vaniapurakal, the home was inaugurated on 8 September 2012 by Archbishop Mar Joseph Perumthottam, Metropolitan Archbishop of Changanacherry. The project is managed by the Archdiocese of Changanacherry, providing holistic rehabilitation, empowerment, and reintegration services for women in need.',
   },
   management: {
-    province: 'John Paul XXIII Rehabilitation Centre Trust',
-    congregation: 'Psychosocial Rehabilitation Center for Women',
+    province: 'Pope John XXIII Rehabilitation centre Trust',
+    congregation:
+      'Snehatheeram – Rev. Fr. Francis Vaniapurakal Memorial Home for the Homeless · Managed by the Archdiocese of Changanacherry',
   },
   location: {
-    shortLocation: 'Kidangara P.O., Kuttanad Taluk, Alappuzha District, Kerala – 686107',
+    shortLocation:
+      'Kidangara P.O., Kuttanad Taluk, Alappuzha District, Kerala – 686107',
     addressLines: [
       'Kidangara P.O., Kuttanad Taluk,',
       'Alappuzha District, Kerala – 686107',
     ],
     fullAddressSingleLine:
-      'John Paul XXIII Rehabilitation Centre, Kidangara P.O., Kuttanad Taluk, Alappuzha District, Kerala – 686107',
-    landmark: 'John Paul XXIII Rehabilitation Centre Trust · Psychosocial Rehabilitation Center for Women',
+      'Pope John XXIII Rehabilitation centre Trust, Kidangara P.O., Kuttanad Taluk, Alappuzha District, Kerala – 686107',
+    landmark:
+      'Located in the peaceful village of Kidangara, Kuttanad Taluk, Alappuzha District, between the Pampa and Manimala rivers.',
     coordinates: {
       lat: 9.42055,
       lng: 76.49025,
       display: '9.42055° N, 76.49025° E',
     },
-    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=9.42055,76.49025',
+    googleMapsUrl:
+      'https://www.google.com/maps/search/?api=1&query=9.42055,76.49025',
     googleMapsDirectionsUrl:
       'https://www.google.com/maps/dir/?api=1&destination=9.42055,76.49025',
   },
@@ -186,15 +200,15 @@ export const SITE_CONFIG = {
   },
   bibleQuotation: {
     verse:
-      '“Truly I tell you, whatever you did for one of the least of these brothers and sisters of mine, you did for me.”',
-    reference: 'Matthew 25:40',
+      '"I was hungry and you gave me food… I was a stranger and you welcomed me."',
+    reference: 'Bible',
   },
   visitingHours: {
     title: 'Visiting Hours & Community Visits',
     description:
-      'We welcome well-wishers, families, social work trainees, and student groups to spend meaningful time with our residents.',
+      'We collaborate with hospitals, NGOs, universities, and government bodies for comprehensive rehabilitation, welcoming families, volunteers, and students.',
     schedule: '9:30 AM – 5:00 PM (Daily)',
-    note: 'Visitors and academic groups are requested to contact the centre in advance to coordinate sessions and visiting schedules.',
+    note: 'Visitors, volunteers, and academic groups (BSW, MSW, Psychology students, and Training for Nurses) are welcome to contact the centre to coordinate visits and internships.',
   },
   heroHighlights: [
     {
@@ -202,8 +216,8 @@ export const SITE_CONFIG = {
       detail: 'Empowering Women – Restoring Hope – Rebuilding Lives',
     },
     {
-      label: 'John Paul XXIII Rehabilitation Centre Trust',
-      detail: 'Serving humanity is serving God.',
+      label: 'Pope John XXIII Rehabilitation centre Trust',
+      detail: '"Serving humanity is serving God."',
     },
     {
       label: 'Kidangara P.O., Kuttanad Taluk',
@@ -214,53 +228,57 @@ export const SITE_CONFIG = {
     {
       title: 'Our Focus & Mental Health Care',
       description:
-        'Rescuing and rehabilitating destitute and mentally challenged women through individualized care plans, counselling, and psychiatric support.',
+        'A dedicated psychosocial rehabilitation center that exclusively admits women with psychiatric conditions—focusing on recovery-oriented support, functional abilities, and community reintegration.',
     },
     {
       title: 'Compassionate Sisters & Multidisciplinary Team',
       description:
-        'Led by the Sisters of St. Charles Borromeo alongside social workers, psychologists, nurses, and occupational therapists.',
+        'Dedicated care by the Management Team (Director, Manager, Sisters of Destitute) alongside Nurses, Psychiatrist (visiting), Counsellor cum Social Worker, and Psychiatric Social Worker.',
     },
     {
-      title: 'Dignity, Recovery & Reintegration',
+      title: 'Training for Nurses, BSW, MSW & Psychology Students',
       description:
-        'Empowering residents through life-skills training, craft making, organic farming, and family reunification programs.',
+        'Collaborating with hospitals, NGOs, universities, and government bodies to provide Volunteer opportunities, Training & internships for BSW, MSW, and Psychology students, and Training for Nurses.',
     },
   ],
   mission:
-    'To provide safe shelter, nutritious food, comprehensive medical and psychiatric treatment, psychosocial counselling, and vocational rehabilitation to destitute, abandoned, and mentally challenged women—restoring their health, dignity, and rightful place in family and society.',
+    'To restore dignity, promote recovery, and empower homeless women through compassionate care, therapeutic support, and skill-building.',
   vision:
-    'A compassionate and inclusive society where every woman facing mental health challenges or destitution is embraced with love, treated with dignity, and empowered to live a purposeful, healed, and fulfilling life.',
+    'A society where every woman with mental health challenges is respected, supported, and empowered to live a fulfilling life.',
   coreValues: [
     {
-      title: 'Unconditional Love & Compassion',
-      description: 'Caring for every resident as a cherished member of our own family.',
+      title: 'Compassion and empathy',
+      description: 'Caring for every woman with warmth, kindness, and deep understanding.',
     },
     {
-      title: 'Human Dignity & Respect',
-      description: 'Upholding the rights, privacy, and intrinsic worth of every woman.',
+      title: 'Respect for human dignity',
+      description: 'Honoring the inherent worth and rights of every resident.',
     },
     {
-      title: 'Holistic Healing',
-      description: 'Addressing physical, psychological, social, and spiritual well-being together.',
+      title: 'Social justice and advocacy',
+      description: 'Standing up for vulnerable women facing stigma, abandonment, or homelessness.',
     },
     {
-      title: 'Empowerment & Self-Reliance',
-      description: 'Nurturing practical life skills and creative capabilities for independent living.',
+      title: 'Empowerment and independence',
+      description: 'Helping residents regain functional abilities and self-reliance.',
     },
     {
-      title: 'Integrity & Stewardship',
-      description: 'Serving transparently with accountability to the community and well-wishers.',
+      title: 'Holistic well-being',
+      description: 'Nurturing mental, physical, emotional, social, and spiritual recovery.',
     },
     {
-      title: 'Inclusiveness & Non-Discrimination',
-      description: 'Welcoming women in need regardless of caste, creed, religion, or background.',
+      title: 'Integrity and transparency',
+      description: 'Upholding ethical standards and accountability in all rehabilitation services.',
+    },
+    {
+      title: 'Sustainability and eco-consciousness',
+      description: 'Living in harmony with nature through organic farming and sustainable practices.',
     },
   ],
   organogram: {
-    title: 'Organogram',
+    title: 'Organogram:',
     levels: [
-      '1. Trustees / Board of Management – John Paul XXIII Rehabilitation Centre Trust',
+      '1. Trustees / Board of Management – Pope John XXIII Rehabilitation centre Trust',
       '2. Executive Management – President, Secretary, Members',
       '3. Management Team – Director, Manager, Sisters of Destitute',
     ],
@@ -276,7 +294,7 @@ export const SITE_CONFIG = {
       },
       {
         name: 'Rehabilitation & Training:',
-        role: 'Psychiatric Social Worker, Trainers, Trainee, Agricultural Staff',
+        role: 'Psychiatric Social Worker , Trainers, Trainee, Agricultural Staff',
       },
       {
         name: 'Support:',
@@ -284,81 +302,133 @@ export const SITE_CONFIG = {
       },
     ],
   },
+  facilities: [
+    'Accommodation for 34 residents',
+    'Nutritious meals from organic farm produce',
+    'Attached bathrooms and sanitation',
+    'Common activity hall and prayer room',
+    'Kitchen and dining space',
+    'Outdoor gardens and recreation areas',
+    'Medical & Counselling Services',
+  ],
   rehabilitationPrinciples: [
     {
       step: '01',
-      title: 'Person-Centered Individual Care Plans',
+      title: 'Person-centered care',
       description:
-        'Every resident undergoes a thorough medical and psychosocial assessment to tailor therapy to her unique recovery pace.',
+        'Individualized recovery support tailored to each resident’s unique needs and strengths.',
     },
     {
       step: '02',
-      title: 'Therapeutic Community Living',
+      title: 'Holistic recovery approach',
       description:
-        'Structured group interactions, shared responsibilities, and peer fellowship rebuild social confidence and belonging.',
+        'Addressing mental, physical, emotional, and social well-being for complete rehabilitation.',
     },
     {
       step: '03',
-      title: 'Occupational & Creative Engagement',
+      title: 'Skill-based empowerment',
       description:
-        'Hands-on craft making, gardening, and culinary participation enhance cognitive focus, motor skills, and self-worth.',
+        'Equipping residents with practical life skills and vocational training for independence.',
     },
     {
       step: '04',
-      title: 'Family Reintegration & Follow-Up',
+      title: 'Community integration',
       description:
-        'Continuous efforts to trace families, counsel relatives, and reunite recovered women with ongoing post-discharge follow-up.',
+        'Supporting residents to reconnect and participate meaningfully in society.',
+    },
+    {
+      step: '05',
+      title: 'Family engagement where possible',
+      description:
+        'Facilitating family liaison, counselling, and safe reintegration with loved ones.',
+    },
+    {
+      step: '06',
+      title: 'Non-discrimination and equal opportunity',
+      description:
+        'Welcoming and supporting women from diverse backgrounds with equal dignity and care.',
     },
   ],
+  lifeAtSnehatheeram: {
+    heading: 'Life at Snehatheeram',
+    description:
+      'We provide round-the-clock care for 40 women from diverse backgrounds, many living with psychiatric conditions or physical disabilities.',
+  },
   dailyRoutine: [
-    { time: '5:30 AM – 7:00 AM', activity: 'Wake-up, personal hygiene, morning prayer & meditation' },
-    { time: '7:00 AM – 8:00 AM', activity: 'Morning physical exercise, yoga & walk in the green campus' },
-    { time: '8:00 AM – 9:00 AM', activity: 'Nutritious breakfast & scheduled morning medication' },
-    { time: '9:30 AM – 12:30 PM', activity: 'Occupational therapy, vocational training, counselling & group sessions' },
-    { time: '12:30 PM – 2:00 PM', activity: 'Community prayer before meals, wholesome lunch & afternoon rest' },
-    { time: '2:30 PM – 4:30 PM', activity: 'Recreational & cultural activities, music, games & organic gardening' },
-    { time: '4:30 PM – 6:30 PM', activity: 'Evening tea, outdoor relaxation & personal care' },
-    { time: '6:30 PM – 8:30 PM', activity: 'Evening prayer service, dinner, night medication & peaceful rest' },
+    {
+      time: '01 · Morning',
+      activity: 'Morning prayer & meditation',
+    },
+    {
+      time: '02 · Morning Care',
+      activity: 'Personal hygiene & health checks',
+    },
+    {
+      time: '03 · Forenoon Session',
+      activity: 'Group therapy & skills training',
+    },
+    {
+      time: '04 · Daily Nutrition',
+      activity: 'Nutritious meals from organic produce',
+    },
+    {
+      time: '05 · Afternoon Session',
+      activity: 'Afternoon vocational/recreational activities',
+    },
+    {
+      time: '06 · Evening',
+      activity: 'Evening reflection and relaxation',
+    },
   ],
   healthAndSafety: [
-    '24-hour supervision by qualified nurses and trained care attendants.',
-    'Periodic psychiatric and general medical evaluations with individualized medication charts.',
-    'Barrier-free corridors, wheelchair accessibility, anti-skid flooring, and safe dormitory layouts.',
-    'Strict hygiene protocols in kitchen, dining, water purification, and sanitation facilities.',
-    'Emergency medical tie-ups with nearby hospitals in Changanassery and Alappuzha.',
+    'Regular medical check-ups',
+    'Balanced diet for immunity support',
+    'Psychological first aid and crisis intervention',
+    'Emergency preparedness for floods and disasters',
   ],
+  locationAndSustainability: {
+    heading: 'Location & Sustainability Efforts',
+    description:
+      'Located in the peaceful village of Kidangara, Kuttanad Taluk, Alappuzha District, between the Pampa and Manimala rivers. Our sustainability projects include:',
+    projects: [
+      '5 acres of paddy cultivation',
+      'Organic vegetable gardens',
+      'Fish ponds',
+      'Plans for solar power installation',
+    ],
+  },
   sustainabilityEfforts: [
     {
-      title: 'Organic Farming & Kitchen Garden',
+      title: '5 acres of paddy cultivation',
       description:
-        'Cultivating pesticide-free vegetables, bananas, tubers, and leafy greens on campus—providing fresh produce for the kitchen while offering therapeutic gardening for residents.',
+        'Located in the peaceful village of Kidangara, Kuttanad Taluk, Alappuzha District, between the Pampa and Manimala rivers.',
     },
     {
-      title: 'Eco-Friendly Kuttanad Campus',
+      title: 'Organic vegetable gardens & Fish ponds',
       description:
-        'Composting biodegradable kitchen waste, maintaining lush green shade trees, and practicing responsible water and resource conservation.',
+        'Providing fresh organic farm produce for nutritious daily meals, alongside plans for solar power installation.',
     },
   ],
   impactSince2012: [
     {
-      metric: '2012',
-      label: 'Year Established',
-      detail: 'Over a decade of uninterrupted service in Kidangara, Kuttanad',
+      metric: '100+ Women',
+      label: 'Sheltered and rehabilitated over 100 women',
+      detail: 'Safe shelter, psychosocial recovery, and compassionate care since 8 September 2012',
     },
     {
-      metric: '100+',
-      label: 'Women Rehabilitated & Cared For',
-      detail: 'Safe shelter, psychiatric recovery & dignified living provided since inception',
+      metric: 'Family Reintegration',
+      label: 'Successfully reintegrated residents with families',
+      detail: 'Dedicated family liaison, counselling, and community reintegration support',
     },
     {
-      metric: 'Family Reunions',
-      label: 'Successful Reintegrations',
-      detail: 'Recovered mothers safely reunited with their families across India',
+      metric: '40 Women',
+      label: 'Round-the-clock care for 40 women',
+      detail: 'Caring for women from diverse backgrounds living with psychiatric conditions or physical disabilities',
     },
     {
-      metric: '24×7',
-      label: 'Holistic Care & Protection',
-      detail: '365 days of nutritious food, medicine, counselling, and love',
+      metric: '34 Residents',
+      label: 'Accommodation for 34 residents',
+      detail: 'Dedicated residential facilities with attached bathrooms, prayer room, dining, and outdoor gardens',
     },
   ],
   communityAndTraining: {
@@ -369,64 +439,119 @@ export const SITE_CONFIG = {
     programs: [
       'Volunteer opportunities',
       'Training & internships for BSW, MSW, and Psychology students',
+      'Training for Nurses',
     ],
   },
+  servicesListExact: [
+    'Psychosocial rehabilitation',
+    'Mental health support & counselling',
+    'Group therapy and psychoeducation',
+    'Social worker support – case management, advocacy, family liaison, and community linkage',
+    'Life skills training',
+    'Vocational training (tailoring, handicrafts, cooking, gardening)',
+    'Medical care and medication management',
+    'Recreational and cultural programs',
+    'Family reintegration support',
+    'Yoga Therapy',
+    'Psycho Therapies (CBT, REBT, DBT, etc..)',
+    'International Observance Day Celebrations.',
+  ],
   services: [
     {
-      id: 'safe-shelter',
+      id: 'psychosocial-rehab',
       number: '01',
-      title: '24x7 Safe Residential Shelter',
+      title: 'Psychosocial rehabilitation',
       description:
-        'Well-ventilated dormitories, barrier-free pathways, and a calm, secure home environment in Kidangara.',
-      iconName: 'Home',
-    },
-    {
-      id: 'medical-nursing',
-      number: '02',
-      title: 'Medical & Psychiatric Care',
-      description:
-        'Regular doctor and psychiatrist visits, blood pressure and vital monitoring, timely medication, and 24-hour nursing supervision.',
-      iconName: 'Stethoscope',
-    },
-    {
-      id: 'psychosocial-counselling',
-      number: '03',
-      title: 'Mental Health Support & Counselling',
-      description:
-        'Individual psychological assessments, empathetic counselling, and group therapy to heal trauma and restore emotional balance.',
+        'Recovery-oriented psychosocial rehabilitation helping residents regain functional abilities and improve quality of life.',
       iconName: 'HeartHandshake',
     },
     {
-      id: 'vocational-rehab',
-      number: '04',
-      title: 'Vocational Training & Life Skills',
+      id: 'mental-health-counselling',
+      number: '02',
+      title: 'Mental health support & counselling',
       description:
-        'Occupational therapy through rosary and bead making, handicrafts, vegetable preparation, and daily self-care skills.',
-      iconName: 'Activity',
-    },
-    {
-      id: 'nutritious-diet',
-      number: '05',
-      title: 'Nutritious Diet & Annadanam',
-      description:
-        'Freshly cooked, balanced meals and seasonal organic produce served daily in our clean community dining hall.',
-      iconName: 'Utensils',
-    },
-    {
-      id: 'recreational-spiritual',
-      number: '06',
-      title: 'Recreational, Cultural & Spiritual Life',
-      description:
-        'Daily interfaith prayers, music, dance, festival celebrations, and group games that nurture joy and companionship.',
+        'Compassionate individual mental health support and personal counselling for emotional healing and stability.',
       iconName: 'Sparkles',
     },
     {
-      id: 'organic-kitchen',
-      number: '07',
-      title: 'Hygienic Kitchen & Organic Farming',
+      id: 'group-therapy-psychoeducation',
+      number: '03',
+      title: 'Group therapy and psychoeducation',
       description:
-        'Sustainable kitchen gardens, participatory food preparation, and strict sanitation supporting resident health.',
+        'Structured group therapy sessions and psychoeducation to build awareness, coping skills, and mutual support.',
+      iconName: 'HeartHandshake',
+    },
+    {
+      id: 'social-worker-support',
+      number: '04',
+      title: 'Social worker support',
+      description:
+        'Case management, advocacy, family liaison, and community linkage by dedicated psychiatric social workers.',
+      iconName: 'Home',
+    },
+    {
+      id: 'life-skills-training',
+      number: '05',
+      title: 'Life skills training',
+      description:
+        'Daily functional skill-building, personal hygiene, communication, and independent living preparation.',
+      iconName: 'Activity',
+    },
+    {
+      id: 'vocational-training',
+      number: '06',
+      title: 'Vocational training (tailoring, handicrafts, cooking, gardening)',
+      description:
+        'Hands-on skill-based empowerment in tailoring, handicrafts, cooking, and organic gardening.',
       iconName: 'ChefHat',
+    },
+    {
+      id: 'medical-medication-care',
+      number: '07',
+      title: 'Medical care and medication management',
+      description:
+        'Regular medical check-ups, psychiatric consultations, and supervised medication management.',
+      iconName: 'Stethoscope',
+    },
+    {
+      id: 'recreational-cultural',
+      number: '08',
+      title: 'Recreational and cultural programs',
+      description:
+        'Engaging cultural activities, games, music, and creative expression for holistic well-being.',
+      iconName: 'Sparkles',
+    },
+    {
+      id: 'family-reintegration',
+      number: '09',
+      title: 'Family reintegration support',
+      description:
+        'Reconnecting residents with their families and supporting smooth reintegration into their communities.',
+      iconName: 'Home',
+    },
+    {
+      id: 'yoga-therapy',
+      number: '10',
+      title: 'Yoga Therapy',
+      description:
+        'Mind-body relaxation, breathing exercises, and therapeutic yoga for physical and mental harmony.',
+      iconName: 'Activity',
+    },
+    {
+      id: 'psycho-therapies',
+      number: '11',
+      title: 'Psycho Therapies (CBT, REBT, DBT, etc..)',
+      description:
+        'Evidence-based psychotherapies including Cognitive Behavioral Therapy (CBT), REBT, and DBT.',
+      iconName: 'Stethoscope',
+    },
+    {
+      id: 'observance-day-celebrations',
+      number: '12',
+      title: 'International Observance Day Celebrations.',
+      description:
+        'Commemorating international mental health, women’s, and community observance days together.',
+      iconName: 'Utensils',
     },
   ] as ServiceItem[],
   occasions: [
@@ -438,6 +563,8 @@ export const SITE_CONFIG = {
     'Other',
   ],
   sponsorshipTypes: [
+    'Breakfast + Dinner — ₹7,500',
+    'Lunch — ₹10,000',
     'Full Day Meal (Breakfast, Lunch, Tea & Dinner)',
     'Breakfast',
     'Lunch',

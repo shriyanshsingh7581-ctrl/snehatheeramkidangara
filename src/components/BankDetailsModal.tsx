@@ -125,7 +125,7 @@ export const BankDetailsModal: React.FC<BankDetailsModalProps> = ({ isOpen, onCl
             <div className="mt-4 space-y-2 border-t border-[#2E7D32]/20 pt-3 text-xs text-[#263238]">
               <p>
                 <strong className="text-[#1B5E20]">Organization:</strong>{' '}
-                John Paul XXIII Rehabilitation Centre
+                {live.name}
               </p>
               <p>
                 <strong className="text-[#1B5E20]">Phone Numbers:</strong>{' '}

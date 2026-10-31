@@ -113,6 +113,7 @@ export interface StoredSiteContent {
   bibleVerse?: string;
   bibleReference?: string;
   visitingHoursSchedule?: string;
+  brochureVersion?: string;
   updatedAt?: string;
 }
 
